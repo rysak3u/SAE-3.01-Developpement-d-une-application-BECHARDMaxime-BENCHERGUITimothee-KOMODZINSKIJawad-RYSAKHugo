@@ -106,7 +106,6 @@ public class PrincipaleFx extends Application {
 
             VueConteneurs tableau = new VueConteneurs(this.modeleTache);
             modeleTache.enregisterObservateur(tableau);
-            ControllerAfficherFormulaire con = new ControllerAfficherFormulaire(this.modeleTache);
             Tableau tab = new Tableau("Tableau 1");
             this.modeleTache.setTableau(tab);
 

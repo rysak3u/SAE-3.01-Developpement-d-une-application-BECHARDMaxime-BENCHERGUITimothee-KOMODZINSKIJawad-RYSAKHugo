@@ -43,7 +43,7 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
         if (b.getText().equals("Créer Tâche")) {
             //on créer la tache
             try {
-                this.m.getTableau().getConteneur(0).ajouterTache(new TacheMere(this.name.getText(), this.desc.getText()));
+                this.m.creerTache(name.getText(), desc.getText());
             } catch (TacheNomVideException e) {
                 e.printStackTrace();
             }

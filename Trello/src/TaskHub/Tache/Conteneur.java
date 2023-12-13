@@ -7,8 +7,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -80,11 +80,13 @@ public class Conteneur {
         }
         vbox.setAlignment(Pos.TOP_CENTER);
         Button button = new Button("Ajouter une tâche");
-        button.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(this.modele));
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(this.modele,this.modele.getTableau().getConteneurs().indexOf(this)));
         button.setPadding(new Insets(10));
         button.setPrefSize(200, 30);
         button.setFont(Font.font("Arial Black", FontWeight.BLACK, 15));
         vbox.getChildren().add(button);
+        vbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
+
         return vbox;
     }
 

@@ -86,6 +86,12 @@ public class ModeleTache implements Sujet{
         }
     }
 
+    public void creerTache(String titre, String description) throws TacheNomVideException {
+        TacheMere tache = new TacheMere(titre, description);
+        this.tableau.getConteneurs().get(this.colonneSelectionner).ajouterTache(tache);
+        this.notifierObservateur();
+    }
+
 
     /**
      * methode pour reveneir sur la Scene Principale
@@ -104,5 +110,9 @@ public class ModeleTache implements Sujet{
     public void setTableau(Tableau tableau) {
         this.tableau = tableau;
 
+    }
+
+    public int getColonneSelectionner() {
+        return this.colonneSelectionner;
     }
 }
