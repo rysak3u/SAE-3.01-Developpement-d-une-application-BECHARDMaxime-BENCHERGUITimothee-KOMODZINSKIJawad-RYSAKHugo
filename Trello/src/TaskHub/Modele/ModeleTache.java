@@ -1,6 +1,10 @@
 package TaskHub.Modele;
 
-import TaskHub.Tache.Colonne;
+import TaskHub.Tache.Conteneur;
+<<<<<<< HEAD
+=======
+import TaskHub.Tache.Conteneur;
+>>>>>>> c38733924a1b54b8bca27d0dbe3b471335374aa9
 import TaskHub.Vue.Observateur;
 
 import java.util.ArrayList;
@@ -11,7 +15,7 @@ import java.util.List;
  * **/
 public class ModeleTache implements Sujet{
     /**Attribut contenant la listes des colonnes qui eux même contiennent la listes des tâches*/
-    private ArrayList<Colonne> listContainer;
+    private ArrayList<Conteneur> listContainer;
     /**Attribut représentant la colonne sélectionner*/
     private int colonneSelectionner;
 
