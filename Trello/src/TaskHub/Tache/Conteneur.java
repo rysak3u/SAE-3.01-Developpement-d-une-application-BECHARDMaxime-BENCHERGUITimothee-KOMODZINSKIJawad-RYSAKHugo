@@ -1,10 +1,6 @@
 package TaskHub.Tache;
 
-<<<<<<< HEAD
-import Composite.Tache;
-=======
 import TaskHub.Tache.Composite.Tache;
->>>>>>> 53e2cb44e3acdef6fe6fe3b147678517e5d6a966
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
