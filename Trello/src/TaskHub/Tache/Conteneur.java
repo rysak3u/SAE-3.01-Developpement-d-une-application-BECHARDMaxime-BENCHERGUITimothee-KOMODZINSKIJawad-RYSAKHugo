@@ -1,5 +1,6 @@
 package TaskHub.Tache;
 
+<<<<<<< HEAD
 import Composite.Tache;
 import javafx.scene.layout.HBox;
 
@@ -58,4 +59,7 @@ public class Conteneur {
     }
 
 
+=======
+public class Conteneur {
+>>>>>>> c38733924a1b54b8bca27d0dbe3b471335374aa9
 }

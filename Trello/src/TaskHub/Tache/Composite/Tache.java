@@ -1,4 +1,4 @@
-package Composite;
+package TaskHub.Tache.Composite;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
