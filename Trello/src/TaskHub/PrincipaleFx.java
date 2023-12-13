@@ -2,6 +2,7 @@ package TaskHub;
 
 import TaskHub.Controller.ControllerAfficherFormulaire;
 import TaskHub.Controller.ControllerCréerTache;
+import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
@@ -39,11 +40,9 @@ public class PrincipaleFx extends Application {
     @Override
     public void start(Stage pstage) throws Exception {
 
-
         this.initModele();
         this.initPrincipale();
         this.initFormulaireCréerTache();
-
 
     }
 
@@ -106,19 +105,27 @@ public class PrincipaleFx extends Application {
 
 
             VueConteneurs tableau = new VueConteneurs(this.modeleTache);
-
+            modeleTache.enregisterObservateur(tableau);
+            ControllerAfficherFormulaire con = new ControllerAfficherFormulaire(this.modeleTache);
             Tableau tab = new Tableau("Tableau 1");
             this.modeleTache.setTableau(tab);
-            Conteneur cont = new Conteneur("Liste 1");
-            cont.ajouterTache(new TacheMere("Tache 1", "Description 1"));
-            cont.ajouterTache(new TacheMere("Tache 2", "Description 2"));
-            cont.ajouterTache(new TacheMere("Tache 3", "Description 3"));
-            tab.ajouterConteneur(cont);
-            Conteneur cont2 = new Conteneur("Liste 2");
-            cont2.ajouterTache(new TacheMere("Tache 4", "Description 4"));
-            cont2.ajouterTache(new TacheMere("Tache 5", "Description 5"));
-            tab.ajouterConteneur(cont2);
-            ((VueConteneurs) tableau).actualiser(this.modeleTache);
+
+            try {
+                Conteneur cont = new Conteneur("Liste 1",this.modeleTache);
+                cont.ajouterTache(new TacheMere("Tache 1", "Description 1"));
+                cont.ajouterTache(new TacheMere("Tache 2", "Description 2"));
+                cont.ajouterTache(new TacheMere("Tache 3", "Description 3"));
+                tab.ajouterConteneur(cont);
+                Conteneur cont2 = new Conteneur("Liste 2",this.modeleTache);
+                cont2.ajouterTache(new TacheMere("Tache 4", "Description 4"));
+                cont2.ajouterTache(new TacheMere("Tache 5", "Description 5"));
+                tab.ajouterConteneur(cont2);
+                tableau.actualiser(this.modeleTache);
+            } catch (TacheNomVideException e) {
+                e.printStackTrace();
+            }
+
+
             // Ajout de tous les éléments à la VBox principale
             vbox.getChildren().addAll(titrePrin, tableau);
 
@@ -128,10 +135,10 @@ public class PrincipaleFx extends Application {
 
 
            scenePrincipale= new Scene(vbox, 300, 250);
-           stagePrincipale=new Stage();
+           stagePrincipale= new Stage();
            stagePrincipale.setScene(scenePrincipale);
            stagePrincipale.setFullScreen(true);
-            stagePrincipale.show();
+           stagePrincipale.show();
         }
         /**
          * Méthode pour afficher la fenêtre de création de tâche

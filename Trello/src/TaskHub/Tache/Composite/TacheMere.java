@@ -1,5 +1,7 @@
 package TaskHub.Tache.Composite;
 
+import TaskHub.Exception.TacheNomVideException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,8 @@ public class TacheMere extends Tache {
      * @param titre titre de la tâche
      * @param description description de la tâche
      */
-    public TacheMere(String titre, String description) {
+    public TacheMere(String titre, String description) throws TacheNomVideException {
+
         super(titre, description);
     }
 

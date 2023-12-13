@@ -1,5 +1,7 @@
 package TaskHub.Tache.Composite;
 
+import TaskHub.Exception.TacheNomVideException;
+
 public class SousTache extends Tache {
     
     /**
@@ -7,7 +9,7 @@ public class SousTache extends Tache {
      * @param titre titre de la tâche
      * @param description description de la tâche
      */
-    public SousTache(String titre, String description) {
+    public SousTache(String titre, String description) throws TacheNomVideException {
         super(titre, description);
     }
 

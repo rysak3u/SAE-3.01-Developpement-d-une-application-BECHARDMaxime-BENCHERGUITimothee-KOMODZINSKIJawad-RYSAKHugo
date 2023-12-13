@@ -6,6 +6,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Tableau {
     // titre et conteneur du tableau
@@ -87,5 +88,9 @@ public class Tableau {
 
     public Conteneur getConteneur(int i) {
         return this.colonnes.get(i);
+    }
+
+    public ArrayList<Conteneur> getConteneurs() {
+        return this.colonnes;
     }
 }

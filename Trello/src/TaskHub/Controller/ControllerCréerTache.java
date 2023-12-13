@@ -2,6 +2,7 @@ package TaskHub.Controller;
 
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
+import TaskHub.Tache.Composite.TacheMere;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -42,7 +43,7 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
         if (b.getText().equals("Créer Tâche")) {
             //on créer la tache
             try {
-                this.m.créerTache(this.name.getText(), this.desc.getText());
+                this.m.getTableau().getConteneur(0).ajouterTache(new TacheMere(this.name.getText(), this.desc.getText()));
             } catch (TacheNomVideException e) {
                 e.printStackTrace();
             }

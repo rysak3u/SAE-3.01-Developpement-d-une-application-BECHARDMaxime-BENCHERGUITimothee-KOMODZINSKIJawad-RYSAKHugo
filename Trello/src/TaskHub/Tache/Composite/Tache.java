@@ -1,5 +1,6 @@
 package TaskHub.Tache.Composite;
 
+import TaskHub.Exception.TacheNomVideException;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -14,7 +15,11 @@ public abstract class Tache {
      * @param titre titre de la tâche
      * @param description description de la tâche
      */
-    public Tache(String titre,String description) {
+    public Tache(String titre,String description) throws TacheNomVideException {
+        //verifier si le nom est vide
+        if(titre==null){
+            throw new TacheNomVideException();
+        }
         this.titre= titre;
         this.description = description;
     }

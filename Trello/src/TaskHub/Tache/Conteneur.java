@@ -1,8 +1,12 @@
 package TaskHub.Tache;
+import TaskHub.Controller.ControllerAfficherFormulaire;
+import TaskHub.Controller.ControllerCréerTache;
+import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.Tache;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -16,6 +20,7 @@ public class Conteneur {
     // titre et tache du conteneur
     private String titre;
     private ArrayList<Tache> taches;
+    private ModeleTache modele;
 
     // getters et setters
     public String getTitre() {
@@ -27,7 +32,7 @@ public class Conteneur {
     public ArrayList<Tache> getTaches() {
         return this.taches;
     }
-    public void ajouterTache(Tache tache) {
+    public void ajouterTache(Tache tache){
         this.taches.add(tache);
     }
     public void supprimerTache(Tache tache) {
@@ -42,9 +47,10 @@ public class Conteneur {
      * Constructeur de Conteneur
      * @param titre titre du conteneur
      */
-    public Conteneur(String titre) {
+    public Conteneur(String titre,ModeleTache modele) {
         this.titre = titre;
         this.taches = new ArrayList<Tache>();
+        this.modele = modele;
     }
 
     /**
@@ -52,9 +58,10 @@ public class Conteneur {
      * @param titre titre du conteneur
      * @param taches taches du conteneur
      */
-    public Conteneur(String titre, ArrayList<Tache> taches) {
+    public Conteneur(String titre, ArrayList<Tache> taches, ModeleTache modele) {
         this.titre = titre;
         this.taches = taches;
+        this.modele = modele;
     }
 
     // Affichage des taches en tableau et en liste
@@ -73,6 +80,7 @@ public class Conteneur {
         }
         vbox.setAlignment(Pos.TOP_CENTER);
         Button button = new Button("Ajouter une tâche");
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(this.modele));
         button.setPadding(new Insets(10));
         button.setPrefSize(200, 30);
         button.setFont(Font.font("Arial Black", FontWeight.BLACK, 15));
