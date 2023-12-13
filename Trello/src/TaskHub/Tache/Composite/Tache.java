@@ -1,4 +1,4 @@
-package Composite;
+package TaskHub.Tache.Composite;
 
 public abstract class Tache {
     protected String description;

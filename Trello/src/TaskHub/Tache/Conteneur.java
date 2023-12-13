@@ -1,4 +1,4 @@
 package TaskHub.Tache;
 
-public class Colonne {
+public class Conteneur {
 }

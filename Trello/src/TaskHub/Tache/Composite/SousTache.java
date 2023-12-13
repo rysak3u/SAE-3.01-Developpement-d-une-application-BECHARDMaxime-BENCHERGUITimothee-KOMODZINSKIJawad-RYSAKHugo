@@ -1,4 +1,4 @@
-package Composite;
+package TaskHub.Tache.Composite;
 
 public class SousTache extends Tache {
 
