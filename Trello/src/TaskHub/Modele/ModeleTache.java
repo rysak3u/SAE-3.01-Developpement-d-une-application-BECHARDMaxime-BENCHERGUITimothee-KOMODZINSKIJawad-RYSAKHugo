@@ -27,11 +27,18 @@ public class ModeleTache implements Sujet{
     /**listes des observateurs*/
     private List<Observateur> observateurs;
 
+
     /**Stage de l'application*/
 
 
     /**Attribut représentant la classe PrincipaleFx*/
     private PrincipaleFx principaleFx;
+
+
+    public Tableau getTableau() {
+        return this.tableau;
+    }
+
 
     /**
      * Constructeur temporaire de la classe ModeleTache
@@ -100,6 +107,7 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
+
     /**
      * methode pour reveneir sur la Scene Principale
      */
@@ -111,5 +119,11 @@ public class ModeleTache implements Sujet{
      * */
     public void afficherFormulaire(){
         this.principaleFx.showForm();
+    }
+
+
+    public void setTableau(Tableau tableau) {
+        this.tableau = tableau;
+
     }
 }
