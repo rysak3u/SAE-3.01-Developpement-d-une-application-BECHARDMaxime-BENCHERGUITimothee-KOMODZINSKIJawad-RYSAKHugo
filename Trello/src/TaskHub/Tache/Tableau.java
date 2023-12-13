@@ -9,11 +9,20 @@ public class Tableau {
     ArrayList<Conteneur> colonnes;
     private String titre;
 
-    // Constructeurs
+    /**
+     * Constructeur de Tableau
+     * @param titre titre du tableau
+     */
     public Tableau(String titre){
         this.titre = titre;
         this.colonnes = new ArrayList<Conteneur>();
     }
+
+    /**
+     * Constructeur de Tableau
+     * @param titre titre du tableau
+     * @param colonnes colonnes du tableau
+     */
     public Tableau(String titre, ArrayList<Conteneur> colonnes){
         this.titre = titre;
         this.colonnes = colonnes;
@@ -34,29 +43,36 @@ public class Tableau {
         return this.titre;
     }
 
-    // Affichage des taches en tableau et en liste
-
     /**
      * méthode pour afficher les tâches en tableau
+     * @return HBox contenant les tâches
      */
     public HBox affichage_tableau(){
+        // HBox contenant les tâches
         HBox hbox = new HBox();
         for(Conteneur colonne : this.colonnes){
+            // on ajoute les tâches de la colonne à la HBox
             hbox.getChildren().add(colonne.affichage_tableau());
         }
+        // on retourne la HBox
         return hbox;
     }
 
     /**
      * méthode pour afficher les tâches en liste
+     * @return HBox contenant les tâches
      */
     public HBox affichage_liste(){
+        // HBox contenant les tâches
         HBox hbox = new HBox();
+        // on parcourt les colonnes
         for(Conteneur colonne : this.colonnes){
+            // on ajoute les tâches de la colonne à la HBox
             for(HBox tache : colonne.affichage_liste()){
                 hbox.getChildren().add(tache);
             }
         }
+        // on retourne la HBox
         return hbox;
     }
 }
