@@ -1,7 +1,5 @@
 package TaskHub.Tache;
-
-
-import Composite.Tache;
+import TaskHub.Tache.Composite.Tache;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
@@ -59,4 +57,5 @@ public class Conteneur {
         }
         return hbox;
     }
+
 }

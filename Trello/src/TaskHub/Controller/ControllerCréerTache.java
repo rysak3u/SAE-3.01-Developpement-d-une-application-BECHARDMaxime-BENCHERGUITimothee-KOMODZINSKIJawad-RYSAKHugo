@@ -9,7 +9,12 @@ import javafx.scene.input.MouseEvent;
 /** Controller qui va permettre de Créer une tâche
  * ATTENTION A NE OAS CONFONDRE AVEC LE CONTROLLER QUI VA PERMETTRE D'AFFICHER LE FORMULAIRE*/
 public class ControllerCréerTache implements EventHandler<MouseEvent> {
+    /** Modele que le controller va appeler*/
     private ModeleTache m;
+    /**
+     * TextField name Contient le nom de la tache que l'Utilisateur a donné
+     * TextField desc Contient la description de la tache que l'Utilisateur a éventuellement donner
+     */
     private TextField name,desc;
 
     public ControllerCréerTache(ModeleTache m, TextField name, TextField desc){

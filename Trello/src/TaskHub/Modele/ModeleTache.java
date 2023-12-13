@@ -1,10 +1,8 @@
 package TaskHub.Modele;
 
+import TaskHub.Exception.TacheNomVideException;
+import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
-<<<<<<< HEAD
-=======
-import TaskHub.Tache.Conteneur;
->>>>>>> c38733924a1b54b8bca27d0dbe3b471335374aa9
 import TaskHub.Vue.Observateur;
 
 import java.util.ArrayList;
@@ -60,5 +58,12 @@ public class ModeleTache implements Sujet{
         if(index>=0 && index<this.listContainer.size()){
             this.colonneSelectionner=index;
         }
+    }
+    public void créerTache(String name, String desc) throws TacheNomVideException {
+        if(name==null){
+            throw new TacheNomVideException();
+        }
+        Conteneur c=listContainer.get(colonneSelectionner);
+        c.ajouterTache(new TacheMere(name,desc));
     }
 }
