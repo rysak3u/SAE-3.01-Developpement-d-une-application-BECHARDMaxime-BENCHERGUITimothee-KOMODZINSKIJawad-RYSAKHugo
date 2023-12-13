@@ -1,6 +1,7 @@
 package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
+import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
@@ -22,6 +23,17 @@ public class ModeleTache implements Sujet{
 
     /**listes des observateurs*/
     private List<Observateur> observateurs;
+
+    /**
+     * Constructeur temporaire de la classe ModeleTache
+     * */
+    public ModeleTache(){
+        this.listContainer=new ArrayList<Conteneur>();
+        this.listContainer.add(new Conteneur("A faire"));
+        this.colonneSelectionner=0;
+        this.observateurs=new ArrayList<Observateur>();
+
+    }
 
     /**
      * méthode pour ajouter un observateur au modèle
@@ -60,11 +72,21 @@ public class ModeleTache implements Sujet{
             this.colonneSelectionner=index;
         }
     }
+    /**
+     *
+     * @param name nom de la tache à créer
+     * @param desc description de la tache à créer
+     * @throws TacheNomVideException exception si le nom de la tache est vide
+     * */
     public void créerTache(String name, String desc) throws TacheNomVideException {
+        //verifier si le nom est vide
         if(name==null){
             throw new TacheNomVideException();
         }
+        //ajouter la tache dans la colonne selectionner
         Conteneur c=listContainer.get(colonneSelectionner);
         c.ajouterTache(new TacheMere(name,desc));
+        //notifier les observateurs
+        this.notifierObservateur();
     }
 }
