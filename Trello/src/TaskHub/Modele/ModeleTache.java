@@ -21,6 +21,11 @@ public class ModeleTache implements Sujet{
     /**listes des observateurs*/
     private List<Observateur> observateurs;
 
+
+    public Tableau getTableau() {
+        return this.tableau;
+    }
+
     /**
      * méthode pour ajouter un observateur au modèle
      * @param o observateur à ajouter
