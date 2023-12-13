@@ -1,7 +1,10 @@
 package TaskHub.Modele;
 
 import TaskHub.Tache.Conteneur;
+<<<<<<< HEAD
+=======
 import TaskHub.Tache.Conteneur;
+>>>>>>> c38733924a1b54b8bca27d0dbe3b471335374aa9
 import TaskHub.Vue.Observateur;
 
 import java.util.ArrayList;
