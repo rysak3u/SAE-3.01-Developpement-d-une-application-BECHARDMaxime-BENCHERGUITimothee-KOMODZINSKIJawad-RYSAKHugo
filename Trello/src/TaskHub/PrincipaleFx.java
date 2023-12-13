@@ -21,15 +21,20 @@ public class PrincipaleFx extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("TaskHub");
         ModeleTache modeleTache = new ModeleTache();
+        initFormulaireCréerTache();
+        stage.setScene(sceneFormulaireCréerTache);
+        stage.show();
+    }
+
+    public void initFormulaireCréerTache(){
         BorderPane root = new BorderPane();
         Label créerTache = new Label("Création Tache");
         //créerTache.setAlignment(Pos.CENTER);
         root.getChildren().add(créerTache);
         BorderPane.setAlignment(créerTache,Pos.TOP_CENTER);
+        //root.setCenter(créerTache);
         //GridPane gr=new GridPane();
         sceneFormulaireCréerTache = new Scene(root,300, 250);
-        stage.setScene(sceneFormulaireCréerTache);
-        stage.show();
     }
 
     public static void main(String[] args) {
