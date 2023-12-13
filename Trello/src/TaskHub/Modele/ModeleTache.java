@@ -1,12 +1,15 @@
 package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
+import TaskHub.PrincipaleFx;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
 import TaskHub.Vue.Observateur;
+import javafx.stage.Stage;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +27,22 @@ public class ModeleTache implements Sujet{
     /**listes des observateurs*/
     private List<Observateur> observateurs;
 
+    /**Stage de l'application*/
+
+
+    /**Attribut représentant la classe PrincipaleFx*/
+    private PrincipaleFx principaleFx;
+
     /**
      * Constructeur temporaire de la classe ModeleTache
      * */
-    public ModeleTache(){
+    public ModeleTache(PrincipaleFx pf){
         this.listContainer=new ArrayList<Conteneur>();
         this.listContainer.add(new Conteneur("A faire"));
         this.colonneSelectionner=0;
         this.observateurs=new ArrayList<Observateur>();
-
+        this.principaleFx=pf;
+       // this.stage.setScene(PrincipaleFx.scenePrincipale);
     }
 
     /**
@@ -88,5 +98,18 @@ public class ModeleTache implements Sujet{
         c.ajouterTache(new TacheMere(name,desc));
         //notifier les observateurs
         this.notifierObservateur();
+    }
+
+    /**
+     * methode pour reveneir sur la Scene Principale
+     */
+    public void switchScenePrincipale(){
+        this.principaleFx.closeForm();
+    }
+    /**
+     * méthode pour changer de scene et passer sur celle qui affiche le formulaire
+     * */
+    public void afficherFormulaire(){
+        this.principaleFx.showForm();
     }
 }
