@@ -3,6 +3,7 @@ package TaskHub.Modele;
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
+import TaskHub.Tache.Tableau;
 import TaskHub.Vue.Observateur;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class ModeleTache implements Sujet{
     private ArrayList<Conteneur> listContainer;
     /**Attribut représentant la colonne sélectionner*/
     private int colonneSelectionner;
-
-
+    /**Attribut représentant le tableau*/
+    private Tableau tableau;
 
     /**listes des observateurs*/
     private List<Observateur> observateurs;

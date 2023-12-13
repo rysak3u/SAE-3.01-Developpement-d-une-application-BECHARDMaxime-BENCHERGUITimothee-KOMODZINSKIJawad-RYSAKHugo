@@ -31,6 +31,9 @@ public abstract class Tache {
         this.description = description;
     }
 
+    /**
+     * méthode pour afficher une tâche
+     */
     public HBox affichage(){
         HBox hbox = new HBox();
         hbox.getChildren().addAll(new Label(this.titre),new Label(this.description));
