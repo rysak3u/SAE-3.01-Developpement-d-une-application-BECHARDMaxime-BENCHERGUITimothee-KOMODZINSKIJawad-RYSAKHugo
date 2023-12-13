@@ -6,8 +6,8 @@ import java.util.List;
 public class TacheMere extends Tache {
     protected List<Tache> sousTache=new ArrayList<Tache>();
 
-    public TacheMere(String description) {
-        super(description);
+    public TacheMere(String titre, String description) {
+        super(titre, description);
     }
 
     @Override

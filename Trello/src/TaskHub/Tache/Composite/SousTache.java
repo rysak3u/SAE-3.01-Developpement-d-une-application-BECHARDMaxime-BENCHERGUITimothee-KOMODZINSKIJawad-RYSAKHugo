@@ -2,9 +2,9 @@ package TaskHub.Tache.Composite;
 
 public class SousTache extends Tache {
 
-    
-    public SousTache(String description) {
-        super(description);
+
+    public SousTache(String titre, String description) {
+        super(titre, description);
     }
 
     @Override

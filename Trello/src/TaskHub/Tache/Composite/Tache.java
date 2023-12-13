@@ -12,9 +12,6 @@ public abstract class Tache {
         this.titre= titre;
         this.description = description;
     }
-    public Tache(String titre) {
-        this.titre= titre;
-    }
 
     public abstract boolean ajouterSousTache(Tache st);
 
