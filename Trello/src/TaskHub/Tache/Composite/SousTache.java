@@ -1,11 +1,23 @@
 package TaskHub.Tache.Composite;
 
 public class SousTache extends Tache {
-
-    public SousTache(String description) {
-        super(description);
+    
+    /**
+     * Constructeur de SousTache
+     * @param titre titre de la tâche
+     * @param description description de la tâche
+     */
+    public SousTache(String titre, String description) {
+        super(titre, description);
     }
 
+
+    /**
+     * Méthods pour ajouter une tâche.
+     * Return false car c'est une sous tâche qui ne peut pas posséder d'autre tâche.
+     * @param st la sous tâche
+     * @return false
+     */
     @Override
     public boolean ajouterSousTache(Tache st) {
         return false;
