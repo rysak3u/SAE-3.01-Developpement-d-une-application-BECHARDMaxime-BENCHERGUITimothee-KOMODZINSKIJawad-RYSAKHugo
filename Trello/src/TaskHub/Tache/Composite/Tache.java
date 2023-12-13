@@ -1,8 +1,9 @@
 package TaskHub.Tache.Composite;
 
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.geometry.Insets;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public abstract class Tache {
     private String titre;
@@ -40,14 +41,22 @@ public abstract class Tache {
 
     /**
      * méthode pour afficher une tâche
+     *
      * @return HBox contenant la tâche
      */
-    public HBox affichage(){
+    public VBox affichage(){
         // HBox contenant la tâche
-        HBox hbox = new HBox();
-        // on ajoute les labels à la HBox
-        hbox.getChildren().addAll(new Label(this.titre),new Label(this.description));
-        return hbox;
+        VBox vbox = new VBox();
+
+        // Ajout des texts de la HBox
+        vbox.getChildren().addAll(new Text(this.titre),new Text(this.description));
+
+        // Style de la HBox
+        vbox.setPadding(new Insets(20));
+        vbox.setPrefSize(200, 100);
+        vbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
+
+        return vbox;
     }
 
 }

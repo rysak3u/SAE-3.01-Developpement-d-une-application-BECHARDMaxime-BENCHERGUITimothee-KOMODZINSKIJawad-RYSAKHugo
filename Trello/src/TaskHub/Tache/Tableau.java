@@ -1,6 +1,9 @@
 package TaskHub.Tache;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
@@ -29,10 +32,10 @@ public class Tableau {
     }
 
     // Getters et setters
-    public void ajouterColonne(Conteneur colonne){
+    public void ajouterConteneur(Conteneur colonne){
         this.colonnes.add(colonne);
     }
-    public void retirerColonne(Conteneur colonne){
+    public void retirerConteneur(Conteneur colonne){
         this.colonnes.remove(colonne);
     }
 
@@ -47,32 +50,42 @@ public class Tableau {
      * méthode pour afficher les tâches en tableau
      * @return HBox contenant les tâches
      */
-    public HBox affichage_tableau(){
+    public VBox affichage_tableau(){
         // HBox contenant les tâches
-        HBox hbox = new HBox();
+        HBox hbox = new HBox(50);
         for(Conteneur colonne : this.colonnes){
             // on ajoute les tâches de la colonne à la HBox
             hbox.getChildren().add(colonne.affichage_tableau());
         }
-        // on retourne la HBox
-        return hbox;
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(new Text(this.titre),hbox);
+        // on retourne la VBox
+        return vbox;
     }
 
     /**
      * méthode pour afficher les tâches en liste
      * @return HBox contenant les tâches
      */
-    public HBox affichage_liste(){
+    public VBox affichage_liste(){
+
         // HBox contenant les tâches
         HBox hbox = new HBox();
+
         // on parcourt les colonnes
         for(Conteneur colonne : this.colonnes){
             // on ajoute les tâches de la colonne à la HBox
-            for(HBox tache : colonne.affichage_liste()){
+            for(VBox tache : colonne.affichage_liste()){
                 hbox.getChildren().add(tache);
             }
         }
-        // on retourne la HBox
-        return hbox;
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(new Label(this.titre),hbox);
+        // on retourne la VBox
+        return vbox;
+    }
+
+    public Conteneur getConteneur(int i) {
+        return this.colonnes.get(i);
     }
 }

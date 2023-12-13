@@ -94,4 +94,8 @@ public class ModeleTache implements Sujet{
         //notifier les observateurs
         this.notifierObservateur();
     }
+
+    public void setTableau(Tableau tableau) {
+        this.tableau = tableau;
+    }
 }
