@@ -26,11 +26,8 @@ public class ModeleTache implements Sujet{
     private List<Observateur> observateurs;
 
 
-    /**Stage de l'application*/
+   private boolean formulaire;
 
-
-    /**Attribut représentant la classe PrincipaleFx*/
-    private PrincipaleFx principaleFx;
 
 
     public Tableau getTableau() {
@@ -41,11 +38,10 @@ public class ModeleTache implements Sujet{
     /**
      * Constructeur temporaire de la classe ModeleTache
      * */
-    public ModeleTache(PrincipaleFx pf){
+    public ModeleTache(){
         this.colonneSelectionner=0;
         this.observateurs=new ArrayList<Observateur>();
-        this.principaleFx=pf;
-       // this.stage.setScene(PrincipaleFx.scenePrincipale);
+        this.formulaire=false;
     }
 
     /**
@@ -54,7 +50,7 @@ public class ModeleTache implements Sujet{
      *
      */
     @Override
-    public void enregisterObservateur(Observateur o) {
+    public void enregistrerObservateur(Observateur o) {
         this.observateurs.add(o);
     }
 
@@ -93,18 +89,6 @@ public class ModeleTache implements Sujet{
     }
 
 
-    /**
-     * methode pour reveneir sur la Scene Principale
-     */
-    public void switchScenePrincipale(){
-        this.principaleFx.closeForm();
-    }
-    /**
-     * méthode pour changer de scene et passer sur celle qui affiche le formulaire
-     * */
-    public void afficherFormulaire(){
-        this.principaleFx.showForm();
-    }
 
 
     public void setTableau(Tableau tableau) {
@@ -115,4 +99,14 @@ public class ModeleTache implements Sujet{
     public int getColonneSelectionner() {
         return this.colonneSelectionner;
     }
+
+    public void switchFormulaire(){
+        this.formulaire=!this.formulaire;
+        this.notifierObservateur();
+    }
+
+    public boolean getFormulaire(){
+        return this.formulaire;
+    }
+
 }
