@@ -21,6 +21,8 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
      */
     private TextField name, desc;
 
+
+
     /**
      * @param m    Modele que le controller va appeler
      * @param name TextField name Contient le nom de la tache que l'Utilisateur a donné
@@ -51,6 +53,6 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
 
         }
         //on switch sur la scene principale
-        this.m.switchScenePrincipale();
+        this.m.switchFormulaire();
     }
 }

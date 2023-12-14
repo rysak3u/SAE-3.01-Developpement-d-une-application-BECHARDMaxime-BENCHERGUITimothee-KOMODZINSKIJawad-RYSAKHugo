@@ -22,6 +22,6 @@ public class ControllerAfficherFormulaire implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         //on affiche le formulaire
         this.m.changerColonneSelectionner(id_colonne);
-        this.m.afficherFormulaire();
+        this.m.switchFormulaire();
     }
 }
