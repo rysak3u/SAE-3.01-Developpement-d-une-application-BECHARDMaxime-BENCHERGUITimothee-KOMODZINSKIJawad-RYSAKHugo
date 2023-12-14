@@ -64,45 +64,5 @@ public class Conteneur {
         this.modele = modele;
     }
 
-    // Affichage des taches en tableau et en liste
-
-    /**
-     * méthode pour afficher les tâches en tableau
-     * @return HBox contenant les tâches
-     */
-    public VBox affichage_tableau() {
-        // HBox contenant les tâches
-        VBox vbox = new VBox();
-        vbox.getChildren().add(new Text(this.titre));
-        for (Tache tache : this.taches) {
-            // ajout de la tâche dans la liste
-            vbox.getChildren().add(tache.affichage());
-        }
-        vbox.setAlignment(Pos.TOP_CENTER);
-        Button button = new Button("Ajouter une tâche");
-        button.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(this.modele,this.modele.getTableau().getConteneurs().indexOf(this)));
-        button.setPadding(new Insets(10));
-        button.setPrefSize(200, 30);
-        button.setFont(Font.font("Arial Black", FontWeight.BLACK, 15));
-        vbox.getChildren().add(button);
-        vbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
-
-        return vbox;
-    }
-
-    /**
-     * méthode pour afficher les tâches en liste
-     * @return ArrayList<HBox> contenant les tâches
-     */
-    public ArrayList<VBox> affichage_liste() {
-        // ArrayList<HBox> contenant les tâches
-        ArrayList<VBox> vbox = new ArrayList<VBox>();
-        for (Tache tache : this.taches) {
-            // ajout de la tâche dans la liste
-            vbox.add(tache.affichage());
-        }
-        // retour de la liste
-        return vbox;
-    }
 
 }

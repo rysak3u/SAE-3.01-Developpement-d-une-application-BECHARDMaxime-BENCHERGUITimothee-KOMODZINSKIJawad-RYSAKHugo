@@ -44,24 +44,6 @@ public abstract class Tache {
         this.description = description;
     }
 
-    /**
-     * méthode pour afficher une tâche
-     *
-     * @return HBox contenant la tâche
-     */
-    public VBox affichage(){
-        // HBox contenant la tâche
-        VBox vbox = new VBox();
 
-        // Ajout des texts de la HBox
-        vbox.getChildren().addAll(new Text(this.titre),new Text(this.description));
-
-        // Style de la HBox
-        vbox.setPadding(new Insets(20));
-        vbox.setPrefSize(200, 100);
-        vbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
-
-        return vbox;
-    }
 
 }
