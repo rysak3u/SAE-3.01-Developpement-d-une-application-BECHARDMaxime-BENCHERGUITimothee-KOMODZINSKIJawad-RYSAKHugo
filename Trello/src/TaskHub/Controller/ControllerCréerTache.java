@@ -53,6 +53,8 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
 
         }
         //on switch sur la scene principale
+        this.desc.clear();
+        this.name.clear();
         this.m.switchFormulaire();
     }
 }
