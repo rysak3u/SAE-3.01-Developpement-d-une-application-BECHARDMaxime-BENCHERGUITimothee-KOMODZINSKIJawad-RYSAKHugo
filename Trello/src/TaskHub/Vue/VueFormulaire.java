@@ -55,6 +55,7 @@ public class VueFormulaire extends Stage implements Observateur{
         grid.add(hbBtn, 1, 4);
         Scene sc= new Scene(grid, 300, 250);
         this.setScene(sc);
+        this.setFullScreen(true);
     }
 
     /**
