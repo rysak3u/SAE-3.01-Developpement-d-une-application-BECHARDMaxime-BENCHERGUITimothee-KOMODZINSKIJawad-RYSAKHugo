@@ -27,4 +27,8 @@ public class TacheMere extends Tache {
     public boolean ajouterSousTache(Tache st) {
         return this.sousTache.add(st);
     }
+
+    public List<Tache> getSousTache() {
+        return sousTache;
+    }
 }
