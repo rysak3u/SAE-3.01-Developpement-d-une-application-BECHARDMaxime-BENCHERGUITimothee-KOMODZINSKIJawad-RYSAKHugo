@@ -1,0 +1,114 @@
+@startuml
+
+skinparam linetype ortho
+
+class Conteneur {
+  + Conteneur(String, ArrayList<Tache>, ModeleTache): 
+  + Conteneur(String, ModeleTache): 
+  - titre: String
+  - taches: ArrayList<Tache>
+  + ajouterTache(Tache): void
+  + supprimerTache(Tache): void
+  + supprimerTache(int): void
+   titre: String
+   taches: ArrayList<Tache>
+}
+class ControllerAfficherFormulaire {
+  + ControllerAfficherFormulaire(ModeleTache, int): 
+  + handle(MouseEvent): void
+}
+class ControllerCréerTache {
+  + ControllerCréerTache(ModeleTache, TextField, TextField): 
+  + handle(MouseEvent): void
+}
+class ModeleTache {
+  + ModeleTache(): 
+  - formulaire: boolean
+  - colonneSelectionner: int
+  - tableau: Tableau
+  + supprimerObservateur(Observateur): void
+  + switchFormulaire(): void
+  + changerColonneSelectionner(int): void
+  + enregistrerObservateur(Observateur): void
+  + notifierObservateur(): void
+  + creerTache(String, String): void
+   colonneSelectionner: int
+   formulaire: boolean
+   tableau: Tableau
+}
+interface Observateur << interface >> {
+  + actualiser(Sujet): void
+}
+class PrincipaleFx {
+  + PrincipaleFx(): 
+  + initModele(): void
+  + main(String[]): void
+  + initPrincipale(): void
+  + start(Stage): void
+}
+class SousTache {
+  + SousTache(String, String): 
+  + ajouterSousTache(Tache): boolean
+}
+interface Sujet << interface >> {
+  + supprimerObservateur(Observateur): void
+  + notifierObservateur(): void
+  + enregistrerObservateur(Observateur): void
+}
+class Tableau {
+  + Tableau(String): 
+  + Tableau(String, ArrayList<Conteneur>): 
+  - titre: String
+  + ajouterConteneur(Conteneur): void
+  + getConteneur(int): Conteneur
+  + retirerConteneur(Conteneur): void
+   titre: String
+   conteneurs: ArrayList<Conteneur>
+}
+class Tache {
+  + Tache(String, String): 
+  - titre: String
+  # description: String
+  + ajouterSousTache(Tache): boolean
+   description: String
+   titre: String
+}
+class TacheException {
+  + TacheException(String): 
+  + TacheException(): 
+}
+class TacheMere {
+  + TacheMere(String, String): 
+  + ajouterSousTache(Tache): boolean
+}
+class TacheNomVideException {
+  + TacheNomVideException(String): 
+  + TacheNomVideException(): 
+}
+class VueConteneurs {
+  + VueConteneurs(ModeleTache): 
+  + actualiser(Sujet): void
+}
+class VueFormulaire {
+  + VueFormulaire(ModeleTache): 
+  + actualiser(Sujet): void
+}
+
+Conteneur                    "1" *--> "modele\n1" ModeleTache
+Conteneur                    "1" *--> "taches\n*" Tache
+ControllerAfficherFormulaire "1" *--> "m\n1" ModeleTache
+ControllerCréerTache         "1" *--> "m\n1" ModeleTache
+ModeleTache                  "1" *--> "observateurs\n*" Observateur
+ModeleTache                   --^  Sujet
+ModeleTache                  "1" *--> "tableau\n1" Tableau
+PrincipaleFx                 "1" *--> "modeleTache\n1" ModeleTache
+SousTache                     --^  Tache
+Tableau                      "1" *--> "colonnes\n*" Conteneur
+TacheMere                     -[#000082,plain]-^  Tache
+TacheMere                    "1" *--> "sousTache\n*" Tache
+TacheNomVideException         --^  TacheException
+VueConteneurs                "1" *--> "modele\n1" ModeleTache
+VueConteneurs                 --^  Observateur
+VueFormulaire                "1" *--> "modeleTache\n1" ModeleTache
+VueFormulaire                 --^  Observateur
+@enduml

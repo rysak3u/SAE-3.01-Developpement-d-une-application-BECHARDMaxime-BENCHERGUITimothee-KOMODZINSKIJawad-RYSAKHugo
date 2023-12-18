@@ -25,6 +25,9 @@ public class ModeleTache implements Sujet{
     /**listes des observateurs*/
     private List<Observateur> observateurs;
 
+    // Derniere action effectuée //
+    private Changement changement;
+
 
    private boolean formulaire;
 
@@ -85,11 +88,13 @@ public class ModeleTache implements Sujet{
     public void creerTache(String titre, String description) throws TacheNomVideException {
         TacheMere tache = new TacheMere(titre, description);
         this.tableau.getConteneurs().get(this.colonneSelectionner).ajouterTache(tache);
+        this.changement = new Changement(this.tableau.getConteneurs().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajout");
         this.notifierObservateur();
     }
 
-
-
+    public Changement getChangement() {
+        return this.changement;
+    }
 
     public void setTableau(Tableau tableau) {
         this.tableau = tableau;

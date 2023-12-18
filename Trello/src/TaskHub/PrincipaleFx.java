@@ -47,10 +47,7 @@ public class PrincipaleFx extends Application {
             titrePrin.getChildren().add(titrePrincipale);
 
             // Création du tableau
-
-
-
-            VueConteneurs tableau = new VueConteneurs(this.modeleTache);
+            VueConteneurs tableau = new VueConteneurs();
             modeleTache.enregistrerObservateur(tableau);
             Tableau tab = new Tableau("Tableau 1");
             this.modeleTache.setTableau(tab);
