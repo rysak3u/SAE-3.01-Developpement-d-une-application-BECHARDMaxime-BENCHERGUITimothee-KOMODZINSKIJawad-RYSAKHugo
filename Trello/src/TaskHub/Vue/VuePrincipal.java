@@ -45,7 +45,7 @@ public class VuePrincipal extends Stage implements Observateur{
 
 
 
-        VueConteneurs tableau = new VueConteneurs(this.modeleTache);
+        VueConteneurs tableau = new VueConteneurs();
         modeleTache.enregistrerObservateur(tableau);
         Tableau tab = new Tableau("Tableau 1");
         this.modeleTache.setTableau(tab);
