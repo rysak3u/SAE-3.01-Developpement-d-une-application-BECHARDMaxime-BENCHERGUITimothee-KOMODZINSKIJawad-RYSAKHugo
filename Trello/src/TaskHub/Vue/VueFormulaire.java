@@ -35,7 +35,7 @@ public class VueFormulaire extends Stage implements Observateur{
         Label name = new Label("Nom de La Tache:");
         grid.add(name, 0, 1);
 
-        TextField nameTextField = new TextField();
+        TextField nameTextField = new TextField("New Tâche");
         grid.add(nameTextField, 1, 1);
 
         Label ds = new Label("Description:");
