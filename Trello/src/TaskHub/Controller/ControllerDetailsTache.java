@@ -8,9 +8,11 @@ import javafx.scene.input.MouseEvent;
 public class ControllerDetailsTache implements EventHandler<MouseEvent> {
 
 	private ModeleTache modeleTache;
+	private Tache tacheSelectionner;
 
-	public ControllerDetailsTache(ModeleTache modeleTache) {
+	public ControllerDetailsTache(ModeleTache modeleTache, Tache t) {
 		this.modeleTache = modeleTache;
+		this.tacheSelectionner = t;
 	}
 
 	/**
@@ -20,6 +22,6 @@ public class ControllerDetailsTache implements EventHandler<MouseEvent> {
 	@Override
 	public void handle(MouseEvent mouseEvent) {
 		// selection de la tâche
-		this.modeleTache.setTacheSelectionner((Tache) mouseEvent.getSource());
+		this.modeleTache.setTacheSelectionner(this.tacheSelectionner);
 	}
 }

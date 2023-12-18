@@ -30,17 +30,17 @@ public class ModeleTache implements Sujet{
 
 
    /**Attribut représentant la tache selectionner*/
-   private Tache tacheSelectionner;
+   private TacheMere tacheSelectionner;
 
 
    /**Methode pour changer la tache selctionner
     * @param tacheSelectionner tache à selectionner
     * */
-    public void setTacheSelectionner(Tache tacheSelectionner) {
+    public void setTacheSelectionner(TacheMere tacheSelectionner) {
         this.tacheSelectionner = tacheSelectionner;
     }
 
-    public Tache getTacheSelectionner() {
+    public TacheMere getTacheSelectionner() {
         return this.tacheSelectionner;
     }
     public Tableau getTableau() {

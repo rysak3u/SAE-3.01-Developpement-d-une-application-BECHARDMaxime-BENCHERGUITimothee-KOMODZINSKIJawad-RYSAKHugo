@@ -1,6 +1,7 @@
 package TaskHub.Vue;
 
 import TaskHub.Controller.ControllerAfficherFormulaire;
+import TaskHub.Controller.ControllerDetailsTache;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
 import TaskHub.Tache.Composite.Tache;
@@ -36,7 +37,7 @@ public class VueConteneurs extends VBox implements Observateur {
 
                 // Ajout des texts de la HBox
                 vboxt.getChildren().addAll(new Text(tache.getTitre()),new Text(tache.getDescription()));
-
+                vboxt.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(this.modele,tache));
                 // Style de la HBox
                 vboxt.setPadding(new Insets(20));
                 vboxt.setPrefSize(200, 100);
