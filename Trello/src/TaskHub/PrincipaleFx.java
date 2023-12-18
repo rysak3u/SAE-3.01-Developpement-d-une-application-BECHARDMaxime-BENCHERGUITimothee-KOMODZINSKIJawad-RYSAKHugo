@@ -7,6 +7,7 @@ import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
 import TaskHub.Vue.VueConteneurs;
 import TaskHub.Vue.VueFormulaire;
+import TaskHub.Vue.VuePrincipal;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -27,12 +28,13 @@ public class PrincipaleFx extends Application {
     public void start(Stage pstage) throws Exception {
 
         this.initModele();
-        this.initPrincipale();
+        VuePrincipal vp=new VuePrincipal(this.modeleTache);
+        //this.initPrincipale();
         this.modeleTache.enregistrerObservateur(new VueFormulaire(this.modeleTache));
-
+        this.modeleTache.enregistrerObservateur(vp);
     }
 
-
+/**
         public void initPrincipale() {
 
             // Création de la structure de la fenêtre principale
@@ -80,7 +82,7 @@ public class PrincipaleFx extends Application {
            stagePrincipale.setFullScreen(true);
            stagePrincipale.show();
         }
-
+*/
         public void initModele(){
             this.modeleTache=new ModeleTache();
         }

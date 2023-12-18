@@ -32,7 +32,20 @@ public class ModeleTache implements Sujet{
    private boolean formulaire;
 
 
+   /**Attribut représentant la tache selectionner*/
+   private Tache tacheSelectionner;
 
+
+   /**Methode pour changer la tache selctionner
+    * @param tacheSelectionner tache à selectionner
+    * */
+    public void setTacheSelectionner(Tache tacheSelectionner) {
+        this.tacheSelectionner = tacheSelectionner;
+    }
+
+    public Tache getTacheSelectionner() {
+        return this.tacheSelectionner;
+    }
     public Tableau getTableau() {
         return this.tableau;
     }
@@ -107,6 +120,18 @@ public class ModeleTache implements Sujet{
 
     public void switchFormulaire(){
         this.formulaire=!this.formulaire;
+        this.notifierObservateur();
+    }
+
+
+    /**
+     * méthode pour modifier la tâche selectionner
+     * @param titre titre de la tâche
+     * @param description description de la tâche
+     * */
+    public void modifierTache(String titre, String description) {
+        this.tacheSelectionner.setTitre(titre);
+        this.tacheSelectionner.setDescription(description);
         this.notifierObservateur();
     }
 
