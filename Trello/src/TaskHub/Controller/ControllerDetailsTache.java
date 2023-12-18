@@ -2,15 +2,16 @@ package TaskHub.Controller;
 
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.Tache;
+import TaskHub.Tache.Composite.TacheMere;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public class ControllerDetailsTache implements EventHandler<MouseEvent> {
 
 	private ModeleTache modeleTache;
-	private Tache tacheSelectionner;
+	private TacheMere tacheSelectionner;
 
-	public ControllerDetailsTache(ModeleTache modeleTache, Tache t) {
+	public ControllerDetailsTache(ModeleTache modeleTache, TacheMere t) {
 		this.modeleTache = modeleTache;
 		this.tacheSelectionner = t;
 	}

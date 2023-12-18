@@ -1,6 +1,8 @@
 package TaskHub.Vue;
 
+import TaskHub.Controller.ControllerAfficherFormulaire;
 import TaskHub.Controller.ControllerCréerTache;
+import TaskHub.Controller.ControllerRetour;
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
@@ -8,6 +10,7 @@ import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,6 +33,8 @@ import javafx.stage.Stage;
 public class VuePrincipal extends Stage implements Observateur{
 
     private ModeleTache modeleTache;
+
+    private Scene scenePrincipale;
     /**
      * Constructeur de la classe VuePrincipal
      *
@@ -49,7 +54,8 @@ public class VuePrincipal extends Stage implements Observateur{
         titrePrin.getChildren().add(titrePrincipale);
 
         // Création du tableau
-        VueConteneurs tableau = new VueConteneurs(this.modeleTache);
+        VueConteneurs tableau = new VueConteneurs();
+
         modeleTache.enregistrerObservateur(tableau);
         Tableau tab = new Tableau("Tableau 1");
         this.modeleTache.setTableau(tab);
@@ -72,7 +78,9 @@ public class VuePrincipal extends Stage implements Observateur{
         vbox.getChildren().addAll(titrePrin, tableau);
 
         // Mise en plein écran de la scène
-        Scene scenePrincipale= new Scene(vbox, 300, 250);
+        this.scenePrincipale= new Scene(vbox, 300, 250);
+
+        //scenePrincipale.getStylesheets().add("styleFormulaire.css");
         this.setScene(scenePrincipale);
         this.setFullScreen(true);
         this.show();
@@ -83,7 +91,12 @@ public class VuePrincipal extends Stage implements Observateur{
      */
     @Override
     public void actualiser(Sujet s) {
-        this.show();
+        if(((ModeleTache)s).getTacheSelectionner()==null){
+            this.setScene(this.scenePrincipale);
+        }
+        else{
+            this.detailTache();
+        }
 
     }
 
@@ -107,16 +120,23 @@ public class VuePrincipal extends Stage implements Observateur{
 
         Label ds = new Label("Sous-Tâche : ");
         grid.add(ds, 0, 2);
-        
-        ControllerCréerTache controllerCréerTache = new ControllerCréerTache(modeleTache, nameTextField, tfDesc);
-        Button btnCreer = new Button("Créer Tâche");
-        Button btnAnnuler = new Button("Annuler");
-        btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED,controllerCréerTache);
-        btnAnnuler.addEventHandler(MouseEvent.MOUSE_CLICKED,controllerCréerTache);
+
+        Label sousTache = new Label(tache.toString());
+        grid.add(sousTache, 1, 2);
+
+        Button btnCreer = new Button("Créer Sous-Tâche");
+        Button btnAnnuler = new Button("Retour");
+        btnAnnuler.addEventHandler(ActionEvent.ACTION, new ControllerRetour(this.modeleTache));
+
+        Button btnModifier = new Button("Modifier");
+        btnModifier.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(this.modeleTache, this.modeleTache.getColonneSelectionner()));
+
+        Button btnArchiver = new Button("Archiver");
+        Button btnGantt = new Button("Diagramme de Gantt");
+
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtn.getChildren().add(btnCreer);
-        hbBtn.getChildren().add(btnAnnuler);
+        hbBtn.getChildren().addAll(btnAnnuler, btnGantt, btnArchiver, btnModifier, btnCreer);
         grid.add(hbBtn, 1, 4);
         Scene sc= new Scene(grid, 300, 250);
         this.setScene(sc);

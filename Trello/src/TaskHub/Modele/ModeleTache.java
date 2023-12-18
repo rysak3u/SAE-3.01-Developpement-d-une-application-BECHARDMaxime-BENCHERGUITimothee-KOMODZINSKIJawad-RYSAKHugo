@@ -25,6 +25,9 @@ public class ModeleTache implements Sujet{
     /**listes des observateurs*/
     private List<Observateur> observateurs;
 
+    // Derniere action effectuée //
+    private Changement changement;
+
 
    private boolean formulaire;
 
@@ -38,6 +41,7 @@ public class ModeleTache implements Sujet{
     * */
     public void setTacheSelectionner(TacheMere tacheSelectionner) {
         this.tacheSelectionner = tacheSelectionner;
+        notifierObservateur();
     }
 
     public TacheMere getTacheSelectionner() {
@@ -98,11 +102,13 @@ public class ModeleTache implements Sujet{
     public void creerTache(String titre, String description) throws TacheNomVideException {
         TacheMere tache = new TacheMere(titre, description);
         this.tableau.getConteneurs().get(this.colonneSelectionner).ajouterTache(tache);
+        this.changement = new Changement(this.tableau.getConteneurs().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajout");
         this.notifierObservateur();
     }
 
-
-
+    public Changement getChangement() {
+        return this.changement;
+    }
 
     public void setTableau(Tableau tableau) {
         this.tableau = tableau;
@@ -125,8 +131,8 @@ public class ModeleTache implements Sujet{
      * @param description description de la tâche
      * */
     public void modifierTache(String titre, String description) {
-        this.tacheSelectionner.setTitre(titre);
-        this.tacheSelectionner.setDescription(description);
+        this.tableau.getConteneur(this.colonneSelectionner).getTaches().get(this.tableau.getConteneur(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setTitre(titre);
+        this.tableau.getConteneur(this.colonneSelectionner).getTaches().get(this.tableau.getConteneur(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setDescription(description);
         this.notifierObservateur();
     }
 

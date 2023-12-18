@@ -27,25 +27,12 @@ public class PrincipaleFx extends Application {
     @Override
     public void start(Stage pstage) throws Exception {
 
-        this.initModele();
+        this.modeleTache=new ModeleTache();
         VuePrincipal vp=new VuePrincipal(this.modeleTache);
-        //this.initPrincipale();
         this.modeleTache.enregistrerObservateur(new VueFormulaire(this.modeleTache));
         this.modeleTache.enregistrerObservateur(vp);
     }
 
-/**
-        public void initPrincipale() {
-
-           stagePrincipale= new Stage();
-           stagePrincipale.setScene(scenePrincipale);
-           stagePrincipale.setFullScreen(true);
-           stagePrincipale.show();
-        }
-*/
-        public void initModele(){
-            this.modeleTache=new ModeleTache();
-        }
     public static void main(String[] args) {
         launch(args);
     }

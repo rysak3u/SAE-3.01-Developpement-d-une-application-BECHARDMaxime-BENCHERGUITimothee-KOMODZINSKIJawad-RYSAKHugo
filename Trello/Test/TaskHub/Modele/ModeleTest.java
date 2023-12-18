@@ -16,7 +16,7 @@ class ModeleTest {
     @BeforeEach
     void setUp() throws TacheNomVideException {
         this.m = new ModeleTache();
-        ArrayList<Tache> taches = new ArrayList<Tache>();
+        ArrayList<TacheMere> taches = new ArrayList<TacheMere>();
         taches.add(new TacheMere("test0","test0"));
         taches.add(new TacheMere("test1","test1"));
         taches.add(new TacheMere("test2","test2"));

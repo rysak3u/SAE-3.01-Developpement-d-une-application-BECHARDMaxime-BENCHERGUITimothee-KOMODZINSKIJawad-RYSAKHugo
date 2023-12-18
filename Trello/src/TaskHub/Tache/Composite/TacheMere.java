@@ -31,4 +31,13 @@ public class TacheMere extends Tache {
     public List<Tache> getSousTache() {
         return sousTache;
     }
+
+    public String toString() {
+    	String s = "";
+        for (Tache t : this.sousTache) {
+            s += t.getTitre()+ "\n";
+        }
+        return s;
+
+    }
 }
