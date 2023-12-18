@@ -15,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class VueFormulaire extends Stage implements Observateur{
@@ -54,6 +53,7 @@ public class VueFormulaire extends Stage implements Observateur{
         hbBtn.getChildren().add(btnAnnuler);
         grid.add(hbBtn, 1, 4);
         Scene sc= new Scene(grid, 300, 250);
+        sc.getStylesheets().add("styleFormulaire.css");
         this.setScene(sc);
         this.setFullScreen(true);
     }
