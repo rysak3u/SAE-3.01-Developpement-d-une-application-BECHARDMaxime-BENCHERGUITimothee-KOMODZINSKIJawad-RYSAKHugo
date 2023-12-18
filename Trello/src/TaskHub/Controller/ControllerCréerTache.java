@@ -45,7 +45,15 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
         if (b.getText().equals("Créer Tâche")) {
             //on créer la tache
             try {
-                this.m.creerTache(name.getText(), desc.getText());
+                /**
+                 * Si une tache est selectionner on modifie la tache
+                 * Sinon on créer une nouvelle tache
+                 */
+                if(this.m.getTacheSelectionner() !=null){
+                    this.m.modifierTache(this.name.getText(), this.desc.getText());
+                }else {
+                    this.m.creerTache(name.getText(), desc.getText());
+                }
             } catch (TacheNomVideException e) {
                 e.printStackTrace();
             }
@@ -54,7 +62,7 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
         }
         //on switch sur la scene principale
         this.desc.clear();
-        this.name.clear();
+        this.name.setText("New Tâche");
         this.m.switchFormulaire();
     }
 }
