@@ -1,18 +1,6 @@
 package TaskHub.Tache;
-import TaskHub.Controller.ControllerAfficherFormulaire;
-import TaskHub.Controller.ControllerCréerTache;
 import TaskHub.Modele.ModeleTache;
-import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 

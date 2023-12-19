@@ -1,6 +1,6 @@
 package TaskHub.Vue;
 
-import TaskHub.Controller.ControllerCréerTache;
+import TaskHub.Controller.ControllerManipTache;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
 import javafx.geometry.Insets;
@@ -42,7 +42,7 @@ public class VueFormulaire extends Stage implements Observateur{
 
         TextField tfDesc = new TextField();
         grid.add(tfDesc, 1, 2);
-        ControllerCréerTache controllerCréerTache = new ControllerCréerTache(modeleTache, nameTextField, tfDesc);
+        ControllerManipTache controllerCréerTache = new ControllerManipTache(modeleTache, nameTextField, tfDesc);
         Button btnCreer = new Button("Créer Tâche");
         Button btnAnnuler = new Button("Annuler");
         btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED,controllerCréerTache);

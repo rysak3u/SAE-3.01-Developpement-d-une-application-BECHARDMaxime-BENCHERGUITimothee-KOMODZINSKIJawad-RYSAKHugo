@@ -21,12 +21,13 @@ public class ControllerAfficherFormulaire implements EventHandler<MouseEvent> {
      */
     @Override
     public void handle(MouseEvent mouseEvent) {
-        //on affiche le formulaire
+        // On récupère le bouton sur lequel on a cliqué
         Button b = (Button) mouseEvent.getSource();
+        // Si le bouton est le bouton créer Sous-tâche alors on met l'attribut sousTache à true
         if (b.getText().equals("Créer Sous-Tâche")) {
             m.setSousTache(true);
-            System.out.print("Sous-tâche\n");
         }
+        // On affiche le formulaire
         this.m.changerColonneSelectionner(id_colonne);
         this.m.switchFormulaire();
     }
