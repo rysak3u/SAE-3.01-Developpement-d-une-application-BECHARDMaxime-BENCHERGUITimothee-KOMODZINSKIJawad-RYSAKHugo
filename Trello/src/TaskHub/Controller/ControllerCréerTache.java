@@ -2,6 +2,8 @@ package TaskHub.Controller;
 
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
+import TaskHub.Tache.Composite.SousTache;
+import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -49,7 +51,12 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
                  * Si une tache est selectionner on modifie la tache
                  * Sinon on créer une nouvelle tache
                  */
-                if(this.m.getTacheSelectionner() !=null){
+                if (this.m.getSousTache()) {
+                    this.m.creerSousTache(name.getText(), desc.getText());
+                    this.m.setSousTache(false);
+                }
+                else if(this.m.getTacheSelectionner() !=null){
+                    System.out.println("modifier");
                     this.m.modifierTache(this.name.getText(), this.desc.getText());
                 }else {
                     this.m.creerTache(name.getText(), desc.getText());
@@ -57,10 +64,10 @@ public class ControllerCréerTache implements EventHandler<MouseEvent> {
             } catch (TacheNomVideException e) {
                 e.printStackTrace();
             }
-
-
         }
-        //on switch sur la scene principale
+        //si le bouton est le bouton créer colonne
+
+        //on vide les champs
         this.desc.clear();
         this.name.setText("New Tâche");
         this.m.switchFormulaire();

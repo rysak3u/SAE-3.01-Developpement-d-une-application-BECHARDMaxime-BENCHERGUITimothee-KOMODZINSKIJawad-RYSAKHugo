@@ -2,6 +2,7 @@ package TaskHub.Controller;
 
 import TaskHub.Modele.ModeleTache;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 /**
  * Controller qui va permettre d'afficher le formulaire
@@ -21,6 +22,11 @@ public class ControllerAfficherFormulaire implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         //on affiche le formulaire
+        Button b = (Button) mouseEvent.getSource();
+        if (b.getText().equals("Créer Sous-Tâche")) {
+            m.setSousTache(true);
+            System.out.print("Sous-tâche\n");
+        }
         this.m.changerColonneSelectionner(id_colonne);
         this.m.switchFormulaire();
     }

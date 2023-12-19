@@ -125,6 +125,7 @@ public class VuePrincipal extends Stage implements Observateur{
         grid.add(sousTache, 1, 2);
 
         Button btnCreer = new Button("Créer Sous-Tâche");
+        btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(this.modeleTache, this.modeleTache.getColonneSelectionner()));
         Button btnAnnuler = new Button("Retour");
         btnAnnuler.addEventHandler(ActionEvent.ACTION, new ControllerRetour(this.modeleTache));
 

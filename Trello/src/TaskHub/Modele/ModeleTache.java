@@ -2,6 +2,7 @@ package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.PrincipaleFx;
+import TaskHub.Tache.Composite.SousTache;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
@@ -21,6 +22,8 @@ public class ModeleTache implements Sujet{
     private int colonneSelectionner;
     /**Attribut représentant le tableau*/
     private Tableau tableau;
+
+    private boolean sousTache = false;
 
     /**listes des observateurs*/
     private List<Observateur> observateurs;
@@ -106,6 +109,12 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
+    public void creerSousTache(String titre, String description) throws TacheNomVideException {
+        SousTache tache = new SousTache(titre, description);
+        this.tacheSelectionner.ajouterSousTache(tache);
+        this.notifierObservateur();
+    }
+
     public Changement getChangement() {
         return this.changement;
     }
@@ -138,6 +147,14 @@ public class ModeleTache implements Sujet{
 
     public boolean getFormulaire(){
         return this.formulaire;
+    }
+
+    public void setSousTache(boolean sousTache) {
+        this.sousTache = sousTache;
+    }
+
+    public boolean getSousTache() {
+        return this.sousTache;
     }
 
 }
