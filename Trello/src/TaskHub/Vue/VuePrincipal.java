@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 
 
 /**
- * Classe VuePrincipal
+ * Classe VuePrincipal.puml
  * **/
 public class VuePrincipal extends Stage implements Observateur{
 
@@ -34,7 +34,7 @@ public class VuePrincipal extends Stage implements Observateur{
 
     private Scene scenePrincipale;
     /**
-     * Constructeur de la classe VuePrincipal
+     * Constructeur de la classe VuePrincipal.puml
      *
      */
     public VuePrincipal(ModeleTache modeleTache){
