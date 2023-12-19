@@ -126,7 +126,7 @@ public class VuePrincipal extends Stage implements Observateur{
 
             // Ajout des texts de la HBox
             vboxt.getChildren().addAll(new Text(t.getTitre()),new Text(t.getDescription()));
-            vboxt.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(modeleTache,tache));
+            vboxt.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(modeleTache,(TacheMere) t));
 
             // Style de la HBox
             vboxt.setPadding(new Insets(20));

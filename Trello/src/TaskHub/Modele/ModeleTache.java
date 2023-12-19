@@ -110,7 +110,7 @@ public class ModeleTache implements Sujet{
     }
 
     public void creerSousTache(String titre, String description) throws TacheNomVideException {
-        SousTache tache = new SousTache(titre, description);
+        TacheMere tache = new TacheMere(titre, description);
         this.tacheSelectionner.ajouterSousTache(tache);
         this.notifierObservateur();
     }
