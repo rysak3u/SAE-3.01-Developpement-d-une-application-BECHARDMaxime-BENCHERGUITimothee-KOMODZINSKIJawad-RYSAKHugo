@@ -137,8 +137,7 @@ public class VuePrincipal extends Stage implements Observateur{
         }
         grid.add(sousTaches, 0, 3);
 
-        Label sousTache = new Label(tache.toString());
-        grid.add(sousTache, 1, 2);
+
 
         Button btnCreer = new Button("Créer Sous-Tâche");
         btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(this.modeleTache, this.modeleTache.getColonneSelectionner()));
