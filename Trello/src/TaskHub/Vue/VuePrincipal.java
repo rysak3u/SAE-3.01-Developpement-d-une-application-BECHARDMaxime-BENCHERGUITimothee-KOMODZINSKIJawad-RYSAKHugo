@@ -2,6 +2,7 @@ package TaskHub.Vue;
 
 import TaskHub.Controller.ControllerAfficherFormulaire;
 import TaskHub.Controller.ControllerCréerTache;
+import TaskHub.Controller.ControllerDetailsTache;
 import TaskHub.Controller.ControllerRetour;
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
@@ -18,9 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -120,6 +120,22 @@ public class VuePrincipal extends Stage implements Observateur{
 
         Label ds = new Label("Sous-Tâche : ");
         grid.add(ds, 0, 2);
+        VBox sousTaches = new VBox();
+        for(Tache t : tache.getSousTache()){
+            VBox vboxt = new VBox();
+
+            // Ajout des texts de la HBox
+            vboxt.getChildren().addAll(new Text(tache.getTitre()),new Text(tache.getDescription()));
+            vboxt.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(modeleTache,tache));
+
+            // Style de la HBox
+            vboxt.setPadding(new Insets(20));
+            vboxt.setPrefSize(200, 100);
+            vboxt.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
+            // ajout de la tâche dans la liste
+            sousTaches.getChildren().add(vboxt);
+        }
+        grid.add(sousTaches, 0, 3);
 
         Label sousTache = new Label(tache.toString());
         grid.add(sousTache, 1, 2);
@@ -141,7 +157,6 @@ public class VuePrincipal extends Stage implements Observateur{
         grid.add(hbBtn, 1, 4);
         Scene sc= new Scene(grid, 300, 250);
         this.setScene(sc);
-        this.setFullScreen(true);
         this.show();
     }
 }
