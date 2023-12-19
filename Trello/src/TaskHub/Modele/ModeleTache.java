@@ -110,6 +110,9 @@ public class ModeleTache implements Sujet{
     }
 
     public void creerSousTache(String titre, String description) throws TacheNomVideException {
+        if (this.tacheSelectionner==null){
+            return;
+        }
         TacheMere tache = new TacheMere(titre, description);
         this.tacheSelectionner.ajouterSousTache(tache);
         this.notifierObservateur();
@@ -140,6 +143,9 @@ public class ModeleTache implements Sujet{
      * @param description description de la tâche
      * */
     public void modifierTache(String titre, String description) {
+        if(this.tacheSelectionner==null){
+            return;
+        }
         this.tableau.getConteneur(this.colonneSelectionner).getTaches().get(this.tableau.getConteneur(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setTitre(titre);
         this.tableau.getConteneur(this.colonneSelectionner).getTaches().get(this.tableau.getConteneur(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setDescription(description);
         this.notifierObservateur();
