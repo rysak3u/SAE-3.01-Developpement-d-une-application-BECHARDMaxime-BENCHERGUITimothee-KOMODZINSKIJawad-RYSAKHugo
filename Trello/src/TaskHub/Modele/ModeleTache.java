@@ -31,6 +31,8 @@ public class ModeleTache implements Sujet{
     // Derniere action effectuée //
     private Changement changement;
 
+    private int affichage;
+
 
    private boolean formulaire;
 
@@ -47,13 +49,23 @@ public class ModeleTache implements Sujet{
         notifierObservateur();
     }
 
+    /**
+     * methode pour changer l'affichage
+     * @param affichage
+     */
+    public void setAffichage(int affichage) {
+        this.affichage = affichage;
+    }
+
     public TacheMere getTacheSelectionner() {
         return this.tacheSelectionner;
     }
     public Tableau getTableau() {
         return this.tableau;
     }
-
+    public int getAffichage() {
+        return this.affichage;
+    }
 
     /**
      * Constructeur temporaire de la classe ModeleTache
@@ -62,6 +74,7 @@ public class ModeleTache implements Sujet{
         this.colonneSelectionner=0;
         this.observateurs=new ArrayList<Observateur>();
         this.formulaire=false;
+        this.affichage=2;
     }
 
     /**
