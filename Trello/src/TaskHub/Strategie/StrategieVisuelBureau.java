@@ -60,7 +60,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 button.setPrefSize(200, 30);
                 button.setFont(Font.font("Arial Black", FontWeight.BLACK, 15));
                 vbox.getChildren().add(button);
-                vbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
+                //vbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
                 hbox.getChildren().add(vbox);
             }
             this.getChildren().setAll(new Text(modele.getTableau().getTitre()),hbox);

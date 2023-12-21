@@ -1,0 +1,14 @@
+.root{
+    -fx-background-color: #a0d6b4;
+}
+
+.button{
+    -fx-background-color: #25acbe;
+    -fx-text-fill: white;
+}
+
+.tache{
+    -fx-background-color: #cb6076;
+    -fx-text-fill: white;
+
+}

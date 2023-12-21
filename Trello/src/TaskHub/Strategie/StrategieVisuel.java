@@ -23,6 +23,7 @@ public abstract class StrategieVisuel extends Pane{
         vboxt.setPadding(new Insets(20));
         vboxt.setPrefSize(200, 100);
         vboxt.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
+        vboxt.getStyleClass().add("tache");
 
         return vboxt;
     }

@@ -97,7 +97,7 @@ public class VuePrincipal extends Stage implements Observateur{
 
         // Mise en plein écran de la scène
         this.scenePrincipale= new Scene(vbox, 300, 250);
-
+        this.scenePrincipale.getStylesheets().add("styleVisuel.css");
         //scenePrincipale.getStylesheets().add("styleFormulaire.css");
         this.setScene(scenePrincipale);
         this.setFullScreen(true);
