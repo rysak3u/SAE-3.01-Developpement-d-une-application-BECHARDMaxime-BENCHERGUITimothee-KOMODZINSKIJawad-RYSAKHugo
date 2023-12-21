@@ -46,7 +46,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 // HBox contenant les tâches
                 VBox vbox = new VBox(10);
                 // Ajout des texts de la HBox
-                Text titre=new Text(colonne.getTitre());
+                Text titre = new Text(colonne.getTitre());
                 titre.getStyleClass().add("colonneTitre");
                 vbox.getChildren().add(titre);
                 // on ajoute les tâches de la colonne à la VBox
@@ -59,7 +59,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                     vbox.getChildren().add(vboxt);
                     //vbox.fillWidthProperty().set(false);
                 }
-                ImageView plus= new ImageView("plus.png");
+                ImageView plus = new ImageView("plus.png");
                 plus.fitHeightProperty().set(40);
                 plus.fitWidthProperty().set(40);
                 vbox.setAlignment(Pos.TOP_CENTER);
@@ -70,17 +70,13 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 button.setPadding(new Insets(10));
                 button.setPrefSize(200, 30);
                 button.setFont(Font.font("Arial Black", FontWeight.BLACK, 15));
+                button.getStyleClass().add("button"); // Ajout de la classe de style pour le bouton
                 vbox.getChildren().add(button);
-                //vbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
                 hbox.getChildren().add(vbox);
                 hbox.fillHeightProperty().set(false);
             }
 
-            this.getChildren().setAll(new Text(modele.getTableau().getTitre()),hbox);
+            this.getChildren().setAll(new Text(modele.getTableau().getTitre()), hbox);
         }
-
     }
-
-
-
 }

@@ -94,7 +94,6 @@ public class VuePrincipal extends Stage implements Observateur{
         // Mise en plein écran de la scène
         this.scenePrincipale= new Scene(vbox, 300, 250);
         this.scenePrincipale.getStylesheets().add("styleVisuel.css");
-        //scenePrincipale.getStylesheets().add("styleFormulaire.css");
         this.setScene(scenePrincipale);
         this.setFullScreen(true);
         this.show();
@@ -126,100 +125,80 @@ public class VuePrincipal extends Stage implements Observateur{
     public void detailTache(){
         TacheMere tache = this.modeleTache.getTacheSelectionner();
 
-        // Création de la structure de la fenêtre
         GridPane grid = new GridPane();
+        grid.getStyleClass().add("formulaire");
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        grid.setStyle("-fx-background-color: #8a2be2;"); // Fond violet
 
-        // Création du titre
         Text scenetitle = new Text("Détail de la tâche : " + tache.getTitre());
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        scenetitle.setFill(Color.WHITE); // Texte blanc
+        scenetitle.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         grid.add(scenetitle, 0, 0, 2, 1);
 
-        // Création des labels et placement
         Label desc = new Label("Description : ");
-        desc.setTextFill(Color.WHITE); // Texte blanc
+        desc.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         grid.add(desc, 0, 1);
 
         Label description = new Label(tache.getDescription());
-        description.setTextFill(Color.WHITE); // Texte blanc
+        description.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         grid.add(description, 1, 1);
 
         Label ds = new Label("Sous-Tâche : ");
-        ds.setTextFill(Color.WHITE); // Texte blanc
+        ds.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         grid.add(ds, 0, 2);
 
-        // Création de la VBox qui contient les sous-tâches
         VBox sousTaches = new VBox();
 
-// Pour chaque sous-tâche, on crée une VBox
         for (Tache t : tache.getSousTache()) {
             VBox vboxt = new VBox();
 
-            // Ajout des Titres et descriptions des sous-tâches
             Text titre = new Text(t.getTitre());
             Text descriptiont = new Text(t.getDescription());
-            titre.setFill(Color.WHITE);
-            descriptiont.setFill(Color.WHITE);
+            titre.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
+            descriptiont.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
             vboxt.getChildren().addAll(titre, descriptiont);
 
-            // Ajout de l'eventHandler pour la sélection de la tâche
             vboxt.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerDetailsTache(modeleTache, (TacheMere) t));
+            vboxt.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
 
-            // Style de la VBox
-            vboxt.setPadding(new Insets(20));
-            vboxt.setPrefSize(200, 100);
-            vboxt.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
-            // Fond blanc pour les sous-tâches
-            vboxt.setStyle("-fx-background-color: #9c8ae2; -fx-background-radius: 10; -fx-border-radius: 10;");
-            // ajout de la VBox à la VBox principale
             sousTaches.getChildren().add(vboxt);
         }
 
-        // Style de la VBox des sous-tâches
+        sousTaches.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         sousTaches.setSpacing(10);
         sousTaches.setAlignment(Pos.CENTER);
-
-        // Ajout de la VBox des sous-tâches à la fenêtre
         grid.add(sousTaches, 0, 3);
 
-        // Création des boutons
         Button btnCreer = new Button("Créer Sous-Tâche");
-        btnCreer.setStyle("-fx-background-color: #ff69b4; -fx-text-fill: white;"); // Rose
+        btnCreer.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
         btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaire(this.modeleTache, this.modeleTache.getColonneSelectionner()));
 
         Button btnAnnuler = new Button("Retour");
-        btnAnnuler.setStyle("-fx-background-color: #ff69b4; -fx-text-fill: white;"); // Rose
+        btnAnnuler.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
         btnAnnuler.addEventHandler(ActionEvent.ACTION, new ControllerRetour(this.modeleTache));
 
         Button btnModifier = new Button("Modifier");
-        btnModifier.setStyle("-fx-background-color: #ff69b4; -fx-text-fill: white;"); // Rose
+        btnModifier.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
         btnModifier.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaire(this.modeleTache, this.modeleTache.getColonneSelectionner()));
 
         Button btnArchiver = new Button("Archiver");
-        btnArchiver.setStyle("-fx-background-color: #ff69b4; -fx-text-fill: white;"); // Rose
+        btnArchiver.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
 
         Button btnGantt = new Button("Diagramme de Gantt");
-        btnGantt.setStyle("-fx-background-color: #ff69b4; -fx-text-fill: white;"); // Rose
+        btnGantt.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
 
-        // Ajout des boutons dans une HBox qu'on ajoute à la fenêtre
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().addAll(btnAnnuler, btnGantt, btnArchiver, btnModifier, btnCreer);
 
-        // Style de la HBox des boutons
         hbBtn.setSpacing(10);
         hbBtn.setAlignment(Pos.CENTER);
-
-        // Ajout de la HBox des boutons à la fenêtre
         grid.add(hbBtn, 1, 4);
 
-        // Création de la scène et affichage
         Scene sc = new Scene(grid);
+
+        sc.getStylesheets().add("styleFormulaire.css");
         sc.setFill(Color.web("#8a2be2")); // Fond violet
         this.setScene(sc);
         this.show();
