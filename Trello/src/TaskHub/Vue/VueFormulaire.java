@@ -3,7 +3,6 @@ package TaskHub.Vue;
 import TaskHub.Controller.ControllerManipTache;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
-import TaskHub.Strategie.StrategieVisuel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,7 +18,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class VueFormulaire extends Stage implements Observateur{
+public class VueFormulaire extends Stage implements Observateur {
     private ModeleTache modeleTache;
 
     public VueFormulaire(ModeleTache modeleTache) {
@@ -29,67 +28,59 @@ public class VueFormulaire extends Stage implements Observateur{
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        grid.setStyle("-fx-background-color: #9c8ae2;"); // Fond violet, une nuance différente
+        grid.getStyleClass().add("formulaire"); // Appliquer le style CSS
 
         Text scenetitle = new Text("Création de Tâche");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        scenetitle.setStyle("-fx-fill: white;"); // Style du titre (texte blanc)
+        scenetitle.getStyleClass().add("titre-formulaire"); // Appliquer le style CSS
         grid.add(scenetitle, 0, 0, 2, 1);
 
-// Création des labels et des textfields
+        // Création des labels et des textfields
         Label name = new Label("Nom de La Tache:");
-        name.setStyle("-fx-text-fill: white;"); // Style du label (texte blanc)
+        name.getStyleClass().add("label-formulaire");
         grid.add(name, 0, 1);
 
         TextField nameTextField = new TextField("New Tâche");
-        nameTextField.setStyle("-fx-background-color: #d8bfd8; -fx-text-fill: #4b0082;"); // Style du TextField
+        nameTextField.getStyleClass().add("textfield-formulaire");
         grid.add(nameTextField, 1, 1);
 
         Label ds = new Label("Description:");
-        ds.setStyle("-fx-text-fill: white;"); // Style du label (texte blanc)
+        ds.getStyleClass().add("label-formulaire");
         grid.add(ds, 0, 2);
 
         TextField tfDesc = new TextField();
-        tfDesc.setStyle("-fx-background-color: #d8bfd8; -fx-text-fill: #4b0082;"); // Style du TextField
+        tfDesc.getStyleClass().add("textfield-formulaire");
         grid.add(tfDesc, 1, 2);
 
-        ControllerManipTache controllerCréerTache = new ControllerManipTache(modeleTache, nameTextField, tfDesc);
+        ControllerManipTache controllerCreerTache = new ControllerManipTache(modeleTache, nameTextField, tfDesc);
         Button btnCreer = new Button("Créer Tâche");
-        btnCreer.setStyle("-fx-background-color: #ff69b4; -fx-text-fill: white;"); // Style du bouton
+        btnCreer.getStyleClass().add("button-formulaire");
         Button btnAnnuler = new Button("Annuler");
-        btnAnnuler.setStyle("-fx-background-color: #ff69b4; -fx-text-fill: white;"); // Style du bouton
-        btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCréerTache);
-        btnAnnuler.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCréerTache);
+        btnAnnuler.getStyleClass().add("button-formulaire");
+        btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCreerTache);
+        btnAnnuler.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCreerTache);
 
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().addAll(btnCreer, btnAnnuler);
-        hbBtn.setStyle("-fx-padding: 10px;"); // Style de la boîte des boutons
+        hbBtn.getStyleClass().add("hbBtn-formulaire");
         grid.add(hbBtn, 1, 4);
 
-        Scene sc = new Scene(grid, 400, 500); // Ajustement de la taille initiale
-        sc.setFill(Color.web("#9c8ae2")); // Fond violet, la même nuance que le fond du GridPane
+        Scene sc = new Scene(grid, 400, 500);
+        sc.setFill(Color.web("#9c8ae2"));
+        sc.getStylesheets().add("styleFormulaire.css"); // Ajouter le fichier CSS
         this.setScene(sc);
 
-
         this.setFullScreen(false);
-
-
-        // Définir la taille initiale de la fenêtre
         this.setWidth(400);
         this.setHeight(500);
-
     }
 
-    /**
-     * @param s modèle pour lequelle la vue va se baser
-     */
     @Override
     public void actualiser(Sujet s) {
-        if(((ModeleTache)s).getFormulaire()){
+        if (((ModeleTache) s).getFormulaire()) {
             this.show();
-        }
-        else{
+        } else {
             this.hide();
         }
     }

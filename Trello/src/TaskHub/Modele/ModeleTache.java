@@ -2,6 +2,7 @@ package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Tache.Composite.TacheMere;
+import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
 import TaskHub.Vue.Observateur;
 
@@ -40,6 +41,15 @@ public class ModeleTache implements Sujet{
     * */
     public void setTacheSelectionner(TacheMere tacheSelectionner) {
         this.tacheSelectionner = tacheSelectionner;
+        /**
+         * On cherche la colonne qui contient la tache selectionner
+         * */
+        for(Conteneur c:this.tableau.getColonnes()){
+            if (c.getTaches().contains(tacheSelectionner)){
+                this.colonneSelectionner=this.tableau.getColonnes().indexOf(c);
+                break;
+            }
+        }
         notifierObservateur();
     }
 
