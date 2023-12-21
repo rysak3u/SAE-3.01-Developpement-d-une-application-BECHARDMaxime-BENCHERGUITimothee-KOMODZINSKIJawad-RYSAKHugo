@@ -30,7 +30,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                     VBox vboxt = createVisuTache(tache, modele);
 
                     // Ajoute la tache a la vue a la colonne correspondante
-                    VBox conteneur = ((VBox) ((HBox) this.getChildren().get(1)).getChildren().get(modele.getChangement().getId_colonne()));
+                    VBox conteneur = ((VBox) ((HBox) this.getChildren().get(0)).getChildren().get(modele.getChangement().getId_colonne()));
                     Button button = (Button) conteneur.getChildren().get(conteneur.getChildren().size() - 1);
                     conteneur.getChildren().set(conteneur.getChildren().size() - 1, vboxt);
                     conteneur.getChildren().add(button);
