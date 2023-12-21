@@ -1,16 +1,10 @@
 package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
-import TaskHub.PrincipaleFx;
-import TaskHub.Tache.Composite.SousTache;
-import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
-import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
 import TaskHub.Vue.Observateur;
-import javafx.stage.Stage;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,15 +104,15 @@ public class ModeleTache implements Sujet{
      * @param index index de la colonne à selectionner
      * */
     public void changerColonneSelectionner(int index){
-        if(index>=0 && index<this.tableau.getConteneurs().size()){
+        if(index>=0 && index<this.tableau.getColonnes().size()){
             this.colonneSelectionner=index;
         }
     }
 
     public void creerTache(String titre, String description) throws TacheNomVideException {
         TacheMere tache = new TacheMere(titre, description);
-        this.tableau.getConteneurs().get(this.colonneSelectionner).ajouterTache(tache);
-        this.changement = new Changement(this.tableau.getConteneurs().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajout");
+        this.tableau.getColonnes().get(this.colonneSelectionner).ajouterTache(tache);
+        this.changement = new Changement(this.tableau.getColonnes().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajout");
         this.notifierObservateur();
     }
 
@@ -159,8 +153,8 @@ public class ModeleTache implements Sujet{
         if(this.tacheSelectionner==null){
             return;
         }
-        this.tableau.getConteneur(this.colonneSelectionner).getTaches().get(this.tableau.getConteneur(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setTitre(titre);
-        this.tableau.getConteneur(this.colonneSelectionner).getTaches().get(this.tableau.getConteneur(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setDescription(description);
+        this.tableau.getColonne(this.colonneSelectionner).getTaches().get(this.tableau.getColonne(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setTitre(titre);
+        this.tableau.getColonne(this.colonneSelectionner).getTaches().get(this.tableau.getColonne(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setDescription(description);
         this.notifierObservateur();
     }
 
