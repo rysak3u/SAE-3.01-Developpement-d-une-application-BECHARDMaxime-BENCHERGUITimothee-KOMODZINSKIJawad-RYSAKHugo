@@ -1,12 +1,6 @@
 package TaskHub.Tache;
 
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Tableau {
     // titre et conteneur du tableau
@@ -33,10 +27,10 @@ public class Tableau {
     }
 
     // Getters et setters
-    public void ajouterConteneur(Conteneur colonne){
+    public void ajouterColonne(Conteneur colonne){
         this.colonnes.add(colonne);
     }
-    public void retirerConteneur(Conteneur colonne){
+    public void retirerColonne(Conteneur colonne){
         this.colonnes.remove(colonne);
     }
 
@@ -47,11 +41,11 @@ public class Tableau {
         return this.titre;
     }
 
-    public Conteneur getConteneur(int i) {
+    public Conteneur getColonne(int i) {
         return this.colonnes.get(i);
     }
 
-    public ArrayList<Conteneur> getConteneurs() {
+    public ArrayList<Conteneur> getColonnes() {
         return this.colonnes;
     }
 

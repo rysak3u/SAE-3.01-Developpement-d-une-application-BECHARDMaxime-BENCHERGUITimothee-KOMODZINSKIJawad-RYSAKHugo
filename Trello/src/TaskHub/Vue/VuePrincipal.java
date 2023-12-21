@@ -75,11 +75,11 @@ public class VuePrincipal extends Stage implements Observateur{
             cont.ajouterTache(new TacheMere("Tache 1", "Description 1"));
             cont.ajouterTache(new TacheMere("Tache 2", "Description 2"));
             cont.ajouterTache(new TacheMere("Tache 3", "Description 3"));
-            tab.ajouterConteneur(cont);
+            tab.ajouterColonne(cont);
             Conteneur cont2 = new Conteneur("Liste 2",this.modeleTache);
             cont2.ajouterTache(new TacheMere("Tache 4", "Description 4"));
             cont2.ajouterTache(new TacheMere("Tache 5", "Description 5"));
-            tab.ajouterConteneur(cont2);
+            tab.ajouterColonne(cont2);
             this.affichage.affichage(this.modeleTache);
             //tableau.actualiser(this.modeleTache);
         } catch (TacheNomVideException e) {

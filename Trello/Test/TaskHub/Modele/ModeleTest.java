@@ -1,7 +1,6 @@
 package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
-import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
@@ -39,7 +38,7 @@ class ModeleTest {
     @Test
     void creerTache() throws TacheNomVideException {
         this.m.creerTache("test4","test4");
-        assertEquals(4,this.m.getTableau().getConteneur(1).getTaches().size());
+        assertEquals(4,this.m.getTableau().getColonne(1).getTaches().size());
     }
 
     @AfterEach

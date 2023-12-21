@@ -25,7 +25,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
             switch (modele.getChangement().getAction()) {
                 case "ajout":
                     // Création de la structure de la fenêtre principale
-                    TacheMere tache = modele.getTableau().getConteneurs().get(modele.getChangement().getId_colonne()).getTaches().get(modele.getChangement().getId_tache());
+                    TacheMere tache = modele.getTableau().getColonnes().get(modele.getChangement().getId_colonne()).getTaches().get(modele.getChangement().getId_tache());
                     VBox vboxt = createVisuTache(tache, modele);
 
                     // Ajoute la tache a la vue a la colonne correspondante
@@ -41,7 +41,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
 
             HBox hbox = new HBox(50);
             hbox.getChildren().setAll();
-            for (Conteneur colonne : modele.getTableau().getConteneurs()) {
+            for (Conteneur colonne : modele.getTableau().getColonnes()) {
                 // HBox contenant les tâches
                 VBox vbox = new VBox();
                 // Ajout des texts de la HBox
@@ -55,7 +55,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 }
                 vbox.setAlignment(Pos.TOP_CENTER);
                 Button button = new Button("Ajouter une tâche");
-                button.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaire(modele, modele.getTableau().getConteneurs().indexOf(colonne)));
+                button.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaire(modele, modele.getTableau().getColonnes().indexOf(colonne)));
                 button.setPadding(new Insets(10));
                 button.setPrefSize(200, 30);
                 button.setFont(Font.font("Arial Black", FontWeight.BLACK, 15));

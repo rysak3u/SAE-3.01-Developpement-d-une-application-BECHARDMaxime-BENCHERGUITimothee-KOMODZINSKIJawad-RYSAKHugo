@@ -20,7 +20,7 @@ public class TacheModeleTest {
         Conteneur c=new Conteneur("test",this.modeleTache);
         c.ajouterTache(m);
         Tableau t=new Tableau("test");
-        t.ajouterConteneur(c);
+        t.ajouterColonne(c);
         this.modeleTache.setTableau(t);
         this.modeleTache.setTacheSelectionner(m);
     }

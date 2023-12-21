@@ -4,7 +4,6 @@ import TaskHub.Controller.ControllerAfficherFormulaire;
 import TaskHub.Controller.ControllerDetailsTache;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
-import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import javafx.geometry.Insets;
@@ -16,8 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-
-import java.util.Objects;
 
 public class VueConteneurs extends VBox implements Observateur {
     public VueConteneurs() {
@@ -49,7 +46,7 @@ public class VueConteneurs extends VBox implements Observateur {
                     switch(modele.getChangement().getAction()){
                         case "ajout":
                             // Création de la structure de la fenêtre principale
-                            TacheMere tache = modele.getTableau().getConteneurs().get(modele.getChangement().getId_colonne()).getTaches().get(modele.getChangement().getId_tache());
+                            TacheMere tache = modele.getTableau().getColonnes().get(modele.getChangement().getId_colonne()).getTaches().get(modele.getChangement().getId_tache());
                             VBox vboxt = createVisuTache(tache,modele);
 
                             // Ajoute la tache a la vue a la colonne correspondante
@@ -64,7 +61,7 @@ public class VueConteneurs extends VBox implements Observateur {
                 }else{
                     HBox hbox = new HBox(50);
                     hbox.getChildren().setAll();
-                    for(Conteneur colonne : modele.getTableau().getConteneurs()){
+                    for(Conteneur colonne : modele.getTableau().getColonnes()){
                         // HBox contenant les tâches
                         VBox vbox = new VBox();
                         // Ajout des texts de la HBox
@@ -78,7 +75,7 @@ public class VueConteneurs extends VBox implements Observateur {
                         }
                         vbox.setAlignment(Pos.TOP_CENTER);
                         Button button = new Button("Ajouter une tâche");
-                        button.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(modele,modele.getTableau().getConteneurs().indexOf(colonne)));
+                        button.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(modele,modele.getTableau().getColonnes().indexOf(colonne)));
                         button.setPadding(new Insets(10));
                         button.setPrefSize(200, 30);
                         button.setFont(Font.font("Arial Black", FontWeight.BLACK, 15));
@@ -96,7 +93,7 @@ public class VueConteneurs extends VBox implements Observateur {
                 hbox.getChildren().setAll();
                 // HBox contenant les tâches
                 VBox vbox = new VBox();
-                for(Conteneur colonne : modele.getTableau().getConteneurs()){
+                for(Conteneur colonne : modele.getTableau().getColonnes()){
                     // on ajoute les tâches de la colonne à la VBox
                     for (TacheMere tache : colonne.getTaches()) {
                         VBox vboxt = createVisuTache(tache,modele);
