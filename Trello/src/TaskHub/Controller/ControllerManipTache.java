@@ -42,6 +42,7 @@ public class ControllerManipTache implements EventHandler<MouseEvent> {
         Button b = (Button) mouseEvent.getSource();
         //si le bouton est le bouton créer tache
         if (b.getText().equals("Créer Tâche")) {
+            System.out.println("hum hum");
             try {
                 // Si l'attribut sousTache est à true alors on créer une sous tache
                 if (this.m.getSousTache()) {
