@@ -74,7 +74,7 @@ public class ModeleTache implements Sujet{
         this.colonneSelectionner=0;
         this.observateurs=new ArrayList<Observateur>();
         this.formulaire=false;
-        this.affichage=2;
+        this.affichage=1;
     }
 
     /**

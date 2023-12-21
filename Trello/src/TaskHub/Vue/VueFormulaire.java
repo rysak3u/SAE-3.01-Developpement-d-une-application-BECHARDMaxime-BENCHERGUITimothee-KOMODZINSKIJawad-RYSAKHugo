@@ -55,7 +55,7 @@ public class VueFormulaire extends Stage implements Observateur{
         Scene sc= new Scene(grid, 300, 250);
         sc.getStylesheets().add("styleFormulaire.css");
         this.setScene(sc);
-        this.setFullScreen(true);
+        this.setFullScreen(false);
     }
 
     /**
