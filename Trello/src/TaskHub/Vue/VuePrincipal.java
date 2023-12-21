@@ -3,11 +3,14 @@ package TaskHub.Vue;
 import TaskHub.Controller.ControllerAfficherFormulaire;
 import TaskHub.Controller.ControllerDetailsTache;
 import TaskHub.Controller.ControllerRetour;
+import TaskHub.Controller.ControllerVuePrincipale;
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
+
 import TaskHub.Strategie.StrategieVisuel;
 import TaskHub.Strategie.StrategieVisuelBureau;
+
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
@@ -18,6 +21,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -37,14 +41,17 @@ public class VuePrincipal extends Stage implements Observateur{
 
     private Scene scenePrincipale;
 
-    private StrategieVisuel strategieVisuel;
+
+    private StrategieVisuel affichage;
+
+
     /**
      * Constructeur de la classe VuePrincipal.puml
      *
      */
     public VuePrincipal(ModeleTache modeleTache){
         super();
-        this.strategieVisuel=new StrategieVisuelBureau();
+        this.affichage=new StrategieVisuelBureau();
         this.modeleTache=modeleTache;
         // Création de la structure de la fenêtre principale
         VBox vbox = new VBox();
@@ -73,14 +80,20 @@ public class VuePrincipal extends Stage implements Observateur{
             cont2.ajouterTache(new TacheMere("Tache 4", "Description 4"));
             cont2.ajouterTache(new TacheMere("Tache 5", "Description 5"));
             tab.ajouterConteneur(cont2);
-            this.strategieVisuel.affichage(this.modeleTache);
+            this.affichage.affichage(this.modeleTache);
             //tableau.actualiser(this.modeleTache);
         } catch (TacheNomVideException e) {
             e.printStackTrace();
         }
 
+        // Création du ComboBox pour le choix de l'affichage
+        ComboBox<String> choixAffichage = new ComboBox<String>( );
+        choixAffichage.getItems().add("Affichage Bureau");
+        choixAffichage.getItems().add("Affichage Liste");
+        choixAffichage.setOnAction(new ControllerVuePrincipale(this));
+
         // Ajout de tous les éléments à la VBox principale
-        vbox.getChildren().addAll(titrePrin, this.strategieVisuel);
+        vbox.getChildren().addAll(titrePrin, this.affichage);
 
         // Mise en plein écran de la scène
         this.scenePrincipale= new Scene(vbox, 300, 250);
@@ -101,7 +114,7 @@ public class VuePrincipal extends Stage implements Observateur{
     public void actualiser(Sujet s) {
         // Si aucune tâche n'est sélectionnée, on affiche la vue principale
         if(((ModeleTache)s).getTacheSelectionner()==null){
-           this.strategieVisuel.affichage(this.modeleTache);
+           this.affichage.affichage(this.modeleTache);
             this.setScene(this.scenePrincipale);
 
         }
@@ -215,5 +228,14 @@ public class VuePrincipal extends Stage implements Observateur{
         sc.setFill(Color.web("#8a2be2")); // Fond violet
         this.setScene(sc);
         this.show();
+    }
+
+    /**
+     * Méthode qui va permettre de changer la stratégie d'affichage (Bureau ou Liste)
+     *
+     * @param affichage stratégie d'affichage
+     */
+    public void setAffichage(StrategieVisuel affichage){
+        this.affichage=affichage;
     }
 }

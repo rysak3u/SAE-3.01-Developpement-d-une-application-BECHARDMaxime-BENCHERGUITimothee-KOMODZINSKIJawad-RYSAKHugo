@@ -63,8 +63,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 vbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
                 hbox.getChildren().add(vbox);
             }
-            this.getChildren().add(hbox);
-
+            this.getChildren().setAll(new Text(modele.getTableau().getTitre()),hbox);
         }
 
     }
