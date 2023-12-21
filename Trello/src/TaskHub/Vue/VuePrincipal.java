@@ -6,10 +6,13 @@ import TaskHub.Controller.ControllerRetour;
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
+import TaskHub.Strategie.StrategieVisuel;
+import TaskHub.Strategie.StrategieVisuelBureau;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
+import javafx.css.Styleable;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,12 +36,15 @@ public class VuePrincipal extends Stage implements Observateur{
     private ModeleTache modeleTache;
 
     private Scene scenePrincipale;
+
+    private StrategieVisuel strategieVisuel;
     /**
      * Constructeur de la classe VuePrincipal.puml
      *
      */
     public VuePrincipal(ModeleTache modeleTache){
         super();
+        this.strategieVisuel=new StrategieVisuelBureau();
         this.modeleTache=modeleTache;
         // Création de la structure de la fenêtre principale
         VBox vbox = new VBox();
@@ -52,9 +58,9 @@ public class VuePrincipal extends Stage implements Observateur{
         titrePrin.getChildren().add(titrePrincipale);
 
         // Création du tableau
-        VueConteneurs tableau = new VueConteneurs();
+        //VueConteneurs tableau = new VueConteneurs();
 
-        modeleTache.enregistrerObservateur(tableau);
+        //modeleTache.enregistrerObservateur(tableau);
         Tableau tab = new Tableau("Tableau 1");
         this.modeleTache.setTableau(tab);
         try {
@@ -67,13 +73,14 @@ public class VuePrincipal extends Stage implements Observateur{
             cont2.ajouterTache(new TacheMere("Tache 4", "Description 4"));
             cont2.ajouterTache(new TacheMere("Tache 5", "Description 5"));
             tab.ajouterConteneur(cont2);
-            tableau.actualiser(this.modeleTache);
+            this.strategieVisuel.affichage(this.modeleTache);
+            //tableau.actualiser(this.modeleTache);
         } catch (TacheNomVideException e) {
             e.printStackTrace();
         }
 
         // Ajout de tous les éléments à la VBox principale
-        vbox.getChildren().addAll(titrePrin, tableau);
+        vbox.getChildren().addAll(titrePrin, (Pane)this.strategieVisuel);
 
         // Mise en plein écran de la scène
         this.scenePrincipale= new Scene(vbox, 300, 250);
@@ -82,6 +89,7 @@ public class VuePrincipal extends Stage implements Observateur{
         this.setScene(scenePrincipale);
         this.setFullScreen(true);
         this.show();
+
     }
 
     /**
@@ -93,6 +101,7 @@ public class VuePrincipal extends Stage implements Observateur{
     public void actualiser(Sujet s) {
         // Si aucune tâche n'est sélectionnée, on affiche la vue principale
         if(((ModeleTache)s).getTacheSelectionner()==null){
+            this.strategieVisuel.affichage(this.modeleTache);
             this.setScene(this.scenePrincipale);
         }
         else{
