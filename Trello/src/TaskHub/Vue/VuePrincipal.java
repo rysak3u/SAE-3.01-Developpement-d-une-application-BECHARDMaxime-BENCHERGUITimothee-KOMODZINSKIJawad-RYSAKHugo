@@ -83,7 +83,7 @@ public class VuePrincipal extends Stage implements Observateur{
         }
 
         // Création du ComboBox pour le choix de l'affichage
-        ComboBox<String> choixAffichage = new ComboBox<String>( );
+        ComboBox<String> choixAffichage = new ComboBox<String>();
         choixAffichage.getItems().add("Affichage Bureau");
         choixAffichage.getItems().add("Affichage Liste");
         choixAffichage.setOnAction(new ControllerVuePrincipale(this));
@@ -111,6 +111,7 @@ public class VuePrincipal extends Stage implements Observateur{
         // Si aucune tâche n'est sélectionnée, on affiche la vue principale
         if(((ModeleTache)s).getTacheSelectionner()==null){
             this.setScene(this.scenePrincipale);
+            this.affichage.affichage(this.modeleTache);
         }
         else{
             // Sinon on affiche les détails de la tâche sélectionnée

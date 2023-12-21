@@ -1,14 +1,52 @@
 .root{
-    -fx-background-color: #a0d6b4;
+    -fx-background-color: #351f39;
 }
 
 .button{
-    -fx-background-color: #25acbe;
+
+    -fx-background-color: transparent;
     -fx-text-fill: white;
 }
 
-.tache{
-    -fx-background-color: #cb6076;
-    -fx-text-fill: white;
+.button:hover {
+    -fx-background-color: #5d5680;
+}
 
+.tache{
+    -fx-background-color: #709fb0;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+
+   // -fx-background-size: 1200 900;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+   // -fx-background-color: #FC3D44;
+}
+
+.tache:hover{
+    -fx-background-color: #1a4c5b;
+
+}
+.tacheText{
+    -fx-fill: #000000;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    //-fx-border-top-left-radius: 10px;
+    //-fx-border-top-right-radius: 10px;
+}
+
+.colonne{
+    -fx-padding: 10px;
+    -fx-background-color: #726a95;
+    -fx-border-style: groove;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+}
+.colonneTitre{
+    -fx-fill: #000000;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
 }
