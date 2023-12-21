@@ -29,14 +29,14 @@ public class VueFormulaire extends Stage implements Observateur{
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        grid.setStyle("-fx-background-color: #8a2be2;"); // Fond violet
+        grid.setStyle("-fx-background-color: #9c8ae2;"); // Fond violet, une nuance différente
 
         Text scenetitle = new Text("Création de Tâche");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         scenetitle.setStyle("-fx-fill: white;"); // Style du titre (texte blanc)
         grid.add(scenetitle, 0, 0, 2, 1);
 
-        // Création des labels et des textfields
+// Création des labels et des textfields
         Label name = new Label("Nom de La Tache:");
         name.setStyle("-fx-text-fill: white;"); // Style du label (texte blanc)
         grid.add(name, 0, 1);
@@ -67,13 +67,9 @@ public class VueFormulaire extends Stage implements Observateur{
         hbBtn.setStyle("-fx-padding: 10px;"); // Style de la boîte des boutons
         grid.add(hbBtn, 1, 4);
 
-        Scene sc = new Scene(grid, 300, 250);
-        sc.setFill(Color.web("#8a2be2")); // Fond violet
+        Scene sc = new Scene(grid, 400, 500); // Ajustement de la taille initiale
+        sc.setFill(Color.web("#9c8ae2")); // Fond violet, la même nuance que le fond du GridPane
         this.setScene(sc);
-
-        // Définir la taille initiale de la fenêtre
-        this.setWidth(400);
-        this.setHeight(500);
     }
 
     /**
