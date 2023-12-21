@@ -24,12 +24,12 @@ public class VueConteneurs extends VBox implements Observateur {
         super();
     }
 
-    public VBox createVisuTache(TacheMere tache){
+    public VBox createVisuTache(TacheMere tache,ModeleTache modele){
         VBox vboxt = new VBox();
 
         // Ajout des texts de la HBox
         vboxt.getChildren().addAll(new Text(tache.getTitre()),new Text(tache.getDescription()));
-        vboxt.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(null,tache));
+        vboxt.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(modele,tache));
 
         // Style de la HBox
         vboxt.setPadding(new Insets(20));
@@ -50,7 +50,7 @@ public class VueConteneurs extends VBox implements Observateur {
                         case "ajout":
                             // Création de la structure de la fenêtre principale
                             TacheMere tache = modele.getTableau().getConteneurs().get(modele.getChangement().getId_colonne()).getTaches().get(modele.getChangement().getId_tache());
-                            VBox vboxt = createVisuTache(tache);
+                            VBox vboxt = createVisuTache(tache,modele);
 
                             // Ajoute la tache a la vue a la colonne correspondante
                             VBox conteneur = ((VBox) ((HBox) this.getChildren().get(1)).getChildren().get(modele.getChangement().getId_colonne()));
@@ -71,7 +71,7 @@ public class VueConteneurs extends VBox implements Observateur {
                         vbox.getChildren().add(new Text(colonne.getTitre()));
                         // on ajoute les tâches de la colonne à la VBox
                         for (TacheMere tache : colonne.getTaches()) {
-                            VBox vboxt = createVisuTache(tache);
+                            VBox vboxt = createVisuTache(tache,modele);
 
                             // ajout de la tâche dans la liste
                             vbox.getChildren().add(vboxt);
@@ -99,7 +99,7 @@ public class VueConteneurs extends VBox implements Observateur {
                 for(Conteneur colonne : modele.getTableau().getConteneurs()){
                     // on ajoute les tâches de la colonne à la VBox
                     for (TacheMere tache : colonne.getTaches()) {
-                        VBox vboxt = createVisuTache(tache);
+                        VBox vboxt = createVisuTache(tache,modele);
                         // ajout de la tâche dans la liste
                         vbox.getChildren().add(vboxt);
                     }
