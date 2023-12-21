@@ -1,6 +1,6 @@
 package TaskHub.Controller;
 
-import TaskHub.Strategie.StrategieVisuelBureau;
+import TaskHub.Strategie.*;
 import TaskHub.Vue.VuePrincipal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -37,7 +37,7 @@ public class ControllerVuePrincipale implements EventHandler<ActionEvent> {
                 this.vuePrincipal.setAffichage(new StrategieVisuelBureau());
                 break;
             case "Affichage Liste":
-                //this.vuePrincipal.setAffichage(new VisuelListe());
+                this.vuePrincipal.setAffichage(new VisuelListe());
                 break;
         }
     }

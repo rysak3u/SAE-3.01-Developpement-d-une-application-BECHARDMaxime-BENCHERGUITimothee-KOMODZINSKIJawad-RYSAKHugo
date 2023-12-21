@@ -64,9 +64,6 @@ public class VuePrincipal extends Stage implements Observateur{
         titrePrin.setAlignment(Pos.TOP_CENTER);
         titrePrin.getChildren().add(titrePrincipale);
 
-        // Création du tableau
-        //VueConteneurs tableau = new VueConteneurs();
-
         //modeleTache.enregistrerObservateur(tableau);
         Tableau tab = new Tableau("Tableau 1");
         this.modeleTache.setTableau(tab);
@@ -81,7 +78,6 @@ public class VuePrincipal extends Stage implements Observateur{
             cont2.ajouterTache(new TacheMere("Tache 5", "Description 5"));
             tab.ajouterColonne(cont2);
             this.affichage.affichage(this.modeleTache);
-            //tableau.actualiser(this.modeleTache);
         } catch (TacheNomVideException e) {
             e.printStackTrace();
         }
@@ -93,7 +89,7 @@ public class VuePrincipal extends Stage implements Observateur{
         choixAffichage.setOnAction(new ControllerVuePrincipale(this));
 
         // Ajout de tous les éléments à la VBox principale
-        vbox.getChildren().addAll(titrePrin, this.affichage);
+        vbox.getChildren().addAll(titrePrin, this.affichage, choixAffichage);
 
         // Mise en plein écran de la scène
         this.scenePrincipale= new Scene(vbox, 300, 250);
@@ -114,9 +110,7 @@ public class VuePrincipal extends Stage implements Observateur{
     public void actualiser(Sujet s) {
         // Si aucune tâche n'est sélectionnée, on affiche la vue principale
         if(((ModeleTache)s).getTacheSelectionner()==null){
-           this.affichage.affichage(this.modeleTache);
             this.setScene(this.scenePrincipale);
-
         }
         else{
             // Sinon on affiche les détails de la tâche sélectionnée
@@ -237,5 +231,8 @@ public class VuePrincipal extends Stage implements Observateur{
      */
     public void setAffichage(StrategieVisuel affichage){
         this.affichage=affichage;
+        this.affichage.affichage(this.modeleTache);
+        VBox nV=(VBox) this.scenePrincipale.getRoot();
+        nV.getChildren().set(1, this.affichage);
     }
 }
