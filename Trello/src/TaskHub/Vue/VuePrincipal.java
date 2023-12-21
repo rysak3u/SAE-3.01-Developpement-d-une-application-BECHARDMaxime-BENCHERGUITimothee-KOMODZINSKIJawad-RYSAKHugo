@@ -3,9 +3,11 @@ package TaskHub.Vue;
 import TaskHub.Controller.ControllerAfficherFormulaire;
 import TaskHub.Controller.ControllerDetailsTache;
 import TaskHub.Controller.ControllerRetour;
+import TaskHub.Controller.ControllerVuePrincipale;
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
+import TaskHub.Strategie.Strategie;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
@@ -15,6 +17,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -33,6 +36,9 @@ public class VuePrincipal extends Stage implements Observateur{
     private ModeleTache modeleTache;
 
     private Scene scenePrincipale;
+
+    private Strategie affichage;
+
     /**
      * Constructeur de la classe VuePrincipal.puml
      *
@@ -71,6 +77,12 @@ public class VuePrincipal extends Stage implements Observateur{
         } catch (TacheNomVideException e) {
             e.printStackTrace();
         }
+
+        // Création du ComboBox pour le choix de l'affichage
+        ComboBox<String> choixAffichage = new ComboBox<String>( );
+        choixAffichage.getItems().add("Affichage Bureau");
+        choixAffichage.getItems().add("Affichage Liste");
+        choixAffichage.setOnAction(new ControllerVuePrincipale(this));
 
         // Ajout de tous les éléments à la VBox principale
         vbox.getChildren().addAll(titrePrin, tableau);
@@ -170,5 +182,14 @@ public class VuePrincipal extends Stage implements Observateur{
         Scene sc= new Scene(grid, 300, 250);
         this.setScene(sc);
         this.show();
+    }
+
+    /**
+     * Méthode qui va permettre de changer la stratégie d'affichage (Bureau ou Liste)
+     *
+     * @param affichage stratégie d'affichage
+     */
+    public void setAffichage(Strategie affichage){
+        this.affichage=affichage;
     }
 }
