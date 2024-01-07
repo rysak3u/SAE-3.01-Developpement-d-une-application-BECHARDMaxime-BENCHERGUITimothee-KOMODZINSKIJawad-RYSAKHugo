@@ -1,0 +1,33 @@
+GROUPE 3 - BECHARD BENCHERGUI KOMODZINSKI RYSAK
+
+(a) depot et structure code (B)
+- structure git => repertoire idea de configuration inutile, repertoire out avec images
+- readme => vide, mettre au moins la liste des membres du groupe
+- analyse => docs presents
+
+(b) fonctionnalité et itérations (C)
+- **rapport iteration 1**
+  - votre bilan ne contient pas vraiment un bilan de l'itération.
+  - le descriptif des fonctionnalités ne doit pas contenir des descriptif de code (par exemple creerTache dans iteration 1)
+- **iteration 2 et 3**
+  - vos rapports d'itération 2 et 3 me semblent mieux. je trouve la forme du bilan de l'itération 2 plus conforme aux attentes. Une fonctionnalité est une opération à réaliser à travers l'application pas une réflexion sur vos choix (par exemple le choix de la couleur violet ne devrait pas faire partie de la fonctionnalité).
+  - le bilan de l’itération 3 me semble aussi moins bien  structuré que l'itération 2. Faites bien ressortir les fonctionnalités (éventuellement en les numérotant) et n'hésitez pas à faire des parties.
+- **trello**
+  - je pense que vous utilisez mal trello. L'objectif de trello est de donner une vue globale de ce qui fonctionne dans l'application. Tel que fait actuellement, vous masquez les taches réalisées, et vous avez un tableau différent par itération. Vous perdez l'intérêt d'avoir une vue globale (on parle de radiateur d'information - https://www.journaldunet.com/solutions/dsi/1459366-10-management-visuel-radiateur-d-information/).
+
+(c) conception
+- diagramme de classe par iteration
+- diagrammes de séquence
+- organisation de l'application
+
+(d) code
+- commentaires
+- organisation du code
+
+(e) tests
+- structure des tests
+- couverture des tests
+
+(f) demonstration
+- validation des fonctionnalités
+- valeur ajoutée de l'application
