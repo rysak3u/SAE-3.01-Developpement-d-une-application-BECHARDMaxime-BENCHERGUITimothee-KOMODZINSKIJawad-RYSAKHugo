@@ -17,9 +17,6 @@ public class ControllerNewTableau implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         // On récupère le bouton sur lequel on a cliqué
         Button b = (Button) mouseEvent.getSource();
-        // Si le bouton est le bouton ajouter Tableau, on affiche le formulaire
-        if (b.getText().equals("Ajouter Tableau")) {
-            System.out.println("formulaire tableau");
-        }
+        this.m.switchFormulaire(3);
     }
 }

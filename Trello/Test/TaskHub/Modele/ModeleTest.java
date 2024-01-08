@@ -26,7 +26,7 @@ class ModeleTest {
         colonnes.add(c0);
         colonnes.add(c1);
         colonnes.add(c2);
-        m.setTableau(new Tableau("test",colonnes));
+        m.setTableauCourant(new Tableau("test",colonnes));
     }
 
     @Test
@@ -39,6 +39,13 @@ class ModeleTest {
     void creerTache() throws TacheNomVideException {
         this.m.creerTache("test4","test4");
         assertEquals(4,this.m.getTableau().getColonne(1).getTaches().size());
+    }
+
+    @Test
+    void ajouterColonne(){
+        assertEquals(3,this.m.getTableau().getColonnes().size());
+        this.m.creerColonne("test4");
+        assertEquals(4,this.m.getTableau().getColonnes().size());
     }
 
     @AfterEach

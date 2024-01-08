@@ -76,6 +76,12 @@ public class ControllerManip implements EventHandler<MouseEvent> {
                 // On créer une nouvelle colonne
                 this.m.creerColonne(this.name.getText());
             }
+        } else if (b.getText().equals("Créer Tableau")) {
+            // Si le formulaire est celui de la création d'une colonne
+            if(this.m.getForm()==3){
+                // On créer une nouvelle colonne
+                this.m.ajouterTableau(this.name.getText());
+            }
         }
         //on vide les champs
         if(this.desc!=null){

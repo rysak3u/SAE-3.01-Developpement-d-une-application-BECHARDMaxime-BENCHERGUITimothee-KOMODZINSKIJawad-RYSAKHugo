@@ -21,7 +21,7 @@ public class TacheModeleTest {
         c.ajouterTache(m);
         Tableau t=new Tableau("test");
         t.ajouterColonne(c);
-        this.modeleTache.setTableau(t);
+        this.modeleTache.setTableauCourant(t);
         this.modeleTache.setTacheSelectionner(m);
     }
 
