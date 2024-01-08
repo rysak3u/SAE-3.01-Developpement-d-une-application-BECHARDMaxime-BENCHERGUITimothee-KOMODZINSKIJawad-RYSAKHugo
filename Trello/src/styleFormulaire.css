@@ -11,7 +11,7 @@
 }
 
 .textfield-formulaire {
-    -fx-text-fill: white; /* Texte blanc pour le contenu des tâches */
+    -fx-text-fill: black; /* Texte noir pour le contenu des tâches */
     -fx-font-weight: bold;
 }
 

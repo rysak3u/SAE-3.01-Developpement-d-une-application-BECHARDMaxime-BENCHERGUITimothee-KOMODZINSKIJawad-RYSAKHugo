@@ -28,7 +28,7 @@
 }
 
 .tache:hover {
-    -fx-background-color: #6a1b9a; /* Violet plus foncé au survol des tâches */
+    -fx-background-color: #4a006c; /* Violet plus foncé au survol des tâches */
 }
 
 .tacheText {
