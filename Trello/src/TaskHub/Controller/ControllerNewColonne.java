@@ -4,11 +4,12 @@ import TaskHub.Modele.ModeleTache;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Controller qui va permettre d'afficher le formulaire pour créer une nouvelle colonne
  */
-public class ControllerNewColonne implements EventHandler<ActionEvent>{
+public class ControllerNewColonne implements EventHandler<MouseEvent>{
 
     /**
      * Modele que le controller va appeler
@@ -28,8 +29,8 @@ public class ControllerNewColonne implements EventHandler<ActionEvent>{
      * @param event
      */
     @Override
-    public void handle(ActionEvent event) {
-        Button b = (Button) event.getSource();
+    public void handle(MouseEvent event) {
         this.m.switchFormulaire(2);
+        System.out.println("2");
     }
 }

@@ -1,6 +1,7 @@
 package TaskHub.Controller;
 
 import TaskHub.Modele.ModeleTache;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -14,9 +15,8 @@ public class ControllerNewTableau implements EventHandler<MouseEvent> {
     }
 
     @Override
-    public void handle(MouseEvent mouseEvent) {
-        // On récupère le bouton sur lequel on a cliqué
-        Button b = (Button) mouseEvent.getSource();
+    public void handle(MouseEvent event) {
         this.m.switchFormulaire(3);
+        System.out.println("3");
     }
 }
