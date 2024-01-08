@@ -8,6 +8,7 @@ import TaskHub.Tache.Conteneur;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -30,7 +31,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                     VBox vboxt = createVisuTache(tache, modele);
 
                     // Ajoute la tache a la vue a la colonne correspondante
-                    VBox conteneur = ((VBox) ((HBox) this.getChildren().get(0)).getChildren().get(modele.getChangement().getId_colonne()));
+                    VBox conteneur = ((VBox) ((HBox) this.getChildren().get(1)).getChildren().get(modele.getChangement().getId_colonne()));
                     Button button = (Button) conteneur.getChildren().get(conteneur.getChildren().size() - 1);
                     conteneur.getChildren().set(conteneur.getChildren().size() - 1, vboxt);
                     conteneur.getChildren().add(button);
@@ -39,9 +40,10 @@ public class StrategieVisuelBureau extends StrategieVisuel {
             }
             modele.getChangement().setAction("");
         } else {
-
+            // Création de la structure de la fenêtre principale
             HBox hbox = new HBox(50);
             hbox.getChildren().setAll();
+
             for (Conteneur colonne : modele.getTableau().getColonnes()) {
                 // HBox contenant les tâches
                 VBox vbox = new VBox(10);
@@ -76,7 +78,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 hbox.fillHeightProperty().set(false);
             }
 
-            this.getChildren().setAll( hbox);
+            this.getChildren().setAll(new Text(modele.getTableau().getTitre()),hbox);
         }
     }
 }
