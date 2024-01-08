@@ -72,7 +72,6 @@ public class VuePrincipal extends Stage implements Observateur{
         VueListeTableau listeTableau = new VueListeTableau(this.modeleTache);
         listeTableau.setOnAction(new ControllerSwitchTableau(this.modeleTache));
         modeleTache.enregistrerObservateur(listeTableau);
-        modeleTache.notifierObservateur();
         boxBouton.getChildren().add(listeTableau);
 
         // Création du bouton pour créer une nouvelle colonne
@@ -86,20 +85,18 @@ public class VuePrincipal extends Stage implements Observateur{
         boxBouton.getChildren().addAll(choixAffichage, newColonne, newTableau);
         boxBouton.setAlignment(Pos.TOP_RIGHT);
         titreOutil.getChildren().add(boxBouton);
-        //modeleTache.enregistrerObservateur(tableau);
-        Tableau tab = new Tableau("Tableau 1");
+        this.modeleTache.ajouterTableau("Tableau 1");
         this.modeleTache.ajouterTableau("Tableau 2");
-        this.modeleTache.setTableauCourant(tab);
         try {
             Conteneur cont = new Conteneur("Liste 1",this.modeleTache);
             cont.ajouterTache(new TacheMere("Tache 1", "Description 1"));
             cont.ajouterTache(new TacheMere("Tache 2", "Description 2"));
             cont.ajouterTache(new TacheMere("Tache 3", "Description 3"));
-            tab.ajouterColonne(cont);
+            modeleTache.getTableaux().get(0).ajouterColonne(cont);
             Conteneur cont2 = new Conteneur("Liste 2",this.modeleTache);
             cont2.ajouterTache(new TacheMere("Tache 4", "Description 4"));
             cont2.ajouterTache(new TacheMere("Tache 5", "Description 5"));
-            tab.ajouterColonne(cont2);
+            modeleTache.getTableaux().get(0).ajouterColonne(cont2);
             this.affichage.affichage(this.modeleTache);
         } catch (TacheNomVideException e) {
             e.printStackTrace();
@@ -115,6 +112,7 @@ public class VuePrincipal extends Stage implements Observateur{
         this.scenePrincipale.getStylesheets().add("styleVisuel.css");
         this.setScene(scenePrincipale);
         this.setFullScreen(true);
+        modeleTache.notifierObservateur();
         this.show();
 
     }

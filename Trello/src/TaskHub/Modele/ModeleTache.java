@@ -218,6 +218,8 @@ public class ModeleTache implements Sujet{
 
     public void ajouterTableau(String titre) {
         this.tableaux.add(new Tableau(titre));
+        this.changement = new Changement(0,0,"newTableau");
+        this.notifierObservateur();
     }
 
     /**
