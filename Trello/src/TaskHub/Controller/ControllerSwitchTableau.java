@@ -14,7 +14,6 @@ public class ControllerSwitchTableau implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        System.out.println("test");
         ComboBox<String> b=(ComboBox<String>)event.getSource();
         String f=b.getValue();
         if(m.getTableaux().indexOf(m.findByName(f))!=-1){
