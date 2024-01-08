@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 
 public class PrincipaleFx extends Application {
 
-
     private ModeleTache modeleTache;
 
     private Stage stagePrincipale;

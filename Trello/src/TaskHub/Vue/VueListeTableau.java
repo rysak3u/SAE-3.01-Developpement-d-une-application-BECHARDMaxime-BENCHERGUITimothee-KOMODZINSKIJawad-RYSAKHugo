@@ -11,6 +11,7 @@ public class VueListeTableau extends ComboBox<String> implements Observateur{
     public VueListeTableau(ModeleTache modeleTache){
         super();
         this.modeleTache=modeleTache;
+        this.setPromptText("Choix du Tableau");
     }
 
     @Override

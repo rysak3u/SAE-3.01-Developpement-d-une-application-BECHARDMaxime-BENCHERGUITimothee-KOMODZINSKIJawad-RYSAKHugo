@@ -64,6 +64,7 @@ public class VuePrincipal extends Stage implements Observateur{
         HBox boxBouton = new HBox();
         // Création du ComboBox pour le choix de l'affichage
         ComboBox<String> choixAffichage = new ComboBox<String>();
+        choixAffichage.setPromptText("Choix de l'affichage");
         choixAffichage.getItems().add("Affichage Bureau");
         choixAffichage.getItems().add("Affichage Liste");
         choixAffichage.setOnAction(new ControllerVuePrincipale(this));
