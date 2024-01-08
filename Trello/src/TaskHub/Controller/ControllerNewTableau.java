@@ -17,6 +17,5 @@ public class ControllerNewTableau implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         this.m.switchFormulaire(3);
-        System.out.println("3");
     }
 }
