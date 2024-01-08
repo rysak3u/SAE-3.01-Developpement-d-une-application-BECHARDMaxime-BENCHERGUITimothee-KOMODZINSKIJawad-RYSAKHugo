@@ -86,7 +86,6 @@ public class ModeleTache implements Sujet{
         this.formulaire=false;
         this.affichage=1;
         this.tableaux=new ArrayList<Tableau>();
-        this.tableaux.add(new Tableau("Tableau 1"));
         this.idTableauCourant=0;
     }
 
@@ -217,10 +216,16 @@ public class ModeleTache implements Sujet{
      */
 
     public void ajouterTableau(String titre) {
+        // si le tableau existe déjà, on change legerement le titre
+        if(this.findByName(titre)!=null){
+            this.ajouterTableau(titre+"_");
+            return;
+        }
         this.tableaux.add(new Tableau(titre));
         this.changement = new Changement(0,0,"newTableau");
         this.notifierObservateur();
     }
+
 
     /**
      * methode pour supprimer un tableau
