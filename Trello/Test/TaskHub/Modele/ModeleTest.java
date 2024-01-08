@@ -48,6 +48,13 @@ class ModeleTest {
         assertEquals(4,this.m.getTableau().getColonnes().size());
     }
 
+    @Test
+    void ajouterTableau(){
+        assertEquals(1,this.m.getTableaux().size());
+        this.m.ajouterTableau("test");
+        assertEquals(2,this.m.getTableaux().size());
+    }
+
     @AfterEach
     void chaos() {
         this.m = null;
