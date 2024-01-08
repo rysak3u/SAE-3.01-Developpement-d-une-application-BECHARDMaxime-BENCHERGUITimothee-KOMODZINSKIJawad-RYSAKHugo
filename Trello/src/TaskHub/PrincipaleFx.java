@@ -1,21 +1,10 @@
 package TaskHub;
 
-import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
-import TaskHub.Tache.Composite.TacheMere;
-import TaskHub.Tache.Conteneur;
-import TaskHub.Tache.Tableau;
-import TaskHub.Vue.VueConteneurs;
-import TaskHub.Vue.VueFormulaire;
+import TaskHub.Vue.VueFormulaireColonne;
+import TaskHub.Vue.VueFormulaireTache;
 import TaskHub.Vue.VuePrincipal;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class PrincipaleFx extends Application {
@@ -29,7 +18,8 @@ public class PrincipaleFx extends Application {
 
         this.modeleTache=new ModeleTache();
         VuePrincipal vp=new VuePrincipal(this.modeleTache);
-        this.modeleTache.enregistrerObservateur(new VueFormulaire(this.modeleTache));
+        this.modeleTache.enregistrerObservateur(new VueFormulaireTache(this.modeleTache));
+        this.modeleTache.enregistrerObservateur(new VueFormulaireColonne(this.modeleTache));
         this.modeleTache.enregistrerObservateur(vp);
     }
 

@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 
 /** Controller qui va permettre de Créer une tâche
  * ATTENTION A NE OAS CONFONDRE AVEC LE CONTROLLER QUI VA PERMETTRE D'AFFICHER LE FORMULAIRE*/
-public class ControllerManipTache implements EventHandler<MouseEvent> {
+public class ControllerManip implements EventHandler<MouseEvent> {
     /**
      * Modele que le controller va appeler
      */
@@ -27,10 +27,19 @@ public class ControllerManipTache implements EventHandler<MouseEvent> {
      * @param name TextField name Contient le nom de la tache que l'Utilisateur a donné
      * @param desc TextField desc Contient la description de la tache que l'Utilisateur a éventuellement donner
      */
-    public ControllerManipTache(ModeleTache m, TextField name, TextField desc) {
+    public ControllerManip(ModeleTache m, TextField name, TextField desc) {
         this.m = m;
         this.name = name;
         this.desc = desc;
+    }
+
+    /**
+     * @param m    Modele que le controller va appeler
+     * @param name TextField name Contient le nom de la tache que l'Utilisateur a donné
+     */
+    public ControllerManip(ModeleTache m, TextField name) {
+        this.m = m;
+        this.name = name;
     }
 
     /**
@@ -61,10 +70,16 @@ public class ControllerManipTache implements EventHandler<MouseEvent> {
             } catch (TacheNomVideException e) {
                 e.printStackTrace();
             }
+        } else if (b.getText().equals("Créer")) {
+            if(this.m.getForm()==2){
+                this.m.creerColonne(this.name.getText());
+            }
         }
         //on vide les champs
-        this.desc.clear();
+        if(this.desc!=null){
+            this.desc.clear();
+        }
         this.name.setText("New Tâche");
-        this.m.switchFormulaire();
+        this.m.switchFormulaire(0);
     }
 }

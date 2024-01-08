@@ -28,9 +28,9 @@ public class ModeleTache implements Sujet{
 
     private int affichage;
 
-
    private boolean formulaire;
 
+   private int form;
 
    /**Attribut représentant la tache selectionner*/
    private TacheMere tacheSelectionner;
@@ -148,7 +148,8 @@ public class ModeleTache implements Sujet{
         return this.colonneSelectionner;
     }
 
-    public void switchFormulaire(){
+    public void switchFormulaire(int form){
+        this.form=form;
         this.formulaire=!this.formulaire;
         this.notifierObservateur();
     }
@@ -168,6 +169,11 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
+    public void creerColonne(String titre){
+        this.tableau.ajouterColonne(new Conteneur(titre,this));
+        this.notifierObservateur();
+    }
+
     public boolean getFormulaire(){
         return this.formulaire;
     }
@@ -180,4 +186,7 @@ public class ModeleTache implements Sujet{
         return this.sousTache;
     }
 
+    public int getForm() {
+        return this.form;
+    }
 }

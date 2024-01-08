@@ -1,9 +1,6 @@
 package TaskHub.Vue;
 
-import TaskHub.Controller.ControllerAfficherFormulaire;
-import TaskHub.Controller.ControllerDetailsTache;
-import TaskHub.Controller.ControllerRetour;
-import TaskHub.Controller.ControllerVuePrincipale;
+import TaskHub.Controller.*;
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
@@ -71,7 +68,12 @@ public class VuePrincipal extends Stage implements Observateur{
         choixAffichage.getItems().add("Affichage Bureau");
         choixAffichage.getItems().add("Affichage Liste");
         choixAffichage.setOnAction(new ControllerVuePrincipale(this));
-        boxBouton.getChildren().add(choixAffichage);
+
+        // Création du bouton pour créer une nouvelle colonne
+        Button newColonne = new Button("Nouvelle Colonne");
+        newColonne.addEventHandler(ActionEvent.ACTION, new ControllerNewColonne(this.modeleTache));
+
+        boxBouton.getChildren().addAll(choixAffichage, newColonne);
         boxBouton.setAlignment(Pos.TOP_RIGHT);
         titreOutil.getChildren().add(boxBouton);
         //modeleTache.enregistrerObservateur(tableau);

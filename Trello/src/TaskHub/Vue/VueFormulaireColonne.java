@@ -1,6 +1,6 @@
 package TaskHub.Vue;
 
-import TaskHub.Controller.ControllerManipTache;
+import TaskHub.Controller.ControllerManip;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
 import javafx.geometry.Insets;
@@ -18,10 +18,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class VueFormulaire extends Stage implements Observateur {
-    private ModeleTache modeleTache;
-
-    public VueFormulaire(ModeleTache modeleTache) {
+public class VueFormulaireColonne extends Stage implements Observateur {
+    public VueFormulaireColonne(ModeleTache modeleTache) {
         super();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -30,30 +28,22 @@ public class VueFormulaire extends Stage implements Observateur {
         grid.setPadding(new Insets(25, 25, 25, 25));
         grid.getStyleClass().add("formulaire"); // Appliquer le style CSS
 
-        Text scenetitle = new Text("Création de Tâche");
+        Text scenetitle = new Text("Création de Colonnes");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         scenetitle.getStyleClass().add("titre-formulaire"); // Appliquer le style CSS
         grid.add(scenetitle, 0, 0, 2, 1);
 
         // Création des labels et des textfields
-        Label name = new Label("Nom de La Tache:");
+        Label name = new Label("Nom de la Colonne :");
         name.getStyleClass().add("label-formulaire");
         grid.add(name, 0, 1);
 
-        TextField nameTextField = new TextField("New Tâche");
+        TextField nameTextField = new TextField("New Colonne");
         nameTextField.getStyleClass().add("textfield-formulaire");
         grid.add(nameTextField, 1, 1);
 
-        Label ds = new Label("Description:");
-        ds.getStyleClass().add("label-formulaire");
-        grid.add(ds, 0, 2);
-
-        TextField tfDesc = new TextField();
-        tfDesc.getStyleClass().add("textfield-formulaire");
-        grid.add(tfDesc, 1, 2);
-
-        ControllerManipTache controllerCreerTache = new ControllerManipTache(modeleTache, nameTextField, tfDesc);
-        Button btnCreer = new Button("Créer Tâche");
+        ControllerManip controllerCreerTache = new ControllerManip(modeleTache, nameTextField);
+        Button btnCreer = new Button("Créer");
         btnCreer.getStyleClass().add("button-formulaire");
         Button btnAnnuler = new Button("Annuler");
         btnAnnuler.getStyleClass().add("button-formulaire");
@@ -78,7 +68,7 @@ public class VueFormulaire extends Stage implements Observateur {
 
     @Override
     public void actualiser(Sujet s) {
-        if (((ModeleTache) s).getFormulaire()) {
+        if (((ModeleTache) s).getFormulaire() && ((ModeleTache) s).getForm()==2) {
             this.show();
         } else {
             this.hide();
