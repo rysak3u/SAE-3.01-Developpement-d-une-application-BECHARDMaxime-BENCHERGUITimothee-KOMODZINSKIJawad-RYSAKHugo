@@ -70,3 +70,15 @@
     -fx-background-radius: 10; /* Coins arrondis */
     -fx-border-radius: 10;
 }
+.buttonColonne{
+    -fx-padding: 10px;
+    -fx-background-color: #6a1b9a; /* Violet plus foncé des colonnes */
+    -fx-border-style: groove;
+
+    -fx-border-width: 2px;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+}
+.buttonColonne:hover{
+    -fx-background-color: #4a006c;
+}

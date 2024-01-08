@@ -2,6 +2,7 @@ package TaskHub.Strategie;
 
 import TaskHub.Controller.ControllerAfficherFormulaire;
 import TaskHub.Controller.ControllerDetailsTache;
+import TaskHub.Controller.ControllerNewColonne;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
@@ -78,6 +79,14 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 hbox.getChildren().add(vbox);
                 hbox.fillHeightProperty().set(false);
             }
+            VBox vbox = new VBox(10);
+            Button newColonne = new Button("Nouvelle Colonne");
+            newColonne.getStyleClass().add("buttonColonne");
+            newColonne.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewColonne(modele));
+            //newColonne.setPadding(new Insets(10));
+            newColonne.setPrefSize(200, 30);
+            vbox.getChildren().add(newColonne);
+            hbox.getChildren().add(vbox);
 
             this.getChildren().setAll(new Text(modele.getTableau().getTitre()),hbox);
         }
