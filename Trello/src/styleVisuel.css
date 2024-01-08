@@ -82,3 +82,16 @@
 .buttonColonne:hover{
     -fx-background-color: #4a006c;
 }
+.buttonTableau{
+    -fx-background-color: #8a2be2;
+    -fx-background-radius: 10; /* Coins arrondis */
+    -fx-border-radius: 10;
+}
+.buttonTableau:hover{
+    -fx-background-color: #781dc7;
+}
+.titreTableau{
+
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}

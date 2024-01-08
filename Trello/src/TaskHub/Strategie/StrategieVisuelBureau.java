@@ -42,6 +42,10 @@ public class StrategieVisuelBureau extends StrategieVisuel {
             }
             modele.getChangement().setAction("");
         } else {
+
+            Label titreTab = new Label(modele.getTableau().getTitre());
+            titreTab.getStyleClass().add("titreTableau");
+            titreTab.setTextFill(Color.web("#ffffff"));
             // Création de la structure de la fenêtre principale
             HBox hbox = new HBox(50);
             hbox.getChildren().setAll();
@@ -83,12 +87,16 @@ public class StrategieVisuelBureau extends StrategieVisuel {
             Button newColonne = new Button("Nouvelle Colonne");
             newColonne.getStyleClass().add("buttonColonne");
             newColonne.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewColonne(modele));
+            newColonne.setFont(Font.font("Arial Black", FontWeight.BOLD, 15));
             //newColonne.setPadding(new Insets(10));
             newColonne.setPrefSize(200, 30);
             vbox.getChildren().add(newColonne);
             hbox.getChildren().add(vbox);
 
-            this.getChildren().setAll(new Text(modele.getTableau().getTitre()),hbox);
+            VBox  vBox= new VBox(10);
+            vBox.getChildren().add(titreTab);
+            vBox.getChildren().add(hbox);
+            this.getChildren().setAll(vBox);
         }
     }
 }
