@@ -16,8 +16,12 @@ public class ModeleTache implements Sujet{
     /**Attribut représentant la colonne sélectionner*/
     private int colonneSelectionner;
     /**Attribut représentant le tableau*/
-    private Tableau tableau;
+    private ArrayList<Tableau> tableaux;
 
+    /**Attribut représentant l'id du tableau courant*/
+    private int idTableauCourant;
+
+    /**Attribut représentant si on est en train de créer une sous tache*/
     private boolean sousTache = false;
 
     /**listes des observateurs*/
@@ -26,10 +30,11 @@ public class ModeleTache implements Sujet{
     // Derniere action effectuée //
     private Changement changement;
 
+    /**Attribut représentant le mode d'affichage**/
     private int affichage;
 
 
-   private boolean formulaire;
+    private boolean formulaire;
 
 
    /**Attribut représentant la tache selectionner*/
@@ -44,9 +49,9 @@ public class ModeleTache implements Sujet{
         /**
          * On cherche la colonne qui contient la tache selectionner
          * */
-        for(Conteneur c:this.tableau.getColonnes()){
+        for(Conteneur c:this.tableaux.get(idTableauCourant).getColonnes()){
             if (c.getTaches().contains(tacheSelectionner)){
-                this.colonneSelectionner=this.tableau.getColonnes().indexOf(c);
+                this.colonneSelectionner=this.tableaux.get(idTableauCourant).getColonnes().indexOf(c);
                 break;
             }
         }
@@ -65,7 +70,7 @@ public class ModeleTache implements Sujet{
         return this.tacheSelectionner;
     }
     public Tableau getTableau() {
-        return this.tableau;
+        return this.tableaux.get(idTableauCourant);
     }
     public int getAffichage() {
         return this.affichage;
@@ -79,6 +84,9 @@ public class ModeleTache implements Sujet{
         this.observateurs=new ArrayList<Observateur>();
         this.formulaire=false;
         this.affichage=1;
+        this.tableaux=new ArrayList<Tableau>();
+        this.tableaux.add(new Tableau("Tableau 1"));
+        this.idTableauCourant=0;
     }
 
     /**
@@ -114,17 +122,30 @@ public class ModeleTache implements Sujet{
      * @param index index de la colonne à selectionner
      * */
     public void changerColonneSelectionner(int index){
-        if(index>=0 && index<this.tableau.getColonnes().size()){
+        if(index>=0 && index<this.tableaux.get(idTableauCourant).getColonnes().size()){
             this.colonneSelectionner=index;
         }
     }
 
+    /**
+     * methode pour créer une tache
+     * @param titre titre de la tâche
+     * @param description description de la tâche
+     * */
+
     public void creerTache(String titre, String description) throws TacheNomVideException {
         TacheMere tache = new TacheMere(titre, description);
-        this.tableau.getColonnes().get(this.colonneSelectionner).ajouterTache(tache);
-        this.changement = new Changement(this.tableau.getColonnes().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajout");
+        this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner).ajouterTache(tache);
+        this.changement = new Changement(this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajout");
         this.notifierObservateur();
     }
+
+    /**
+     * methode pour créer une sous tache
+     * @param titre
+     * @param description
+     * @throws TacheNomVideException
+     */
 
     public void creerSousTache(String titre, String description) throws TacheNomVideException {
         if (this.tacheSelectionner==null){
@@ -135,19 +156,89 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
+    /**
+     * methode pour avoir le dernier changement effectué
+     * @return changement
+     */
     public Changement getChangement() {
         return this.changement;
     }
 
-    public void setTableau(Tableau tableau) {
-        this.tableau = tableau;
+    /**
+     * methode pour changer le tableau courant
+     * @param tableau
+     */
 
+    public void setTableauCourant(Tableau tableau) {
+        this.tableaux.set(idTableauCourant,tableau);
     }
+
+    /**
+     * methode pour changer les tableaux
+     * @param tableaux
+     */
+
+    public void setTableaux(ArrayList<Tableau> tableaux) {
+        this.tableaux = tableaux;
+    }
+
+    /**
+     * methode pour changer l'id du tableau courant
+     * @param idTableauCourant
+     */
+
+    public void setIdTableauCourant(int idTableauCourant) {
+        this.idTableauCourant = idTableauCourant;
+    }
+
+    /**
+     * methode pour avoir l'id du tableau courant
+     * @return idTableauCourant
+     */
+
+    public int getIdTableauCourant() {
+        return this.idTableauCourant;
+    }
+
+/**
+     * methode pour avoir les tableaux
+     * @return tableaux
+     */
+
+    public ArrayList<Tableau> getTableaux() {
+        return this.tableaux;
+    }
+
+    /**
+     * methode pour ajouter un tableau
+     * @param titre titre du tableau
+     */
+
+    public void ajouterTableau(String titre) {
+        this.tableaux.add(new Tableau(titre));
+    }
+
+    /**
+     * methode pour supprimer un tableau
+     * @param i index du tableau à supprimer
+     */
+
+    public void supprimerTableau(int i) {
+        this.tableaux.remove(i);
+    }
+
+    /**
+     * methode pour avoir la colonne selectionner
+     * @return colonneSelectionner
+     */
 
     public int getColonneSelectionner() {
         return this.colonneSelectionner;
     }
 
+    /**
+     * methode pour changer de formulaire
+     */
     public void switchFormulaire(){
         this.formulaire=!this.formulaire;
         this.notifierObservateur();
@@ -163,19 +254,31 @@ public class ModeleTache implements Sujet{
         if(this.tacheSelectionner==null){
             return;
         }
-        this.tableau.getColonne(this.colonneSelectionner).getTaches().get(this.tableau.getColonne(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setTitre(titre);
-        this.tableau.getColonne(this.colonneSelectionner).getTaches().get(this.tableau.getColonne(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setDescription(description);
+        this.tableaux.get(idTableauCourant).getColonne(this.colonneSelectionner).getTaches().get(this.tableaux.get(idTableauCourant).getColonne(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setTitre(titre);
+        this.tableaux.get(idTableauCourant).getColonne(this.colonneSelectionner).getTaches().get(this.tableaux.get(idTableauCourant).getColonne(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setDescription(description);
         this.notifierObservateur();
     }
 
+    /**
+     * methode pour avoir le formulaire
+     * @return
+     */
     public boolean getFormulaire(){
         return this.formulaire;
     }
 
+    /**
+     * methode pour set une sous tache
+     * @param sousTache
+     */
     public void setSousTache(boolean sousTache) {
         this.sousTache = sousTache;
     }
 
+    /**
+     * methode pour avoir une sous tache
+     * @return
+     */
     public boolean getSousTache() {
         return this.sousTache;
     }
