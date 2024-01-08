@@ -1,84 +1,92 @@
 .root {
-    -fx-background-color: #520052; /* Fond de la fenêtre en violet foncé */
+    -fx-background-color: #FFFFFF; /* White background */
 }
 
 .colonne {
     -fx-padding: 10px;
-    -fx-background-color: #6a1b9a; /* Violet plus foncé des colonnes */
+    -fx-background-color: #E4E4E4; /* Light gray for the columns */
     -fx-border-style: groove;
-    -fx-border-color: #6a1b9a; /* Bordure violet foncé */
+    -fx-border-color: #989898; /* Darker gray border */
     -fx-border-width: 2px;
     -fx-background-radius: 18 18 18 18;
     -fx-border-radius: 18 18 18 18;
 }
 
 .colonneTitre {
-    -fx-fill: white; /* Texte blanc pour les titres de colonnes */
+    -fx-fill: #000000; /* Black for the column titles */
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-alignment: center;
 }
 
 .tache {
-    -fx-background-color: #8a2be2; /* Violet pour les tâches */
-    -fx-text-fill: white; /* Texte blanc pour les tâches */
+    -fx-background-color: #ffffff; /* White for the tasks */
+    -fx-text-fill: #000000; /* Black text for the tasks */
     -fx-alignment: center;
-    -fx-background-radius: 10; /* Coins arrondis */
+    -fx-background-radius: 10; /* Rounded corners */
     -fx-border-radius: 10;
 }
 
 .tache:hover {
-    -fx-background-color: #4a006c; /* Violet plus foncé au survol des tâches */
+    -fx-background-color: #a2a2a2; /* Gray on hover for the tasks */
 }
 
 .tacheText {
-    -fx-fill: white; /* Texte blanc pour le contenu des tâches */
+    -fx-fill: #000000; /* Black text for the task content */
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
 .button {
-    -fx-background-color: transparent;
-    -fx-text-fill: white; /* Texte blanc */
-    -fx-background-radius: 5; /* Légèrement arrondi */
+    -fx-background-color: #ffffff; /* white for the buttons */
+    -fx-text-fill: #000000; /* black text */
+    -fx-background-radius: 5; /* Slightly rounded */
 }
 
-.tacheListe{
--fx-background-color: #8a2be2; /* Violet pour les tâches */
-    -fx-text-fill: white; /* Texte blanc pour les tâches */
+.button:hover {
+    -fx-background-color: #a2a2a2; /* Darker gray on hover for the buttons */
+}
+
+.tacheListe {
+    -fx-background-color: #afafaf; /* Dark gray for the tâches */
+    -fx-text-fill: #000000; /* White text for the tâches */
     -fx-alignment: center;
-    -fx-background-radius: 10; /* Coins arrondis */
+    -fx-background-radius: 10; /* Rounded corners */
     -fx-border-radius: 10;
 }
+
 .tacheListe:hover {
-    -fx-background-color: #781dc7; /* Violet plus foncé au survol des tâches */
+    -fx-background-color: #606060; /* gray on hover for the tâches */
 }
 
-.buttonListe{
+.buttonListe {
     -fx-alignment: center;
-    -fx-background-color: transparent;
-    -fx-text-fill: white; /* Texte blanc */
-    -fx-background-radius: 5; /* Légèrement arrondi */
+    -fx-background-color: #ffffff; /* white for the buttons */
+    -fx-text-fill: #000000; /* black text */
+    -fx-background-radius: 5; /* Slightly rounded */
 }
-.titreListe{
-    -fx-fill: Black;
+
+.titreListe {
+    -fx-fill: #FFFFFF; /* White text for the list titles */
     -fx-font-size: 30px;
     -fx-font-weight: bold;
 }
-.combo-box{
-    -fx-background-color: #8a2be2;
-    -fx-background-radius: 10; /* Coins arrondis */
+
+.combo-box {
+    -fx-background-color: #ffffff; /* white for the combo boxes */
+    -fx-background-radius: 10; /* Rounded corners */
     -fx-border-radius: 10;
 }
-.buttonColonne{
-    -fx-padding: 10px;
-    -fx-background-color: #6a1b9a; /* Violet plus foncé des colonnes */
-    -fx-border-style: groove;
 
+.buttonColonne {
+    -fx-padding: 10px;
+    -fx-background-color: #E4E4E4; /* Light gray for the columns */
+    -fx-border-style: groove;
     -fx-border-width: 2px;
     -fx-background-radius: 18 18 18 18;
     -fx-border-radius: 18 18 18 18;
 }
-.buttonColonne:hover{
-    -fx-background-color: #4a006c;
+
+.buttonColonne:hover {
+    -fx-background-color: #D8D8D8; /* Darker gray border on hover for the columns */
 }
