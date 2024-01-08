@@ -58,14 +58,17 @@ public class ControllerManip implements EventHandler<MouseEvent> {
                     this.m.creerSousTache(name.getText(), desc.getText());
                     // On remet l'attribut sousTache à false
                     this.m.setSousTache(false);
+                    this.name.setText("New Tâche");
                 }
                 // Si une tache est selectionner on modifie la tache
                 else if(this.m.getTacheSelectionner() !=null){
                     this.m.modifierTache(this.name.getText(), this.desc.getText());
+                    this.name.setText("New Tâche");
                 }
                 // Sinon on créer une nouvelle tache
                 else {
                     this.m.creerTache(name.getText(), desc.getText());
+                    this.name.setText("New Tâche");
                 }
             } catch (TacheNomVideException e) {
                 e.printStackTrace();
@@ -75,19 +78,21 @@ public class ControllerManip implements EventHandler<MouseEvent> {
             if(this.m.getForm()==2){
                 // On créer une nouvelle colonne
                 this.m.creerColonne(this.name.getText());
+                this.name.setText("New Colonne");
             }
         } else if (b.getText().equals("Créer Tableau")) {
             // Si le formulaire est celui de la création d'une colonne
             if(this.m.getForm()==3){
                 // On créer une nouvelle colonne
                 this.m.ajouterTableau(this.name.getText());
+                this.name.setText("New Tableau");
             }
         }
         //on vide les champs
         if(this.desc!=null){
             this.desc.clear();
         }
-        this.name.setText("New Tâche");
+        //this.name.setText("New Tâche");
         this.m.switchFormulaire(0);
     }
 }

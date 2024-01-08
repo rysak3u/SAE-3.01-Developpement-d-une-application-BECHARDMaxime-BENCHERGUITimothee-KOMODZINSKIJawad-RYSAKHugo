@@ -2,6 +2,7 @@ package TaskHub.Strategie;
 
 import TaskHub.Controller.ControllerAfficherFormulaire;
 import TaskHub.Controller.ControllerDetailsTache;
+import TaskHub.Controller.ControllerNewColonne;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
@@ -16,6 +17,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -31,8 +33,10 @@ public class VisuelListe extends StrategieVisuel {
     public void affichage(ModeleTache modele) {
         VBox vliste = new VBox(10);
         double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+        Label titreTab = new Label(modele.getTableau().getTitre());
+        titreTab.getStyleClass().add("titreTableau");
+        titreTab.setTextFill(Color.web("#ffffff"));
 
-        
         for (Conteneur c:modele.getTableau().getColonnes()){
             VBox vboxColonne = new VBox(10); // Ajout de l'espace entre les boîtes de tâches
             vboxColonne.getStyleClass().add("colonne");
@@ -88,9 +92,16 @@ public class VisuelListe extends StrategieVisuel {
             vboxColonne.getChildren().add(tache);
             vliste.getChildren().add(vboxColonne);
         }
-
+        Button newColonne = new Button("Nouvelle Colonne");
+        newColonne.getStyleClass().add("buttonColonne");
+        newColonne.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewColonne(modele));
+        newColonne.setFont(Font.font("Arial Black", FontWeight.BOLD, 15));
+        newColonne.setPrefSize(200, 30);
+        vliste.getChildren().add(newColonne);
         vliste.setAlignment(Pos.TOP_CENTER);
-        this.getChildren().setAll(vliste);
+        VBox vFinal=new VBox(10);
+        vFinal.getChildren().addAll(titreTab,vliste);
+        this.getChildren().setAll(vFinal);
     }
 
 

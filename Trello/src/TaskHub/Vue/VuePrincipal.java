@@ -74,16 +74,18 @@ public class VuePrincipal extends Stage implements Observateur{
         listeTableau.setOnAction(new ControllerSwitchTableau(this.modeleTache));
         modeleTache.enregistrerObservateur(listeTableau);
         boxBouton.getChildren().add(listeTableau);
-
+        /**
         // Création du bouton pour créer une nouvelle colonne
         Button newColonne = new Button("Nouvelle Colonne");
         newColonne.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewColonne(this.modeleTache));
-
+*/
         // Création du bouton pour créer une nouvelle colonne
-        Button newTableau = new Button("Nouveau Tableau");
-        newTableau.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewTableau(this.modeleTache));
+        //Button newTableau = new Button("Nouveau Tableau");
 
-        boxBouton.getChildren().addAll(choixAffichage, newColonne, newTableau);
+        //newTableau.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewTableau(this.modeleTache));
+
+        //boxBouton.getChildren().addAll(choixAffichage, newColonne, newTableau);
+        boxBouton.getChildren().addAll(choixAffichage);
         boxBouton.setAlignment(Pos.TOP_RIGHT);
         titreOutil.getChildren().add(boxBouton);
         this.modeleTache.ajouterTableau("Tableau 1");
@@ -103,10 +105,20 @@ public class VuePrincipal extends Stage implements Observateur{
             e.printStackTrace();
         }
 
+        HBox hboxBas = new HBox(50);
+        hboxBas.setAlignment(Pos.BOTTOM_RIGHT);
+        Button newTableau = new Button("Nouveau Tableau");
 
-
+        newTableau.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewTableau(this.modeleTache));
+        newTableau.setAlignment(Pos.BOTTOM_RIGHT);
+        newTableau.getStyleClass().add("buttonTableau");
+        hboxBas.getChildren().add(newTableau);
+        Label titreTab = new Label(modeleTache.getTableau().getTitre());
+        titreTab.getStyleClass().add("titreTableau");
+        titreTab.setTextFill(Color.web("#ffffff"));
+       // titreOutil.getChildren().add(titreTab);
         // Ajout de tous les éléments à la VBox principale
-        vbox.getChildren().addAll(titreOutil, this.affichage );
+        vbox.getChildren().addAll(titreOutil, this.affichage,hboxBas);
 
         // Mise en plein écran de la scène
         this.scenePrincipale= new Scene(vbox, 300, 250);
