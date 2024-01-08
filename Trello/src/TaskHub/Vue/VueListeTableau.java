@@ -19,6 +19,7 @@ public class VueListeTableau extends ComboBox<String> implements Observateur{
         // Si le changement est un ajout de tableau, on ajoute le tableau à la liste //
         if(modeleTache.getChangement().getAction().equals("newTableau")){
             this.getItems().add(modeleTache.getTableaux().get(modeleTache.getTableaux().size()-1).getTitre());
+            modeleTache.getChangement().setAction("");
         }
     }
 }
