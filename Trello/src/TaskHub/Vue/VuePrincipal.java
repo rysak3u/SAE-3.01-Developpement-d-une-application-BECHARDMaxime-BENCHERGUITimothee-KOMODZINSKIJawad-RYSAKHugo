@@ -78,7 +78,7 @@ public class VuePrincipal extends Stage implements Observateur{
         titreOutil.getChildren().add(boxBouton);
         //modeleTache.enregistrerObservateur(tableau);
         Tableau tab = new Tableau("Tableau 1");
-        this.modeleTache.setTableau(tab);
+        this.modeleTache.setTableauCourant(tab);
         try {
             Conteneur cont = new Conteneur("Liste 1",this.modeleTache);
             cont.ajouterTache(new TacheMere("Tache 1", "Description 1"));
