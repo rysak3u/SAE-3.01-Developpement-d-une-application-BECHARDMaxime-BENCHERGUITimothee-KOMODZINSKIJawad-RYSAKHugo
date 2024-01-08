@@ -190,6 +190,7 @@ public class ModeleTache implements Sujet{
 
     public void setIdTableauCourant(int idTableauCourant) {
         this.idTableauCourant = idTableauCourant;
+        notifierObservateur();
     }
 
     /**
@@ -226,6 +227,20 @@ public class ModeleTache implements Sujet{
 
     public void supprimerTableau(int i) {
         this.tableaux.remove(i);
+    }
+
+    /**
+     * methode pour trouver un tableau avec un nom
+     * @param name nom du tableau
+     * @return tableau
+     */
+    public Tableau findByName(String name){
+        for(Tableau t:this.tableaux){
+            if(t.getTitre().equals(name)){
+                return t;
+            }
+        }
+        return null;
     }
 
     /**
@@ -281,7 +296,7 @@ public class ModeleTache implements Sujet{
 
     /**
      * methode pour avoir une sous tache
-     * @return
+     * @return sousTache
      */
     public boolean getSousTache() {
         return this.sousTache;
