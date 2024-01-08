@@ -15,19 +15,18 @@ GROUPE 3 - BECHARD BENCHERGUI KOMODZINSKI RYSAK
 - **trello**
   - je pense que vous utilisez mal trello. L'objectif de trello est de donner une vue globale de ce qui fonctionne dans l'application. Tel que fait actuellement, vous masquez les taches réalisées, et vous avez un tableau différent par itération. Vous perdez l'intérêt d'avoir une vue globale (on parle de radiateur d'information - https://www.journaldunet.com/solutions/dsi/1459366-10-management-visuel-radiateur-d-information/).
 
-(c) conception
-- diagramme de classe par iteration
-- diagrammes de séquence
-- organisation de l'application
-
-(d) code
-- commentaires
-- organisation du code
-
-(e) tests
-- structure des tests
-- couverture des tests
-
-(f) demonstration
-- validation des fonctionnalités
-- valeur ajoutée de l'application
+(c) conception (C-)
+- **iteration 1**
+	- votre diagramme de classe est crée via intellij. Faire la conception avant le développement.
+	- pourquoi vous n'utilisez pas plantuml pour les diagrammes de sequence ? vos fleches ne sont pas alignées et c'est difficile à lire.
+	- afficher : vue conteneur n'a pas accés directement à tableau. Mais je comprends que ce soit plus compliqué à ecrire.
+	- sur l'affichage du formulaire => l'appel à la méthode actualier me semble bizarre. Je ne suis pas sur de comprendre ce que vous faites.
+- **iteration 2**
+	- idem votre diagramme de classe est fait aprés le développement, vous passez completement à coté d'une partie de la conception.
+	- modifiertache est le meme schemas que iteration 1. Quelle différence par rapport à créer tache ? l'appel à actualiser me semble incorrect.
+	- idem pour créer sous-tache.
+	- votre conception ne rend pas compte d'un travail sur l'itération 2.
+- **iteration 3**
+	- idem pour votre diagramme de classe
+	- affichage liste est le même que itération 1.
+	- changervisuel ne me semble pas correct dessiné tel quel (sans être allé vérifié votre code). ce n'est pas le changement de classe concrète de la stratégie qui déclenche l'appel de afficher(Model). Cela mériterait d'être mieux détaillé.
