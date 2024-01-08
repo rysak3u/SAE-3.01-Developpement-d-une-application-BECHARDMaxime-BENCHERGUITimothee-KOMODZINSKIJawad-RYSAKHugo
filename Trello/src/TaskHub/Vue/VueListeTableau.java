@@ -1,9 +1,12 @@
 package TaskHub.Vue;
 
+import TaskHub.Controller.ControllerSwitchTableau;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
 import TaskHub.Tache.Tableau;
+import javafx.event.EventType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
 
 public class VueListeTableau extends ComboBox<String> implements Observateur{
 

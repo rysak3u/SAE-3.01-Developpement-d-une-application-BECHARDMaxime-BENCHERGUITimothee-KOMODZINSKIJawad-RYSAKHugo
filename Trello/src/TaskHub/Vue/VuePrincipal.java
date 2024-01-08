@@ -38,7 +38,6 @@ public class VuePrincipal extends Stage implements Observateur{
 
     private Scene scenePrincipale;
 
-
     private StrategieVisuel affichage;
 
 
@@ -69,6 +68,13 @@ public class VuePrincipal extends Stage implements Observateur{
         choixAffichage.getItems().add("Affichage Liste");
         choixAffichage.setOnAction(new ControllerVuePrincipale(this));
 
+        // Création de la ComboBox pour le choix du tableau
+        VueListeTableau listeTableau = new VueListeTableau(this.modeleTache);
+        listeTableau.setOnAction(new ControllerSwitchTableau(this.modeleTache));
+        modeleTache.enregistrerObservateur(listeTableau);
+        modeleTache.notifierObservateur();
+        boxBouton.getChildren().add(listeTableau);
+
         // Création du bouton pour créer une nouvelle colonne
         Button newColonne = new Button("Nouvelle Colonne");
         newColonne.addEventHandler(ActionEvent.ACTION, new ControllerNewColonne(this.modeleTache));
@@ -78,6 +84,7 @@ public class VuePrincipal extends Stage implements Observateur{
         titreOutil.getChildren().add(boxBouton);
         //modeleTache.enregistrerObservateur(tableau);
         Tableau tab = new Tableau("Tableau 1");
+        this.modeleTache.ajouterTableau("Tableau 2");
         this.modeleTache.setTableauCourant(tab);
         try {
             Conteneur cont = new Conteneur("Liste 1",this.modeleTache);

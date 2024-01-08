@@ -5,6 +5,7 @@ import TaskHub.Controller.ControllerDetailsTache;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
+import TaskHub.Vue.VueListeTableau;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
