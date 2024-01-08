@@ -71,7 +71,9 @@ public class ControllerManip implements EventHandler<MouseEvent> {
                 e.printStackTrace();
             }
         } else if (b.getText().equals("Créer")) {
+            // Si le formulaire est celui de la création d'une colonne
             if(this.m.getForm()==2){
+                // On créer une nouvelle colonne
                 this.m.creerColonne(this.name.getText());
             }
         }

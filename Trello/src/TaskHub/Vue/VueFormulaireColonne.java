@@ -18,6 +18,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * VueFormulaireColonne est une classe qui permet d'afficher le formulaire pour créer une nouvelle colonne
+ */
 public class VueFormulaireColonne extends Stage implements Observateur {
     public VueFormulaireColonne(ModeleTache modeleTache) {
         super();
