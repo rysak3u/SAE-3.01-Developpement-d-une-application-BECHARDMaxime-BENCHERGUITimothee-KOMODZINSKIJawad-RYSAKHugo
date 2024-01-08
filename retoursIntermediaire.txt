@@ -1,0 +1,32 @@
+GROUPE 3 - BECHARD BENCHERGUI KOMODZINSKI RYSAK
+
+(a) depot et structure code (B)
+- structure git => repertoire idea de configuration inutile, repertoire out avec images
+- readme => vide, mettre au moins la liste des membres du groupe
+- analyse => docs presents
+
+(b) fonctionnalité et itérations (C)
+- **rapport iteration 1**
+  - votre bilan ne contient pas vraiment un bilan de l'itération.
+  - le descriptif des fonctionnalités ne doit pas contenir des descriptif de code (par exemple creerTache dans iteration 1)
+- **iteration 2 et 3**
+  - vos rapports d'itération 2 et 3 me semblent mieux. je trouve la forme du bilan de l'itération 2 plus conforme aux attentes. Une fonctionnalité est une opération à réaliser à travers l'application pas une réflexion sur vos choix (par exemple le choix de la couleur violet ne devrait pas faire partie de la fonctionnalité).
+  - le bilan de l’itération 3 me semble aussi moins bien  structuré que l'itération 2. Faites bien ressortir les fonctionnalités (éventuellement en les numérotant) et n'hésitez pas à faire des parties.
+- **trello**
+  - je pense que vous utilisez mal trello. L'objectif de trello est de donner une vue globale de ce qui fonctionne dans l'application. Tel que fait actuellement, vous masquez les taches réalisées, et vous avez un tableau différent par itération. Vous perdez l'intérêt d'avoir une vue globale (on parle de radiateur d'information - https://www.journaldunet.com/solutions/dsi/1459366-10-management-visuel-radiateur-d-information/).
+
+(c) conception (C-)
+- **iteration 1**
+	- votre diagramme de classe est crée via intellij. Faire la conception avant le développement.
+	- pourquoi vous n'utilisez pas plantuml pour les diagrammes de sequence ? vos fleches ne sont pas alignées et c'est difficile à lire.
+	- afficher : vue conteneur n'a pas accés directement à tableau. Mais je comprends que ce soit plus compliqué à ecrire.
+	- sur l'affichage du formulaire => l'appel à la méthode actualier me semble bizarre. Je ne suis pas sur de comprendre ce que vous faites.
+- **iteration 2**
+	- idem votre diagramme de classe est fait aprés le développement, vous passez completement à coté d'une partie de la conception.
+	- modifiertache est le meme schemas que iteration 1. Quelle différence par rapport à créer tache ? l'appel à actualiser me semble incorrect.
+	- idem pour créer sous-tache.
+	- votre conception ne rend pas compte d'un travail sur l'itération 2.
+- **iteration 3**
+	- idem pour votre diagramme de classe
+	- affichage liste est le même que itération 1.
+	- changervisuel ne me semble pas correct dessiné tel quel (sans être allé vérifié votre code). ce n'est pas le changement de classe concrète de la stratégie qui déclenche l'appel de afficher(Model). Cela mériterait d'être mieux détaillé.
