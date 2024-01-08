@@ -1,33 +1,35 @@
 .formulaire {
-    -fx-background-color: #520052; /* Fond de la fenêtre en violet foncé */
+    -fx-background-color: #F5F5F5; /* Fond de la fenêtre en blanc */
 }
 
 .titre-formulaire {
-    -fx-fill: white; /* Texte blanc pour les titres de colonnes */
+    -fx-fill: #000000; /* Texte noir pour les titres de colonnes */
 }
 
 .label-formulaire {
-    -fx-text-fill: #AFB1B3; /* Texte gris clair */
+    -fx-text-fill: #ffffff; /* Texte Blanc pour les étiquettes */
 }
 
 .textfield-formulaire {
-    -fx-text-fill: black; /* Texte noir pour le contenu des tâches */
+    -fx-text-fill: #000000; /* Texte Noir pour le contenu des tâches */
     -fx-font-weight: bold;
 }
 
 .button-formulaire {
-    -fx-background-color: #6a1b9a; /* Violet pour le fond */
-    -fx-text-fill: white; /* Texte blanc */
-    -fx-background-radius: 5; /* Légèrement arrondi */
+    -fx-background-color: #000000; /* Fond noir pour les boutons */
+    -fx-text-fill: #ffffff; /* Texte blanc pour les boutons */
 }
 
 .button-formulaire:hover {
-    -fx-background-color: #8a2be2;
+    -fx-background-color: #565656;
 }
 
 .hbBtn-formulaire {
     -fx-alignment: BOTTOM_RIGHT;
+
 }
+
+
 
 
 
