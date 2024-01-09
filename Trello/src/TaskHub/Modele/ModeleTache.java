@@ -36,9 +36,8 @@ public class ModeleTache implements Sujet{
     private int affichage;
 
     private TacheMere tacheDrag;
+
     private Dependance dependance=new Dependance();
-
-
 
 
     private boolean formulaire;

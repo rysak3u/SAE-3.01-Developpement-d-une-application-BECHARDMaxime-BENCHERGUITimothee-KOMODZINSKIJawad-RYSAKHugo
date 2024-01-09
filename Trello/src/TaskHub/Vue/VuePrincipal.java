@@ -100,12 +100,18 @@ public class VuePrincipal extends Stage implements Observateur{
 
         HBox hboxBas = new HBox(50);
         hboxBas.setAlignment(Pos.BOTTOM_RIGHT);
-        Button newTableau = new Button("Nouveau Tableau");
 
+        Button gantt=new Button("Générer Diagramme de Gantt");
+        gantt.addEventHandler(ActionEvent.ACTION, new ControllerGantt(this.modeleTache));
+        gantt.getStyleClass().add("buttonTableau");
+        hboxBas.getChildren().add(gantt);
+
+        Button newTableau = new Button("Nouveau Tableau");
         newTableau.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewTableau(this.modeleTache));
         newTableau.setAlignment(Pos.BOTTOM_RIGHT);
         newTableau.getStyleClass().add("buttonTableau");
         hboxBas.getChildren().add(newTableau);
+
         Label titreTab = new Label(modeleTache.getTableau().getTitre());
         titreTab.getStyleClass().add("titreTableau");
         titreTab.setTextFill(Color.web("#ffffff"));
