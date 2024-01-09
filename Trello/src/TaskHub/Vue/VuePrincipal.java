@@ -28,6 +28,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 
 /**
  * Classe VuePrincipal.puml
@@ -74,15 +76,6 @@ public class VuePrincipal extends Stage implements Observateur{
         listeTableau.setOnAction(new ControllerSwitchTableau(this.modeleTache));
         modeleTache.enregistrerObservateur(listeTableau);
         boxBouton.getChildren().add(listeTableau);
-        /**
-        // Création du bouton pour créer une nouvelle colonne
-        Button newColonne = new Button("Nouvelle Colonne");
-        newColonne.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewColonne(this.modeleTache));
-*/
-        // Création du bouton pour créer une nouvelle colonne
-        //Button newTableau = new Button("Nouveau Tableau");
-
-        //newTableau.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewTableau(this.modeleTache));
 
         //boxBouton.getChildren().addAll(choixAffichage, newColonne, newTableau);
         boxBouton.getChildren().addAll(choixAffichage);
@@ -173,10 +166,25 @@ public class VuePrincipal extends Stage implements Observateur{
         Label description = new Label(tache.getDescription());
         description.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         grid.add(description, 1, 1);
+        if(modeleTache.getDependance().getDependance(modeleTache.getTacheSelectionner())!=null) {
+            Label dep = new Label("Dépendance : ");
+            dep.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
+            grid.add(dep, 0, 2);
+
+            Label dep2=new Label("");
+            dep2.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
+            for (Tache t : modeleTache.getDependance().getDependance(modeleTache.getTacheSelectionner())) {
+                dep2.setText(dep2.getText()+t.getTitre()+", ");
+
+
+            }
+            grid.add(dep2, 1, 2);
+        }
+
 
         Label ds = new Label("Sous-Tâche : ");
         ds.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
-        grid.add(ds, 0, 2);
+        grid.add(ds, 0, 3);
 
         VBox sousTaches = new VBox();
 
@@ -231,6 +239,19 @@ public class VuePrincipal extends Stage implements Observateur{
 
         sc.getStylesheets().add("styleFormulaire.css");
         sc.setFill(Color.web("#8a2be2")); // Fond violet
+        this.setScene(sc);
+        this.show();
+    }
+
+    public void gantt(){
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+
+
+        Scene sc = new Scene(grid);
         this.setScene(sc);
         this.show();
     }
