@@ -74,15 +74,6 @@ public class VuePrincipal extends Stage implements Observateur{
         listeTableau.setOnAction(new ControllerSwitchTableau(this.modeleTache));
         modeleTache.enregistrerObservateur(listeTableau);
         boxBouton.getChildren().add(listeTableau);
-        /**
-        // Création du bouton pour créer une nouvelle colonne
-        Button newColonne = new Button("Nouvelle Colonne");
-        newColonne.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewColonne(this.modeleTache));
-*/
-        // Création du bouton pour créer une nouvelle colonne
-        //Button newTableau = new Button("Nouveau Tableau");
-
-        //newTableau.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerNewTableau(this.modeleTache));
 
         //boxBouton.getChildren().addAll(choixAffichage, newColonne, newTableau);
         boxBouton.getChildren().addAll(choixAffichage);
