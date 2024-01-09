@@ -6,6 +6,8 @@ public class Tableau {
     // titre et conteneur du tableau
     ArrayList<Conteneur> colonnes;
     private String titre;
+    private static int id = 0;
+    private int idTableau;
 
     /**
      * Constructeur de Tableau
@@ -14,6 +16,8 @@ public class Tableau {
     public Tableau(String titre){
         this.titre = titre;
         this.colonnes = new ArrayList<Conteneur>();
+        this.idTableau = id;
+        id++;
     }
 
     /**

@@ -1,6 +1,7 @@
 package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
+//import TaskHub.Tache.Archive;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
@@ -40,6 +41,7 @@ public class ModeleTache implements Sujet{
 
     private boolean gantt=false;
 
+    //private Archive archivage = new Archive();
 
     private boolean formulaire;
 
@@ -360,4 +362,25 @@ public class ModeleTache implements Sujet{
     public boolean isGantt() {
         return gantt;
     }
+/**
+    public void archiverTache(Tableau tableau, Tache tache) {
+        this.archivage.archiverTache(tableau, tache);
+        notifierObservateur();
+    }
+
+    public void archiverConteneur(Tableau tableau, Conteneur conteneur) {
+        this.archivage.archiverConteneur(tableau, conteneur);
+        notifierObservateur();
+    }
+
+    public void desarchiverTache(Tableau tableau, Tache tache) {
+        this.archivage.desarchiverTache(tableau, tache);
+        notifierObservateur();
+    }
+
+    public void desarchiverConteneur(Tableau tableau, Conteneur conteneur) {
+        this.archivage.desarchiverConteneur(tableau, conteneur);
+        notifierObservateur();
+    }
+ */
 }

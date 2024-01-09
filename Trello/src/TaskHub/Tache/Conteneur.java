@@ -10,11 +10,18 @@ public class Conteneur {
     private String titre;
     private ArrayList<TacheMere> taches;
     private ModeleTache modele;
+    private static int id = 0;
+    private int idConteneur;
 
     // getters et setters
     public String getTitre() {
         return this.titre;
     }
+
+    public int getIdConteneur() {
+        return idConteneur;
+    }
+
     public void setTitre(String titre) {
         this.titre = titre;
     }
@@ -40,6 +47,8 @@ public class Conteneur {
         this.titre = titre;
         this.taches = new ArrayList<TacheMere>();
         this.modele = modele;
+        this.idConteneur = id;
+        id++;
     }
 
     /**
