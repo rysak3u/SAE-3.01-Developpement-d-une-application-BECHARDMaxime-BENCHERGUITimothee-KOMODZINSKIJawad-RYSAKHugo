@@ -1,13 +1,9 @@
 package TaskHub.Strategie;
 
-import TaskHub.Controller.ControllerAfficherFormulaire;
-import TaskHub.Controller.ControllerNewColonne;
-import TaskHub.Exception.TacheNomVideException;
+import TaskHub.Controller.*;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
-import TaskHub.Vue.VueListeTableau;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -55,60 +50,13 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 // HBox contenant les tâches
                 VBox vbox = new VBox(10);
 
-                vbox.setOnDragOver(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
-                        /* data is dragged over the target */
-                        /* accept it only if it is not dragged from the same node
-                         * and if it has a string data */
-                        if (event.getGestureSource() != vbox &&
-                                event.getDragboard().hasString()) {
-                            /* allow for both copying and moving, whatever user chooses */
-                            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                        }
+                vbox.setOnDragOver(new ControllerDragOver(vbox));
 
-                        event.consume();
-                    }
-                });
+                vbox.setOnDragEntered(new ControllerDragEntered(vbox));
 
-                vbox.setOnDragEntered(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
-                        /* the drag-and-drop gesture entered the target */
-                        /* show to the user that it is an actual gesture target */
-                        if (event.getGestureSource() != vbox && event.getDragboard().hasString()) {
-                            vbox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-                        }
+                vbox.setOnDragExited(new ControllerDragExited(vbox));
 
-                        event.consume();
-                    }
-                });
-
-                vbox.setOnDragExited(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
-                        /* mouse moved away, remove the graphical cues */
-                        vbox.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-
-                        event.consume();
-                    }
-                });
-
-                vbox.setOnDragDropped(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
-                        /* data dropped */
-                        /* if there is a string data on dragboard, read it and use it */
-                        Dragboard db = event.getDragboard();
-                        boolean success = false;
-                        if (event.getTransferMode() == TransferMode.MOVE) {
-                            colonne.ajouterTache(modele.getTacheDrag());
-                            modele.notifierObservateur();
-                            success = true;
-                        }
-                        /* let the source know whether the string was successfully
-                         * transferred and used */
-                        event.setDropCompleted(success);
-
-                        event.consume();
-                    }
-                });
+                vbox.setOnDragDropped(new ControllerDragDropped(colonne, modele));
 
                 // Ajout des texts de la HBox
                 Text titre = new Text(colonne.getTitre());
@@ -117,33 +65,8 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                 // on ajoute les tâches de la colonne à la VBox
                 for (TacheMere tache : colonne.getTaches()) {
                     VBox vboxt = createVisuTache(tache, modele);
-                    vboxt.setOnDragDetected(new EventHandler<MouseEvent>() {
-                        public void handle(MouseEvent event) {
-                            /* drag was detected, start a drag-and-drop gesture*/
-                            /* allow any transfer mode */
-                            Dragboard db = vboxt.startDragAndDrop(TransferMode.ANY);
-
-                            /* Put a string on a dragboard */
-                            ClipboardContent content = new ClipboardContent();
-                            content.putString(tache.toString());
-                            db.setContent(content);
-
-                            modele.setTacheDrag(tache);
-
-                            event.consume();
-                        }
-                    });
-                    vboxt.setOnDragDone(new EventHandler<DragEvent>() {
-                        public void handle(DragEvent event) {
-                            /* the drag and drop gesture ended */
-                            /* if the data was successfully moved, clear it */
-                            if (event.getTransferMode() == TransferMode.MOVE) {
-                                colonne.getTaches().remove(tache);
-                            }
-                            modele.notifierObservateur();
-                            event.consume();
-                        }
-                    });
+                    vboxt.setOnDragDetected(new ControllerDragDetected(vboxt, modele, tache));
+                    vboxt.setOnDragDone(new ControllerDragDone(colonne, tache, modele));
                     vboxt.setPrefHeight(20);
                     vboxt.setPrefWidth(250);
                     // ajout de la tâche dans la liste
