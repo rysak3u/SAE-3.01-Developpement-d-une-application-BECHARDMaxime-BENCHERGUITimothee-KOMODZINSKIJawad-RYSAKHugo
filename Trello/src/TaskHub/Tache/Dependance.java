@@ -32,13 +32,16 @@ public class Dependance {
     }
 
     public void calculerNiveau(Tache tache) {
+        int initial=tache.getNiv();
         int max=tache.getNiv();
         for(Tache t : this.dependance.get(tache)){
-            if(t.getNiv()>=max) {
+            if(t.getNiv()>max) {
                 max=t.getNiv();
             }
         }
-        tache.setNiv(max+1);
+        if(max!=initial){
+            tache.setNiv(max+1);
+        }
     }
 
     public void update() {
