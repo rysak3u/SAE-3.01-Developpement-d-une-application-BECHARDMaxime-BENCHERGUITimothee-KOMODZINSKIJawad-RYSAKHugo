@@ -54,7 +54,7 @@ public class ControllerManip implements EventHandler<MouseEvent> {
         //on récupère le bouton sur lequel on a cliqué
         Button b = (Button) mouseEvent.getSource();
         //si la comboBox n'est pas null c'est qu'on veut jaouter une dependance
-        if(this.cb!=null){
+        if(this.cb!=null&&!b.getText().equals("Annuler")){
             if(this.cb.getValue()!=null){
                 this.m.ajoutDependance(this.m.getTacheSelectionner(), this.cb.getValue());
             }
