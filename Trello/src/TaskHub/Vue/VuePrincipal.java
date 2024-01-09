@@ -170,7 +170,7 @@ public class VuePrincipal extends Stage implements Observateur{
             Label dep = new Label("Dépendance : ");
             dep.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
             grid.add(dep, 0, 2);
-            
+
             Label dep2=new Label("");
             dep2.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
             for (Tache t : modeleTache.getDependance().getDependance(modeleTache.getTacheSelectionner())) {

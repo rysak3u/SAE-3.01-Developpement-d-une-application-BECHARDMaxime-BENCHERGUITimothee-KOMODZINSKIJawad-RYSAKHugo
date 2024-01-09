@@ -46,13 +46,14 @@ public class VueFormulaireDependance extends Stage implements Observateur{
         grid.add(name, 0, 1);
 
         this.cbDep = new ComboBox<>();
+        this.cbDep.setPromptText("Selectionner une Tâche");
         cbDep.getStyleClass().add("textfield-formulaire");
 
             grid.add(cbDep, 1, 1);
 
             ControllerManip controllerCreerTache = new ControllerManip(modeleTache, cbDep);
 
-            Button btnCreer = new Button("Créer Tableau");
+            Button btnCreer = new Button("Ajouter Dépendance");
             btnCreer.getStyleClass().add("button-formulaire");
             Button btnAnnuler = new Button("Annuler");
             btnAnnuler.getStyleClass().add("button-formulaire");
