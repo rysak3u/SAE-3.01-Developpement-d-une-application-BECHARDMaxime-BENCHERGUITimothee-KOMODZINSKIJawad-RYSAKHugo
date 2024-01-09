@@ -6,7 +6,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-public abstract class Tache {
+import java.util.Objects;
+
+public abstract class Tache implements Comparable<Tache>{
     private String titre;
     protected String description;
 
@@ -24,6 +26,7 @@ public abstract class Tache {
         }
         this.titre= titre;
         this.description = description;
+        this.niv = 0;
     }
 
     /**
@@ -50,5 +53,23 @@ public abstract class Tache {
     }
     public void setNiv(int niv) {
         this.niv = niv;
+    }
+
+    @Override
+    public int compareTo(Tache other) {
+        return Integer.compare(this.niv, other.niv);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Tache other = (Tache) obj;
+        //return niv == other.niv && Objects.equals(titre, other.titre) && Objects.equals(description, other.description);
+        return this.description.equals(other.description) && this.titre.equals(other.titre);
     }
 }
