@@ -19,7 +19,7 @@ public class ControllerDragEntered implements EventHandler<DragEvent> {
 
     public void handle(DragEvent event) {
         if (event.getGestureSource() != vbox && event.getDragboard().hasString()) {
-            vbox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            vbox.setBackground(new Background(new BackgroundFill(Color.rgb(75,75,75), new CornerRadii(18), Insets.EMPTY)));
         }
 
         event.consume();
