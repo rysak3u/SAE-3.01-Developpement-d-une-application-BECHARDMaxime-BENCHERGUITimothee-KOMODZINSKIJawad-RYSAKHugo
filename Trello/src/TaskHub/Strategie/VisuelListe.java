@@ -35,7 +35,6 @@ public class VisuelListe extends StrategieVisuel {
         double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
         Label titreTab = new Label(modele.getTableau().getTitre());
         titreTab.getStyleClass().add("titreTableau");
-        titreTab.setTextFill(Color.web("#ffffff"));
 
         for (Conteneur c:modele.getTableau().getColonnes()){
             VBox vboxColonne = new VBox(10); // Ajout de l'espace entre les boîtes de tâches

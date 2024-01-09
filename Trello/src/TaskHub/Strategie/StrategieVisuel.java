@@ -14,8 +14,7 @@ public abstract class StrategieVisuel extends Pane{
 
     public VBox createVisuTache(TacheMere tache, ModeleTache modele){
         VBox vboxt = new VBox();
-
-
+        // Création des texts
         Text t=new Text(tache.getTitre());
         Text desc=new Text(tache.getDescription());
         t.getStyleClass().add("tacheText");

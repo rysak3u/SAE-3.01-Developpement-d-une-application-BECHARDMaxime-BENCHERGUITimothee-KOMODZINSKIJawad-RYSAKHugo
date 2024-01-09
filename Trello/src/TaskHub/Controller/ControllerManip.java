@@ -53,8 +53,12 @@ public class ControllerManip implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         //on récupère le bouton sur lequel on a cliqué
         Button b = (Button) mouseEvent.getSource();
-        //si le bouton est le bouton créer tache
-        if (b.getText().equals("Créer Tâche")) {
+        //si la comboBox n'est pas null c'est qu'on veut jaouter une dependance
+        if(this.cb!=null){
+            if(this.cb.getValue()!=null){
+                this.m.ajoutDependance(this.m.getTacheSelectionner(), this.cb.getValue());
+            }
+        }else if (b.getText().equals("Créer Tâche")) {
             System.out.println("hum hum");
             try {
                 // Si l'attribut sousTache est à true alors on créer une sous tache

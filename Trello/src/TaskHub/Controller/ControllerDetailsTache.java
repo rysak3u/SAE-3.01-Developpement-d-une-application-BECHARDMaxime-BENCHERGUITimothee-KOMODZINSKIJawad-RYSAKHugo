@@ -4,7 +4,10 @@ import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import javafx.event.EventHandler;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.HBox;
 
 /**
  * Controller qui va permettre d'afficher les détails d'une tâche

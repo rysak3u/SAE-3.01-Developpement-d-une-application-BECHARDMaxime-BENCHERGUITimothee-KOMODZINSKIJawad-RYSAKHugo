@@ -38,13 +38,13 @@
 }
 
 .button {
-    -fx-background-color: #ffffff; /* white for the buttons */
+    -fx-background-color: transparent; /* Transparent background for the buttons */
     -fx-text-fill: #000000; /* black text */
     -fx-background-radius: 5; /* Slightly rounded */
 }
 
 .button:hover {
-    -fx-background-color: #a2a2a2; /* Darker gray on hover for the buttons */
+    -fx-cursor: hand; /* Hand cursor on hover */
 }
 
 .tacheListe {
@@ -76,6 +76,8 @@
     -fx-background-color: #ffffff; /* white for the combo boxes */
     -fx-background-radius: 10; /* Rounded corners */
     -fx-border-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
 }
 
 .buttonColonne {
@@ -88,15 +90,17 @@
 }
 
 .buttonTableau{
-    -fx-background-color: #8a2be2;
+    -fx-background-color: #ffffff;
     -fx-background-radius: 10; /* Coins arrondis */
     -fx-border-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
 }
 .buttonTableau:hover{
-    -fx-background-color: #781dc7;
+    -fx-background-color: #868686;
 }
 .titreTableau {
-
+    -fx-fill: #000000; /* Black for the tab title */
     -fx-font-size: 30px;
     -fx-font-weight: bold;
 }
