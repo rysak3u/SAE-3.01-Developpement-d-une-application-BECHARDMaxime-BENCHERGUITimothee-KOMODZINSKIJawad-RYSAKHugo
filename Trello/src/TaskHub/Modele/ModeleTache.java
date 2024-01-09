@@ -37,6 +37,8 @@ public class ModeleTache implements Sujet{
     private TacheMere tacheDrag;
 
     private Dependance dependance=new Dependance();
+    private boolean gantt=false;
+
     private boolean formulaire;
 
    private int form;
@@ -345,5 +347,14 @@ public class ModeleTache implements Sujet{
 
     public Dependance getDependance() {
         return dependance;
+    }
+
+    public void actualiserGantt() {
+    	this.gantt=!this.gantt;
+        this.notifierObservateur();
+    }
+
+    public boolean isGantt() {
+        return gantt;
     }
 }

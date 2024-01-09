@@ -13,6 +13,6 @@ public class ControllerGantt implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        //TODO
+        this.m.actualiserGantt();
     }
 }

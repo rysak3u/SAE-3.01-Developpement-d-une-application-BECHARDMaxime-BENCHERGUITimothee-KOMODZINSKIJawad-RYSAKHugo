@@ -5,6 +5,8 @@ import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
 
+import TaskHub.Strategie.StrategieDiagramme;
+import TaskHub.Strategie.StrategieDiagrammeGantt;
 import TaskHub.Strategie.StrategieVisuel;
 import TaskHub.Strategie.StrategieVisuelBureau;
 
@@ -41,6 +43,8 @@ public class VuePrincipal extends Stage implements Observateur{
     private Scene scenePrincipale;
 
     private StrategieVisuel affichage;
+
+    private StrategieDiagramme diagramme;
 
 
     /**
@@ -137,7 +141,11 @@ public class VuePrincipal extends Stage implements Observateur{
     @Override
     public void actualiser(Sujet s) {
         // Si aucune tâche n'est sélectionnée, on affiche la vue principale
-        if(((ModeleTache)s).getTacheSelectionner()==null){
+        if(((ModeleTache)s).isGantt()){
+            this.diagramme=new StrategieDiagrammeGantt();
+            this.diagramme.affichage();
+            this.getScene().setRoot(this.diagramme);
+        } else if(((ModeleTache)s).getTacheSelectionner()==null){
             this.setScene(this.scenePrincipale);
             this.affichage.affichage(this.modeleTache);
         }
@@ -245,19 +253,6 @@ public class VuePrincipal extends Stage implements Observateur{
 
         sc.getStylesheets().add("styleFormulaire.css");
         sc.setFill(Color.web("#8a2be2")); // Fond violet
-        this.setScene(sc);
-        this.show();
-    }
-
-    public void gantt(){
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-
-
-        Scene sc = new Scene(grid);
         this.setScene(sc);
         this.show();
     }
