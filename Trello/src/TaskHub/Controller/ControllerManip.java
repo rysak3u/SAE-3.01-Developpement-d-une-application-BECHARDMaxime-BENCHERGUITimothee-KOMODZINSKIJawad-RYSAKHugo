@@ -4,6 +4,7 @@ import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -20,7 +21,7 @@ public class ControllerManip implements EventHandler<MouseEvent> {
      */
     private TextField name, desc;
 
-
+    private ComboBox<String> cb;
 
     /**
      * @param m    Modele que le controller va appeler
@@ -41,7 +42,10 @@ public class ControllerManip implements EventHandler<MouseEvent> {
         this.m = m;
         this.name = name;
     }
-
+    public ControllerManip(ModeleTache m,  ComboBox<String> cb) {
+        this.m = m;
+        this.cb = cb;
+    }
     /**
      * @param mouseEvent évènement de la souris
      */

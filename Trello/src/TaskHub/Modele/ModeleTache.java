@@ -1,6 +1,7 @@
 package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
+import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
@@ -311,5 +312,13 @@ public class ModeleTache implements Sujet{
 
     public int getForm() {
         return this.form;
+    }
+
+    public ArrayList<Tache> getTaches(){
+        ArrayList<Tache> taches = new ArrayList<>();
+        for(Conteneur c:this.tableaux.get(idTableauCourant).getColonnes()){
+            taches.addAll(c.getTaches());
+        }
+        return taches;
     }
 }
