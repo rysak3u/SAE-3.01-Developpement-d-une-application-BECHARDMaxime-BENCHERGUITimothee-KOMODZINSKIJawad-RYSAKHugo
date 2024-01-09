@@ -298,14 +298,19 @@ public class ModeleTache implements Sujet{
     }
 
     public void ajoutDependance(TacheMere tache1, String tache2){
-        for(Tache tm:getTaches()){
-            if (tm.getTitre().equals(tache2)){
-                this.dependance.ajouterDependance(tache1, tm);
-                this.dependance.calculerNiveau(tache1);
-                this.dependance.update();
-                this.notifierObservateur();
-                return;
+        try{
+            for(Tache tm:getTaches()){
+                if (tm.getTitre().equals(tache2)){
+                    this.dependance.ajouterDependance(tache1, tm);
+                    this.dependance.calculerNiveau(tache1);
+                    this.dependance.update();
+                    System.out.println(this.dependance);
+                    this.notifierObservateur();
+                    return;
+                }
             }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
     }
 

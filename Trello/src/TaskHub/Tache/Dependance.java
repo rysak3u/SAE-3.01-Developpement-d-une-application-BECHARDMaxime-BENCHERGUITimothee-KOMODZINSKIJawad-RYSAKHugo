@@ -3,16 +3,13 @@ package TaskHub.Tache;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Dependance {
     private Map<Tache, List<Tache>> dependance;
 
     public Dependance() {
-        this.dependance = new HashMap<Tache, List<Tache>>();
+        this.dependance = new TreeMap<Tache, List<Tache>>();
     }
 
     public void ajouterDependance(Tache tache, List<Tache> dependance) {
@@ -21,10 +18,34 @@ public class Dependance {
 
     public void ajouterDependance(Tache predecesseur, Tache dependance) {
         if (existeDependanceInverse(predecesseur, dependance) || predecesseur.equals(dependance) || this.dependance.getOrDefault(predecesseur, new ArrayList<>()).contains(dependance)) {
-            System.out.println("Dépendance inverse détectée. Double dépendance non autorisée.");
-            return;
+            throw new IllegalArgumentException("Double dépendance détecter. Impossible d'ajouter la dépendance.");
+        }
+        if(detecteCycle(predecesseur, dependance)){
+            throw new IllegalArgumentException("Cycle détecter. Impossible d'ajouter la dépendance.");
         }
         this.dependance.computeIfAbsent(predecesseur, k -> new ArrayList<>()).add(dependance);
+    }
+
+    private boolean detecteCycle(Tache start, Tache dependance) {
+        Set<Tache> visiter = new HashSet<>();
+        return detecteCycleRecursive(start, dependance, visiter);
+    }
+
+    private boolean detecteCycleRecursive(Tache actuel, Tache dependance, Set<Tache> visiter) {
+        if (actuel.equals(dependance)) {
+            return true;
+        }
+
+        visiter.add(actuel);
+        List<Tache> dependances = this.dependance.getOrDefault(actuel, new ArrayList<>());
+        for (Tache tache : dependances) {
+            if (!visiter.contains(tache) && detecteCycleRecursive(tache, dependance, visiter)) {
+                return true;
+            }
+        }
+
+        visiter.remove(actuel);
+        return false;
     }
 
     private boolean existeDependanceInverse(Tache tachePredecesseur, Tache tacheDependante) {
@@ -74,5 +95,13 @@ public class Dependance {
             }
         }
         return successors;
+    }
+
+    public String toString(){
+        String s="";
+        for(Tache t : this.dependance.keySet()){
+            s+=t.getTitre()+" : "+t.getNiv()+"\n";
+        }
+        return s;
     }
 }
