@@ -96,7 +96,7 @@ public class VueFormulaireDependance extends Stage implements Observateur{
     }
 
     public void changerCb( ModeleTache modeleTache){
-
+        this.cbDep.getItems().clear();
         ArrayList<String> st = new ArrayList<>();
         for (Tache t : modeleTache.getTaches()) {
 
