@@ -1,10 +1,7 @@
 package TaskHub;
 
 import TaskHub.Modele.ModeleTache;
-import TaskHub.Vue.VueFormulaireColonne;
-import TaskHub.Vue.VueFormulaireTableau;
-import TaskHub.Vue.VueFormulaireTache;
-import TaskHub.Vue.VuePrincipal;
+import TaskHub.Vue.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -20,6 +17,7 @@ public class PrincipaleFx extends Application {
         this.modeleTache.enregistrerObservateur(new VueFormulaireTache(this.modeleTache));
         this.modeleTache.enregistrerObservateur(new VueFormulaireColonne(this.modeleTache));
         this.modeleTache.enregistrerObservateur(new VueFormulaireTableau(this.modeleTache));
+        this.modeleTache.enregistrerObservateur(new VueFormulaireDependance(this.modeleTache));
         this.modeleTache.enregistrerObservateur(vp);
     }
 

@@ -4,6 +4,7 @@ import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
+import TaskHub.Tache.Dependance;
 import TaskHub.Tache.Tableau;
 import TaskHub.Vue.Observateur;
 
@@ -34,7 +35,11 @@ public class ModeleTache implements Sujet{
     /**Attribut représentant le mode d'affichage**/
     private int affichage;
 
+<<<<<<< HEAD
     private TacheMere tacheDrag;
+=======
+    private Dependance dependance=new Dependance();
+>>>>>>> 572ce8d40c8cefe232e66fccad90d714706e92ce
 
     private boolean formulaire;
 
@@ -290,6 +295,16 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
+    public void ajoutDependance(TacheMere tache1, String tache2){
+        for(Tache tm:getTaches()){
+            if (tm.getTitre().equals(tache2)){
+                this.dependance.ajouterDependance(tache1, tm);
+                this.notifierObservateur();
+                return;
+            }
+        }
+    }
+
     /**
      * methode pour avoir le formulaire
      * @return
@@ -321,5 +336,13 @@ public class ModeleTache implements Sujet{
 
     public int getForm() {
         return this.form;
+    }
+
+    public ArrayList<Tache> getTaches(){
+        ArrayList<Tache> taches = new ArrayList<>();
+        for(Conteneur c:this.tableaux.get(idTableauCourant).getColonnes()){
+            taches.addAll(c.getTaches());
+        }
+        return taches;
     }
 }

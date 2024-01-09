@@ -4,6 +4,7 @@ import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -20,7 +21,7 @@ public class ControllerManip implements EventHandler<MouseEvent> {
      */
     private TextField name, desc;
 
-
+    private ComboBox<String> cb;
 
     /**
      * @param m    Modele que le controller va appeler
@@ -41,7 +42,10 @@ public class ControllerManip implements EventHandler<MouseEvent> {
         this.m = m;
         this.name = name;
     }
-
+    public ControllerManip(ModeleTache m,  ComboBox<String> cb) {
+        this.m = m;
+        this.cb = cb;
+    }
     /**
      * @param mouseEvent évènement de la souris
      */
@@ -49,8 +53,12 @@ public class ControllerManip implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         //on récupère le bouton sur lequel on a cliqué
         Button b = (Button) mouseEvent.getSource();
-        //si le bouton est le bouton créer tache
-        if (b.getText().equals("Créer Tâche")) {
+        //si la comboBox n'est pas null c'est qu'on veut jaouter une dependance
+        if(this.cb!=null){
+            if(this.cb.getValue()!=null){
+                this.m.ajoutDependance(this.m.getTacheSelectionner(), this.cb.getValue());
+            }
+        }else if (b.getText().equals("Créer Tâche")) {
             System.out.println("hum hum");
             try {
                 // Si l'attribut sousTache est à true alors on créer une sous tache

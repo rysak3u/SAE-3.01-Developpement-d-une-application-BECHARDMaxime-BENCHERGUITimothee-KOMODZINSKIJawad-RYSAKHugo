@@ -215,7 +215,8 @@ public class VuePrincipal extends Stage implements Observateur{
         Button btnArchiver = new Button("Archiver");
         btnArchiver.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
 
-        Button btnGantt = new Button("Diagramme de Gantt");
+        Button btnGantt = new Button("Ajouter Dépendance");
+        btnGantt.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaireDependance(this.modeleTache));
         btnGantt.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
 
         HBox hbBtn = new HBox(10);
