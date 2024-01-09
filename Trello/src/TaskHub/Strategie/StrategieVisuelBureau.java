@@ -97,8 +97,9 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                         /* if there is a string data on dragboard, read it and use it */
                         Dragboard db = event.getDragboard();
                         boolean success = false;
-                        if (db.hasString()) {
+                        if (event.getTransferMode() == TransferMode.MOVE) {
                             colonne.ajouterTache(modele.getTacheDrag());
+                            modele.notifierObservateur();
                             success = true;
                         }
                         /* let the source know whether the string was successfully
@@ -139,6 +140,7 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                             if (event.getTransferMode() == TransferMode.MOVE) {
                                 colonne.getTaches().remove(tache);
                             }
+                            modele.notifierObservateur();
                             event.consume();
                         }
                     });
