@@ -333,4 +333,8 @@ public class ModeleTache implements Sujet{
         }
         return taches;
     }
+
+    public Dependance getDependance() {
+        return dependance;
+    }
 }

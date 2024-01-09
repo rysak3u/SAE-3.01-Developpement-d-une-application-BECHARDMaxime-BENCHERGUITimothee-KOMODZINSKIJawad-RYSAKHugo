@@ -28,6 +28,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 
 /**
  * Classe VuePrincipal.puml
@@ -173,10 +175,25 @@ public class VuePrincipal extends Stage implements Observateur{
         Label description = new Label(tache.getDescription());
         description.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         grid.add(description, 1, 1);
+        if(modeleTache.getDependance().getDependance(modeleTache.getTacheSelectionner())!=null) {
+            Label dep = new Label("Dépendance : ");
+            dep.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
+            grid.add(dep, 0, 2);
+            
+            Label dep2=new Label("");
+            dep2.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
+            for (Tache t : modeleTache.getDependance().getDependance(modeleTache.getTacheSelectionner())) {
+                dep2.setText(dep2.getText()+t.getTitre()+", ");
+
+
+            }
+            grid.add(dep2, 1, 2);
+        }
+
 
         Label ds = new Label("Sous-Tâche : ");
         ds.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
-        grid.add(ds, 0, 2);
+        grid.add(ds, 0, 3);
 
         VBox sousTaches = new VBox();
 
