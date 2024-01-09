@@ -1,15 +1,46 @@
 package TaskHub.Strategie;
 
+import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.Tache;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
 
 public class StrategieDiagrammeGantt extends StrategieDiagramme {
+    public StrategieDiagrammeGantt(ModeleTache modele) {
+        super(modele);
+    }
+
     @Override
     public void affichage() {
+        VBox vbox = new VBox(50);
+        Label titreTab = new Label("Diagramme de Gantt");
+        vbox.setAlignment(Pos.CENTER);
+        titreTab.getStyleClass().add("titreTableau");
+        vbox.getChildren().add(titreTab);
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(true);
         grid.setHgap(10);
+
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
+        double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+        grid.setPrefSize(screenWidth, screenHeight);
+
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setPercentWidth(20);
+        grid.getColumnConstraints().add(column1);
+
+        for (int i = 1; i < 13; i++) {
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(80/13);
+            grid.getColumnConstraints().add(column);
+        }
         Label task = new Label("Task");
         grid.add(task, 0, 0);
         Label jan = new Label("Jan");
@@ -37,10 +68,20 @@ public class StrategieDiagrammeGantt extends StrategieDiagramme {
         Label dec = new Label("Dec");
         grid.add(dec, 12, 0);
         int i=1;
-        for(Tache t: modele.getTaches()){
+        for(Tache t: modele.getTaches()) {
             Label l = new Label(t.getTitre());
-            grid.add(l,0,i);
+            grid.add(l, 0, i);
+            Rectangle r = new Rectangle();
+            r.setStroke(Color.BLUE);
+            r.setFill(Color.BLUE);
+            r.setWidth(screenWidth/20);
+            r.setHeight(8);
+            grid.add(r, t.getNiv()+1, i);
             i++;
         }
+        vbox.getChildren().add(grid);
+        this.getChildren().add(vbox);
     }
+
+
 }

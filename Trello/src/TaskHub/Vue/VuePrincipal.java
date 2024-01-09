@@ -53,8 +53,10 @@ public class VuePrincipal extends Stage implements Observateur{
      */
     public VuePrincipal(ModeleTache modeleTache){
         super();
+
         this.affichage=new StrategieVisuelBureau();
         this.modeleTache=modeleTache;
+
         // Création de la structure de la fenêtre principale
         VBox vbox = new VBox(50);
         vbox.setPadding(new Insets(20));
@@ -142,7 +144,7 @@ public class VuePrincipal extends Stage implements Observateur{
     public void actualiser(Sujet s) {
         // Si aucune tâche n'est sélectionnée, on affiche la vue principale
         if(((ModeleTache)s).isGantt()){
-            this.diagramme=new StrategieDiagrammeGantt();
+            this.diagramme=new StrategieDiagrammeGantt(this.modeleTache);
             this.diagramme.affichage();
             this.getScene().setRoot(this.diagramme);
         } else if(((ModeleTache)s).getTacheSelectionner()==null){
