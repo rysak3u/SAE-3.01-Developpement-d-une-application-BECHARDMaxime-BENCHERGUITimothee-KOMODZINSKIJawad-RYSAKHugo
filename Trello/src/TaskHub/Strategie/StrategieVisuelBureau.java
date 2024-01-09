@@ -33,9 +33,9 @@ public class StrategieVisuelBureau extends StrategieVisuel {
                     // Création de la structure de la fenêtre principale
                     TacheMere tache = modele.getTableau().getColonnes().get(modele.getChangement().getId_colonne()).getTaches().get(modele.getChangement().getId_tache());
                     VBox vboxt = createVisuTache(tache, modele);
-
+                    VBox t= (VBox) this.getChildren().get(0);
                     // Ajoute la tache a la vue a la colonne correspondante
-                    VBox conteneur = ((VBox) ((HBox) this.getChildren().get(1)).getChildren().get(modele.getChangement().getId_colonne()));
+                    VBox conteneur = ((VBox) ((HBox) t.getChildren().get(1)).getChildren().get(modele.getChangement().getId_colonne()));
                     Button button = (Button) conteneur.getChildren().get(conteneur.getChildren().size() - 1);
                     conteneur.getChildren().set(conteneur.getChildren().size() - 1, vboxt);
                     conteneur.getChildren().add(button);
