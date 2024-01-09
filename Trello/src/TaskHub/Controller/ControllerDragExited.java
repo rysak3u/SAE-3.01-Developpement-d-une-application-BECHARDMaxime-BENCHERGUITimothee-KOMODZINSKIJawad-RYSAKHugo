@@ -17,7 +17,7 @@ public class ControllerDragExited implements EventHandler<DragEvent> {
     }
 
     public void handle(DragEvent event) {
-        vbox.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        vbox.setBackground(new Background(new BackgroundFill(Color.rgb(228,228,228), new CornerRadii(18), Insets.EMPTY)));
         event.consume();
     }
 }
