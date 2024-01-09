@@ -15,7 +15,6 @@ public class PrincipaleFx extends Application {
     private Stage stagePrincipale;
     @Override
     public void start(Stage pstage) throws Exception {
-
         this.modeleTache=new ModeleTache();
         VuePrincipal vp=new VuePrincipal(this.modeleTache);
         this.modeleTache.enregistrerObservateur(new VueFormulaireTache(this.modeleTache));

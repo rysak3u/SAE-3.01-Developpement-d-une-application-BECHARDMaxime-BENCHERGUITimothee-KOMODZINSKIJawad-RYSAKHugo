@@ -1,6 +1,7 @@
 package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
+import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
@@ -33,6 +34,7 @@ public class ModeleTache implements Sujet{
     /**Attribut représentant le mode d'affichage**/
     private int affichage;
 
+    private TacheMere tacheDrag;
 
     private boolean formulaire;
 
@@ -41,6 +43,14 @@ public class ModeleTache implements Sujet{
    /**Attribut représentant la tache selectionner*/
    private TacheMere tacheSelectionner;
 
+
+   public void setTacheDrag(TacheMere tacheDrag) {
+       this.tacheDrag = tacheDrag;
+   }
+
+   public TacheMere getTacheDrag(){
+         return this.tacheDrag;
+   }
 
    /**Methode pour changer la tache selctionner
     * @param tacheSelectionner tache à selectionner
