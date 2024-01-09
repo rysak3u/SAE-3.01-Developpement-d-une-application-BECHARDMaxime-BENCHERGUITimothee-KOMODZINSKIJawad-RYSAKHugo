@@ -284,13 +284,11 @@ public class ModeleTache implements Sujet{
     }
 
     public void ajoutDependance(TacheMere tache1, String tache2){
-        for(Conteneur c:this.tableaux.get(idTableauCourant).getColonnes()){
-            for(TacheMere tm:c.getTaches()){
-                if (tm.getTitre().equals(tache2)){
-                    this.dependance.ajouterDependance(tache1, tm);
-                    this.notifierObservateur();
-                    return;
-                }
+        for(Tache tm:getTaches()){
+            if (tm.getTitre().equals(tache2)){
+                this.dependance.ajouterDependance(tache1, tm);
+                this.notifierObservateur();
+                return;
             }
         }
     }
