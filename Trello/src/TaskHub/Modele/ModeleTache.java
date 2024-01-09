@@ -35,16 +35,12 @@ public class ModeleTache implements Sujet{
     /**Attribut représentant le mode d'affichage**/
     private int affichage;
 
-<<<<<<< HEAD
     private TacheMere tacheDrag;
     private Dependance dependance=new Dependance();
-=======
 
-    private TacheMere tacheDrag;
 
-    private Dependance dependance=new Dependance();
 
->>>>>>> aec7e6a8c3ccf4c6a0859c9d50e8a7f3a8b1a72a
+
     private boolean formulaire;
 
    private int form;
