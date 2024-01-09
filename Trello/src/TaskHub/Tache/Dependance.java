@@ -31,6 +31,16 @@ public class Dependance {
         return this.dependance.getOrDefault(tacheDependante, new ArrayList<>()).contains(tachePredecesseur);
     }
 
+    public void calculerNiveau(Tache tache) {
+        int max=tache.getNiv();
+        for(Tache t : this.dependance.get(tache)) {
+            if(t.getNiv()>=max) {
+                max=t.getNiv();
+            }
+        }
+        tache.setNiv(max+1);
+    }
+
     public void supprimerDependance(Tache tache) {
         this.dependance.remove(tache);
     }

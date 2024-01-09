@@ -297,6 +297,7 @@ public class ModeleTache implements Sujet{
         for(Tache tm:getTaches()){
             if (tm.getTitre().equals(tache2)){
                 this.dependance.ajouterDependance(tache1, tm);
+                this.dependance.calculerNiveau(tache1);
                 this.notifierObservateur();
                 return;
             }

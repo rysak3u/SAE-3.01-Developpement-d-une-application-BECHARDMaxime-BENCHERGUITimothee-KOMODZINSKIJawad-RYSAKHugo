@@ -10,6 +10,8 @@ public abstract class Tache {
     private String titre;
     protected String description;
 
+    protected int niv;
+
     /**
      * Constructeur de Tache
      * @param titre titre de la tâche
@@ -43,7 +45,10 @@ public abstract class Tache {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
-
+    public int getNiv() {
+        return niv;
+    }
+    public void setNiv(int niv) {
+        this.niv = niv;
+    }
 }
