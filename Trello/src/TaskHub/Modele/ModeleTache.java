@@ -37,10 +37,8 @@ public class ModeleTache implements Sujet{
     private TacheMere tacheDrag;
 
     private Dependance dependance=new Dependance();
-<<<<<<< HEAD
+
     private boolean gantt=false;
-=======
->>>>>>> 4808c6ef29d966957d603b18d820a8aed393c3ca
 
     private boolean formulaire;
 
@@ -301,6 +299,7 @@ public class ModeleTache implements Sujet{
             if (tm.getTitre().equals(tache2)){
                 this.dependance.ajouterDependance(tache1, tm);
                 this.dependance.calculerNiveau(tache1);
+                this.dependance.update();
                 this.notifierObservateur();
                 return;
             }
