@@ -65,4 +65,14 @@ public class Dependance {
     public Map<Tache, List<Tache>> getDependance() {
         return dependance;
     }
+
+    public List<Tache> getSuccessors(Tache tache) {
+        List<Tache> successors = new ArrayList<>();
+        for (Tache t : this.dependance.keySet()) {
+            if (this.dependance.get(t).contains(tache)) {
+                successors.add(t);
+            }
+        }
+        return successors;
+    }
 }
