@@ -304,7 +304,7 @@ public class ModeleTache implements Sujet{
                     this.dependance.ajouterDependance(tache1, tm);
                     this.dependance.calculerNiveau(tache1);
                     this.dependance.update();
-                    System.out.println(this.dependance);
+                    //System.out.println(this.dependance);
                     this.notifierObservateur();
                     return;
                 }

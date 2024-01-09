@@ -69,6 +69,7 @@ public abstract class Tache implements Comparable<Tache>{
             return false;
         }
         Tache other = (Tache) obj;
-        return niv == other.niv && Objects.equals(titre, other.titre) && Objects.equals(description, other.description);
+        //return niv == other.niv && Objects.equals(titre, other.titre) && Objects.equals(description, other.description);
+        return this.description.equals(other.description) && this.titre.equals(other.titre);
     }
 }
