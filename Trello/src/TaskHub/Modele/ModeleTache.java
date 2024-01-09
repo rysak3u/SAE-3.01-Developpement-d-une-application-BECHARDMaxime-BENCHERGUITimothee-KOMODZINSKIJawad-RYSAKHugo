@@ -3,6 +3,7 @@ package TaskHub.Modele;
 import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
+import TaskHub.Tache.Dependance;
 import TaskHub.Tache.Tableau;
 import TaskHub.Vue.Observateur;
 
@@ -33,6 +34,7 @@ public class ModeleTache implements Sujet{
     /**Attribut représentant le mode d'affichage**/
     private int affichage;
 
+    private Dependance dependance=new Dependance();
 
     private boolean formulaire;
 
@@ -278,6 +280,18 @@ public class ModeleTache implements Sujet{
         this.tableaux.get(idTableauCourant).getColonne(this.colonneSelectionner).getTaches().get(this.tableaux.get(idTableauCourant).getColonne(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setTitre(titre);
         this.tableaux.get(idTableauCourant).getColonne(this.colonneSelectionner).getTaches().get(this.tableaux.get(idTableauCourant).getColonne(this.colonneSelectionner).getTaches().indexOf(this.tacheSelectionner)).setDescription(description);
         this.notifierObservateur();
+    }
+
+    public void ajoutDependance(TacheMere tache1, String tache2){
+        for(Conteneur c:this.tableaux.get(idTableauCourant).getColonnes()){
+            for(TacheMere tm:c.getTaches()){
+                if (tm.getTitre().equals(tache2)){
+                    this.dependance.ajouterDependance(tache1, tm);
+                    this.notifierObservateur();
+                    return;
+                }
+            }
+        }
     }
 
     /**
