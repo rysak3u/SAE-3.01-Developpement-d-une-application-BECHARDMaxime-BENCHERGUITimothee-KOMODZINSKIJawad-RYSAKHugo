@@ -20,8 +20,7 @@ public class Dependance {
     }
 
     public void ajouterDependance(Tache predecesseur, Tache dependance) {
-        if (existeDependanceInverse(predecesseur, dependance)) {
-            // Si oui, ne fais rien (ou lève une exception, selon tes besoins).
+        if (existeDependanceInverse(predecesseur, dependance) || predecesseur.equals(dependance) || this.dependance.getOrDefault(predecesseur, new ArrayList<>()).contains(dependance)) {
             System.out.println("Dépendance inverse détectée. Double dépendance non autorisée.");
             return;
         }
