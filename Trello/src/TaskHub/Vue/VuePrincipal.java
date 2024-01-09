@@ -243,6 +243,19 @@ public class VuePrincipal extends Stage implements Observateur{
         this.show();
     }
 
+    public void gantt(){
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+
+
+        Scene sc = new Scene(grid);
+        this.setScene(sc);
+        this.show();
+    }
+
     /**
      * Méthode qui va permettre de changer la stratégie d'affichage (Bureau ou Liste)
      *
