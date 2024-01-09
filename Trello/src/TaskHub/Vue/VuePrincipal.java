@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -56,6 +57,7 @@ public class VuePrincipal extends Stage implements Observateur{
 
         this.affichage=new StrategieVisuelBureau();
         this.modeleTache=modeleTache;
+
 
         // Création de la structure de la fenêtre principale
         VBox vbox = new VBox(50);
@@ -124,7 +126,6 @@ public class VuePrincipal extends Stage implements Observateur{
        // titreOutil.getChildren().add(titreTab);
         // Ajout de tous les éléments à la VBox principale
         vbox.getChildren().addAll(titreOutil, this.affichage,hboxBas);
-
         // Mise en plein écran de la scène
         this.scenePrincipale= new Scene(vbox, 300, 250);
         this.scenePrincipale.getStylesheets().add("styleVisuel.css");

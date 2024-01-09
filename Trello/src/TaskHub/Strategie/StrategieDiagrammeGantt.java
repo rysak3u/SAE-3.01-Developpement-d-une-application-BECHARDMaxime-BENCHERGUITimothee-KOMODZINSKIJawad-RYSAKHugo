@@ -3,7 +3,9 @@ package TaskHub.Strategie;
 import TaskHub.Controller.ControllerGantt;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.Tache;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
@@ -11,8 +13,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
+
+import java.util.ArrayList;
 
 public class StrategieDiagrammeGantt extends StrategieDiagramme {
     public StrategieDiagrammeGantt(ModeleTache modele) {
@@ -71,6 +77,7 @@ public class StrategieDiagrammeGantt extends StrategieDiagramme {
         Label dec = new Label("Dec");
         grid.add(dec, 12, 0);
         int i=1;
+        ArrayList<Rectangle> rectangles = new ArrayList<>();
         for(Tache t: modele.getTaches()) {
             Label l = new Label(t.getTitre());
             grid.add(l, 0, i);
@@ -79,9 +86,12 @@ public class StrategieDiagrammeGantt extends StrategieDiagramme {
             r.setFill(Color.BLUE);
             r.setWidth(screenWidth/20);
             r.setHeight(8);
+            rectangles.add(r);
             grid.add(r, t.getNiv()+1, i);
             i++;
         }
+
+
         Button retour = new Button("Retour");
         retour.getStyleClass().add("buttonColonne");
         retour.setOnAction(new ControllerGantt(modele));
