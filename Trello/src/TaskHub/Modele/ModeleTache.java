@@ -35,7 +35,11 @@ public class ModeleTache implements Sujet{
     /**Attribut représentant le mode d'affichage**/
     private int affichage;
 
+<<<<<<< HEAD
+    private TacheMere tacheDrag;
+=======
     private Dependance dependance=new Dependance();
+>>>>>>> 572ce8d40c8cefe232e66fccad90d714706e92ce
 
     private boolean formulaire;
 
@@ -44,6 +48,14 @@ public class ModeleTache implements Sujet{
    /**Attribut représentant la tache selectionner*/
    private TacheMere tacheSelectionner;
 
+
+   public void setTacheDrag(TacheMere tacheDrag) {
+       this.tacheDrag = tacheDrag;
+   }
+
+   public TacheMere getTacheDrag(){
+         return this.tacheDrag;
+   }
 
    /**Methode pour changer la tache selctionner
     * @param tacheSelectionner tache à selectionner
