@@ -5,7 +5,7 @@
 .colonne {
     -fx-padding: 10px;
     -fx-background-color: #E4E4E4; /* Light gray for the columns */
-    -fx-border-style: groove;
+    /*-fx-border-style: groove;*/
     -fx-border-color: #989898; /* Darker gray border */
     -fx-border-width: 2px;
     -fx-background-radius: 18 18 18 18;
@@ -83,7 +83,7 @@
 .buttonColonne {
     -fx-padding: 10px;
     -fx-background-color: #E4E4E4; /* Light gray for the columns */
-    -fx-border-style: groove;
+    /*-fx-border-style: groove;*/
     -fx-border-width: 2px;
     -fx-background-radius: 18 18 18 18;
     -fx-border-radius: 18 18 18 18;
