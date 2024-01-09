@@ -29,6 +29,7 @@ public class VisuelListe extends StrategieVisuel {
      * @param modele
      */
 
+
     @Override
     public void affichage(ModeleTache modele) {
         VBox vliste = new VBox(10);
