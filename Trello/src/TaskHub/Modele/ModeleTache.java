@@ -300,6 +300,7 @@ public class ModeleTache implements Sujet{
             if (tm.getTitre().equals(tache2)){
                 this.dependance.ajouterDependance(tache1, tm);
                 this.dependance.calculerNiveau(tache1);
+                this.dependance.update();
                 this.notifierObservateur();
                 return;
             }

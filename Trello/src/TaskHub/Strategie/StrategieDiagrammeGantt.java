@@ -1,8 +1,10 @@
 package TaskHub.Strategie;
 
+import TaskHub.Controller.ControllerGantt;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.Tache;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -30,7 +32,8 @@ public class StrategieDiagrammeGantt extends StrategieDiagramme {
 
         double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
         double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
-        grid.setPrefSize(screenWidth, screenHeight);
+        grid.setPrefWidth(screenWidth);
+        //grid.setPrefSize(screenWidth, screenHeight);
 
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setPercentWidth(20);
@@ -79,7 +82,11 @@ public class StrategieDiagrammeGantt extends StrategieDiagramme {
             grid.add(r, t.getNiv()+1, i);
             i++;
         }
+        Button retour = new Button("Retour");
+        retour.getStyleClass().add("buttonColonne");
+        retour.setOnAction(new ControllerGantt(modele));
         vbox.getChildren().add(grid);
+        vbox.getChildren().add(retour);
         this.getChildren().add(vbox);
     }
 

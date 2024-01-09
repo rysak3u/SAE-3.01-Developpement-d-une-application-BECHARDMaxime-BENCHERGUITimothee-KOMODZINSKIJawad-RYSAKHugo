@@ -146,10 +146,15 @@ public class VuePrincipal extends Stage implements Observateur{
         if(((ModeleTache)s).isGantt()){
             this.diagramme=new StrategieDiagrammeGantt(this.modeleTache);
             this.diagramme.affichage();
-            this.getScene().setRoot(this.diagramme);
+            Scene sc= new Scene(this.diagramme);
+            sc.getStylesheets().add("styleVisuel.css");
+
+            this.setScene(sc);
+            this.setFullScreen(true);
         } else if(((ModeleTache)s).getTacheSelectionner()==null){
             this.setScene(this.scenePrincipale);
             this.affichage.affichage(this.modeleTache);
+            this.setFullScreen(true);
         }
         else{
             // Sinon on affiche les détails de la tâche sélectionnée
@@ -256,6 +261,7 @@ public class VuePrincipal extends Stage implements Observateur{
         sc.getStylesheets().add("styleFormulaire.css");
         sc.setFill(Color.web("#8a2be2")); // Fond violet
         this.setScene(sc);
+
         this.show();
     }
 
@@ -265,6 +271,7 @@ public class VuePrincipal extends Stage implements Observateur{
      * @param affichage stratégie d'affichage
      */
     public void setAffichage(StrategieVisuel affichage){
+
         if(this.modeleTache.getChangement()!=null){
             this.modeleTache.getChangement().setAction("");
         }
