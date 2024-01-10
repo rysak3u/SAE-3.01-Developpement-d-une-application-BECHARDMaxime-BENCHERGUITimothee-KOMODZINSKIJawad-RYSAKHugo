@@ -357,11 +357,7 @@ public class ModeleTache implements Sujet{
             System.out.println(e.getMessage());
         }
     }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 63ef088420247c8d91e64c60947751717fe97b3c
+    
     /**
      * methode pour avoir le formulaire
      * @return
@@ -415,19 +411,10 @@ public class ModeleTache implements Sujet{
         return taches;
     }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 63ef088420247c8d91e64c60947751717fe97b3c
     /**
      * methode pour avoir les dependances
      * @return
      */
-<<<<<<< HEAD
-=======
-
->>>>>>> 63ef088420247c8d91e64c60947751717fe97b3c
     public Dependance getDependance() {
         return dependance;
     }
