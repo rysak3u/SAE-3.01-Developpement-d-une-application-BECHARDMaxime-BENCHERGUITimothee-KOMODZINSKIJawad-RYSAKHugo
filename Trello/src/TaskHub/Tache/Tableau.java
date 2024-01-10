@@ -3,7 +3,7 @@ package TaskHub.Tache;
 import java.util.ArrayList;
 
 public class Tableau {
-    // titre et conteneur du tableau
+    // Attributs
     ArrayList<Conteneur> colonnes;
     private String titre;
     private static int id = 0;
@@ -37,18 +37,15 @@ public class Tableau {
     public void retirerColonne(Conteneur colonne){
         this.colonnes.remove(colonne);
     }
-
     public void setTitre(String titre){
         this.titre = titre;
     }
     public String getTitre(){
         return this.titre;
     }
-
     public Conteneur getColonne(int i) {
         return this.colonnes.get(i);
     }
-
     public ArrayList<Conteneur> getColonnes() {
         return this.colonnes;
     }

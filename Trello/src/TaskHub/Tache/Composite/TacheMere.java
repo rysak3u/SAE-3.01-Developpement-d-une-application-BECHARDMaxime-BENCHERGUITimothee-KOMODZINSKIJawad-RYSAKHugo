@@ -28,10 +28,19 @@ public class TacheMere extends Tache {
         return this.sousTache.add(st);
     }
 
+    /**
+     * Méthode pour avoir la liste des sous-tâches
+     * @return la liste des sous-tâches
+     */
+
     public List<Tache> getSousTache() {
         return sousTache;
     }
 
+    /**
+     * Méthode pour renvoyer la chaine des sous-tâches
+     * @return la chaines des sous-tâches
+     */
     public String toString() {
     	String s = "";
         for (Tache t : this.sousTache) {

@@ -47,6 +47,7 @@ public class ControllerManip implements EventHandler<MouseEvent> {
         this.cb = cb;
     }
     /**
+     * Méthode qui va permettre de créer une tâche ou de modifier une tâche
      * @param mouseEvent évènement de la souris
      */
     @Override

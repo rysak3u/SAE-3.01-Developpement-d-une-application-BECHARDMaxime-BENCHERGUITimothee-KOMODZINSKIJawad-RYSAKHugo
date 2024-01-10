@@ -25,7 +25,6 @@ public class ControllerNewColonne implements EventHandler<MouseEvent>{
 
     /**
      * Méthode qui va permettre d'afficher le formulaire pour créer une nouvelle colonne
-     *
      * @param event
      */
     @Override

@@ -12,6 +12,10 @@ public class ControllerDragOver implements EventHandler<DragEvent> {
         this.vbox = vbox;
     }
 
+    /**
+     * Méthode qui va permettre de gérer le drag and drop
+     * @param dragEvent
+     */
     @Override
     public void handle(DragEvent dragEvent) {
             if (dragEvent.getGestureSource() != vbox &&
