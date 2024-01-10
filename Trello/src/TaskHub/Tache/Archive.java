@@ -21,6 +21,16 @@ public class Archive {
         archiveTache.computeIfAbsent(tableau, k -> new HashMap<>()).put(tache, idConteneur);
     }
 
+    public int desarchiverTache(Tableau tableau, Tache tache) {
+        Map<Tache, Integer> tachesArchives = archiveTache.get(tableau);
+        if (tachesArchives != null) {
+            int idConteneur = tachesArchives.get(tache);
+            tachesArchives.remove(tache);
+            return idConteneur;
+        }
+        return -1;
+    }
+
 /**
     public void archiverConteneur(Tableau tableau, Conteneur conteneur) {
         archiveConteneur.computeIfAbsent(tableau, k -> new ArrayList<>()).add(conteneur);

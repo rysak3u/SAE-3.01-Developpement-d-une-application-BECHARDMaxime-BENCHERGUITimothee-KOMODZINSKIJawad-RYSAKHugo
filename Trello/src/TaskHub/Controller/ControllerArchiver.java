@@ -29,12 +29,9 @@ public class ControllerArchiver implements EventHandler<ActionEvent> {
         if (button.getText().equals("Archiver")) {
             modeleTache.archiverTache(tableau, tache, conteneur.getIdConteneur());
             this.modeleTache.setTacheSelectionner(null);
-        }
-        /**
-        else {
+        } else {
             modeleTache.desarchiverTache(tableau, tache);
-            conteneur.ajouterTache(tache);
             button.setText("Archiver");
-        }*/
+        }
     }
 }

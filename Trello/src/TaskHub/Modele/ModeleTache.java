@@ -389,21 +389,10 @@ public class ModeleTache implements Sujet{
     public boolean isArchive() {
         return archive;
     }
-/**
+
     public void desarchiverTache(Tableau tableau, Tache tache) {
-        this.archivage.desarchiverTache(tableau, tache);
+        int id=this.archivage.desarchiverTache(tableau, tache);
+        this.getTableau().getColonnes().get(id).ajouterTache((TacheMere) tache);
         notifierObservateur();
     }
-
-    public void desarchiverConteneur(Tableau tableau, Conteneur conteneur) {
-        this.archivage.desarchiverConteneur(tableau, conteneur);
-        notifierObservateur();
-    }
-
-     public void archiverConteneur(Tableau tableau, Conteneur conteneur) {
-         this.archivage.archiverConteneur(tableau, conteneur);
-         this.tableaux.get(idTableauCourant).getColonnes().remove(conteneur);
-         notifierObservateur();
-     }
-*/
 }
