@@ -233,7 +233,7 @@ public class VuePrincipal extends Stage implements Observateur{
         sousTaches.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         sousTaches.setSpacing(10);
         sousTaches.setAlignment(Pos.CENTER);
-        grid.add(sousTaches, 0, 3);
+        grid.add(sousTaches, 0, 4);
 
         Button btnCreer = new Button("Créer Sous-Tâche");
         btnCreer.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
@@ -261,7 +261,7 @@ public class VuePrincipal extends Stage implements Observateur{
 
         hbBtn.setSpacing(10);
         hbBtn.setAlignment(Pos.CENTER);
-        grid.add(hbBtn, 1, 4);
+        grid.add(hbBtn, 1, 5);
 
         Scene sc = new Scene(grid);
 
