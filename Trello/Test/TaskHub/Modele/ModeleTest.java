@@ -1,6 +1,7 @@
 package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
+import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
@@ -26,7 +27,10 @@ class ModeleTest {
         colonnes.add(c0);
         colonnes.add(c1);
         colonnes.add(c2);
-        m.setTableauCourant(new Tableau("test",colonnes));
+        Tableau t = new Tableau("test",colonnes);
+        ArrayList<Tableau> tx = new ArrayList<Tableau>();
+        tx.add(t);
+        this.m.setTableaux(tx);
     }
 
     @Test
@@ -53,6 +57,25 @@ class ModeleTest {
         assertEquals(1,this.m.getTableaux().size());
         this.m.ajouterTableau("test");
         assertEquals(2,this.m.getTableaux().size());
+    }
+
+    @Test
+    void archiverTache() {
+        Tache t=this.m.getTableau().getColonne(0).getTaches().get(0);
+        assertEquals(3,this.m.getTableau().getColonne(0).getTaches().size());
+        this.m.archiverTache(this.m.getTableau(), t, this.m.getTableau().getColonne(0).getIdConteneur());
+        assertEquals(2,this.m.getTableau().getColonne(0).getTaches().size());
+        assertTrue(this.m.getArchivage().isTache(this.m.getTableau(), t));
+    }
+
+    @Test
+    void desarchiverTache() {
+        Tache t=this.m.getTableau().getColonne(0).getTaches().get(0);
+        this.m.archiverTache(this.m.getTableau(), t, this.m.getTableau().getColonne(0).getIdConteneur());
+        assertEquals(2,this.m.getTableau().getColonne(0).getTaches().size());
+        this.m.desarchiverTache(this.m.getTableau(),t);
+        assertEquals(3,this.m.getTableau().getColonne(0).getTaches().size());
+        assertFalse(this.m.getArchivage().isTache(this.m.getTableau(), t));
     }
 
     @AfterEach

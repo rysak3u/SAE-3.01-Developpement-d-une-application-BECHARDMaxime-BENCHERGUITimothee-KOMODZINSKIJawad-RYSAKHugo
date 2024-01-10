@@ -30,34 +30,41 @@ public class ModeleTache implements Sujet{
 
     /**listes des observateurs*/
     private List<Observateur> observateurs;
-
     // Derniere action effectuée //
     private Changement changement;
-
     /**Attribut représentant le mode d'affichage**/
     private int affichage;
+    /**Attribut représentant la tache drag*/
     private TacheMere tacheDrag;
-
+    /**Attribut représentant les dépendances*/
     private Dependance dependance=new Dependance();
-
+    /**Attribut représentant si on est en train de créer un gantt*/
     private boolean gantt=false;
-
     private boolean archive=false;
 
     private Archive archivage = new Archive();
-
     private boolean formulaire;
-
-   private int form;
+    /**Attribut représentant le formulaire*/
+    private int form;
 
    /**Attribut représentant la tache selectionner*/
    private TacheMere tacheSelectionner;
 
 
-   public void setTacheDrag(TacheMere tacheDrag) {
+    public Archive getArchivage() {
+        return archivage;
+    }
+
+    /**Methode pour changer la tache drag
+     * @param tacheDrag tache à drag
+     * */
+    public void setTacheDrag(TacheMere tacheDrag) {
        this.tacheDrag = tacheDrag;
    }
 
+    /**Methode pour avoir la tache drag
+     * @return tacheDrag
+     * */
    public TacheMere getTacheDrag(){
          return this.tacheDrag;
    }
@@ -87,12 +94,24 @@ public class ModeleTache implements Sujet{
         this.affichage = affichage;
     }
 
+    /**
+     * methode pour avoir la tache selectionner
+     * @return tacheSelectionner
+     */
     public TacheMere getTacheSelectionner() {
         return this.tacheSelectionner;
     }
+    /**
+     * methode pour avoir le tableau courant
+     * @return tableau
+     */
     public Tableau getTableau() {
         return this.tableaux.get(idTableauCourant);
     }
+    /**
+     * methode pour avoir l'affichage
+     * @return affichage
+     */
     public int getAffichage() {
         return this.affichage;
     }
@@ -241,6 +260,7 @@ public class ModeleTache implements Sujet{
             this.ajouterTableau(titre+"_");
             return;
         }
+        // on ajoute le tableau
         this.tableaux.add(new Tableau(titre));
         this.changement = new Changement(0,0,"newTableau");
         this.notifierObservateur();
@@ -282,6 +302,10 @@ public class ModeleTache implements Sujet{
         return this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner);
     }
 
+    /**
+     * methode pour changer le formulaire
+     * @return formulaire
+     */
     public void switchFormulaire(int form){
         this.form=form;
         this.formulaire=!this.formulaire;
@@ -303,6 +327,11 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
+    /**
+     * Methode pour ajouter une dépendance
+     * @param tache1
+     * @param tache2
+     */
     public void ajoutDependance(TacheMere tache1, String tache2){
         try{
             for(Tache tm:getTaches()){
@@ -329,6 +358,10 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
+    /**
+     * methode pour avoir le formulaire
+     * @return
+     */
     public boolean getFormulaire(){
         return this.formulaire;
     }
@@ -349,10 +382,18 @@ public class ModeleTache implements Sujet{
         return this.sousTache;
     }
 
+    /**
+     * methode pour avoir le formulaire
+     * @return
+     */
     public int getForm() {
         return this.form;
     }
 
+    /**
+     * methode pour avoir les taches
+     * @return taches
+     */
     public ArrayList<Tache> getTaches(){
         ArrayList<Tache> taches = new ArrayList<>();
         for(Conteneur c:this.tableaux.get(idTableauCourant).getColonnes()){
@@ -361,15 +402,26 @@ public class ModeleTache implements Sujet{
         return taches;
     }
 
+    /**
+     * methode pour avoir les dependances
+     * @return
+     */
     public Dependance getDependance() {
         return dependance;
     }
 
+    /**
+     * methode pour actualiser les dependances
+     */
     public void actualiserGantt() {
     	this.gantt=!this.gantt;
         this.notifierObservateur();
     }
 
+    /**
+     * methode pour avoir le gantt
+     * @return gantt
+     */
     public boolean isGantt() {
         return gantt;
     }

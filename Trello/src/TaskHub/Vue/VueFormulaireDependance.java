@@ -23,10 +23,17 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class VueFormulaireDependance extends Stage implements Observateur{
+    // Attributs
 
     private ComboBox<String> cbDep;
 
+
+    /**
+     * Constructeur de VueFormulaireDependance
+     * @param modeleTache modèle pour lequelle la vue va se baser
+     */
     public VueFormulaireDependance(ModeleTache modeleTache) {
+        // Création de la structure de la fenêtre principale
         super();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -35,6 +42,7 @@ public class VueFormulaireDependance extends Stage implements Observateur{
         grid.setPadding(new Insets(25, 25, 25, 25));
         grid.getStyleClass().add("formulaire"); // Appliquer le style CSS
 
+        // Création du titre
         Text scenetitle = new Text("Ajouter Dépendance");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         scenetitle.getStyleClass().add("titre-formulaire"); // Appliquer le style CSS
@@ -45,47 +53,53 @@ public class VueFormulaireDependance extends Stage implements Observateur{
         name.getStyleClass().add("label-formulaire");
         grid.add(name, 0, 1);
 
+        // Création de la combobox
         this.cbDep = new ComboBox<>();
         this.cbDep.setPromptText("Selectionner une Tâche");
         cbDep.getStyleClass().add("textfield-formulaire");
 
-            grid.add(cbDep, 1, 1);
+        // Ajout de la combobox dans le grid et ajout d'un listener
+        grid.add(cbDep, 1, 1);
+        ControllerManip controllerCreerTache = new ControllerManip(modeleTache, cbDep);
 
-            ControllerManip controllerCreerTache = new ControllerManip(modeleTache, cbDep);
+        // Création et style des boutons
+        Button btnCreer = new Button("Ajouter Dépendance");
+        btnCreer.getStyleClass().add("button-formulaire");
+        Button btnAnnuler = new Button("Annuler");
+        btnAnnuler.getStyleClass().add("button-formulaire");
+        btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCreerTache);
+        btnAnnuler.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCreerTache);
 
-            Button btnCreer = new Button("Ajouter Dépendance");
-            btnCreer.getStyleClass().add("button-formulaire");
-            Button btnAnnuler = new Button("Annuler");
-            btnAnnuler.getStyleClass().add("button-formulaire");
-            btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCreerTache);
-            btnAnnuler.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCreerTache);
+        // Ajout des boutons dans une HBox
+        HBox hbBtn = new HBox(10);
+        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
+        hbBtn.getChildren().addAll(btnCreer, btnAnnuler);
+        hbBtn.getStyleClass().add("hbBtn-formulaire");
+        grid.add(hbBtn, 1, 4);
 
-            HBox hbBtn = new HBox(10);
-            hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-            hbBtn.getChildren().addAll(btnCreer, btnAnnuler);
-            hbBtn.getStyleClass().add("hbBtn-formulaire");
-            grid.add(hbBtn, 1, 4);
-
-            Scene sc = new Scene(grid, 400, 500);
-            sc.setFill(Color.web("#9c8ae2"));
-            sc.getStylesheets().add("styleFormulaire.css"); // Ajouter le fichier CSS
-            this.setScene(sc);
-
-            this.setFullScreen(false);
-            this.setWidth(400);
-            this.setHeight(500);
-        }
+        // Ajout du grid dans la scène
+        Scene sc = new Scene(grid, 400, 500);
+        sc.setFill(Color.web("#9c8ae2"));
+        sc.getStylesheets().add("styleFormulaire.css"); // Ajouter le fichier CSS
+        this.setScene(sc);
+        this.setFullScreen(false);
+        this.setWidth(400);
+        this.setHeight(500);
+    }
 
 
 
     /**
+     * Méthode pour actualiser la vue
      * @param s modèle pour lequelle la vue va se baser
      */
     @Override
     public void actualiser(Sujet s) {
+        // Si le formulaire est affiché
         if(((ModeleTache)s).getFormulaire() && ((ModeleTache)s).getForm()==4){
             this.show();
         }
+        // Si le formulaire est caché
         else{
             if(((ModeleTache)s).getTacheSelectionner()!=null){
                 this.setTitle("Ajouter Dépendance à "+((ModeleTache)s).getTacheSelectionner().getTitre());
@@ -96,17 +110,21 @@ public class VueFormulaireDependance extends Stage implements Observateur{
         }
     }
 
+    /**
+     * Méthode pour changer le contenu de la combobox
+     * @param modeleTache modèle pour lequelle la vue va se baser
+     */
     public void changerCb( ModeleTache modeleTache){
+        // On vide la combobox
         this.cbDep.getItems().clear();
-        ArrayList<String> st = new ArrayList<>();
+        // On ajoute les tâches dans la combobox
         for (Tache t : modeleTache.getTaches()) {
-
             if (modeleTache.getTacheSelectionner() != null) {
                 if (!t.getTitre().equals(modeleTache.getTacheSelectionner().getTitre())) {
-                    st.add(t.getTitre());
+                    // On ajoute les tâches qui ne sont pas la tâche sélectionnée
+                    cbDep.getItems().add(t.getTitre());
                 }
             }
         }
-        cbDep.getItems().addAll(st);
     }
 }
