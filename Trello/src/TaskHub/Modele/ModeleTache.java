@@ -2,6 +2,7 @@ package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
 //import TaskHub.Tache.Archive;
+import TaskHub.Tache.Archive;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
@@ -39,8 +40,9 @@ public class ModeleTache implements Sujet{
     private Dependance dependance=new Dependance();
     /**Attribut représentant si on est en train de créer un gantt*/
     private boolean gantt=false;
-    //private Archive archivage = new Archive();
-    /**Attribut représentant si on est en train de créer un formulaire*/
+    private boolean archive=false;
+
+    private Archive archivage = new Archive();
     private boolean formulaire;
     /**Attribut représentant le formulaire*/
     private int form;
@@ -48,10 +50,15 @@ public class ModeleTache implements Sujet{
    /**Attribut représentant la tache selectionner*/
    private TacheMere tacheSelectionner;
 
+
+    public Archive getArchivage() {
+        return archivage;
+    }
+
     /**Methode pour changer la tache drag
      * @param tacheDrag tache à drag
      * */
-   public void setTacheDrag(TacheMere tacheDrag) {
+    public void setTacheDrag(TacheMere tacheDrag) {
        this.tacheDrag = tacheDrag;
    }
 
@@ -291,6 +298,9 @@ public class ModeleTache implements Sujet{
     public int getColonneSelectionner() {
         return this.colonneSelectionner;
     }
+    public Conteneur getConteneurSelectionner(){
+        return this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner);
+    }
 
     /**
      * methode pour changer le formulaire
@@ -415,25 +425,26 @@ public class ModeleTache implements Sujet{
     public boolean isGantt() {
         return gantt;
     }
-/**
-    public void archiverTache(Tableau tableau, Tache tache) {
-        this.archivage.archiverTache(tableau, tache);
+
+
+    public void archiverTache(Tableau tableau, Tache tache, int idConteneur) {
+        this.archivage.archiverTache(tableau, tache, idConteneur);
+        this.getConteneurSelectionner().getTaches().remove(tache);
         notifierObservateur();
     }
 
-    public void archiverConteneur(Tableau tableau, Conteneur conteneur) {
-        this.archivage.archiverConteneur(tableau, conteneur);
-        notifierObservateur();
+    public void actualiserArchive() {
+    	this.archive=!this.archive;
+        this.notifierObservateur();
+    }
+
+    public boolean isArchive() {
+        return archive;
     }
 
     public void desarchiverTache(Tableau tableau, Tache tache) {
-        this.archivage.desarchiverTache(tableau, tache);
+        int id=this.archivage.desarchiverTache(tableau, tache);
+        this.getTableau().getColonnes().get(id).ajouterTache((TacheMere) tache);
         notifierObservateur();
     }
-
-    public void desarchiverConteneur(Tableau tableau, Conteneur conteneur) {
-        this.archivage.desarchiverConteneur(tableau, conteneur);
-        notifierObservateur();
-    }
- */
 }

@@ -60,7 +60,6 @@ public class ControllerManip implements EventHandler<MouseEvent> {
                 this.m.ajoutDependance(this.m.getTacheSelectionner(), this.cb.getValue());
             }
         }else if (b.getText().equals("Créer Tâche")) {
-            System.out.println("hum hum");
             try {
                 // Si l'attribut sousTache est à true alors on créer une sous tache
                 if (this.m.getSousTache()) {
