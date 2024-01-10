@@ -10,13 +10,19 @@ import javafx.scene.input.MouseEvent;
 public class ControllerAfficherFormulaire implements EventHandler<MouseEvent> {
    /** Modele que le controller va appeler*/
     private ModeleTache m;
+    /** id de la colonne*/
     private int id_colonne;
 
+    /**
+     * Constructeur de la classe ControllerAfficherFormulaire
+     * @param m
+     */
     public ControllerAfficherFormulaire(ModeleTache m, int id_colonne) {
         this.m = m;
         this.id_colonne = id_colonne;
     }
     /**
+     * Méthode qui va permettre d'afficher le formulaire
      * @param mouseEvent
      */
     @Override

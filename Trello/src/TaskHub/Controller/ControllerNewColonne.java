@@ -25,12 +25,10 @@ public class ControllerNewColonne implements EventHandler<MouseEvent>{
 
     /**
      * Méthode qui va permettre d'afficher le formulaire pour créer une nouvelle colonne
-     *
      * @param event
      */
     @Override
     public void handle(MouseEvent event) {
         this.m.switchFormulaire(2);
-        System.out.println("2");
     }
 }

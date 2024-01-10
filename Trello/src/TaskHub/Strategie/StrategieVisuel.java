@@ -13,23 +13,23 @@ public abstract class StrategieVisuel extends Pane{
     public abstract  void affichage(ModeleTache modele);
 
     public VBox createVisuTache(TacheMere tache, ModeleTache modele){
-        VBox vboxt = new VBox();
+        VBox vboxTache = new VBox();
         // Création des texts
-        Text t=new Text(tache.getTitre());
-        Text desc=new Text(tache.getDescription());
-        t.getStyleClass().add("tacheText");
-        desc.getStyleClass().add("tacheText");
+        Text titreTache=new Text(tache.getTitre());
+        Text descTache=new Text(tache.getDescription());
+        titreTache.getStyleClass().add("tacheText");
+        descTache.getStyleClass().add("tacheText");
 
         // Ajout des texts de la HBox
-        vboxt.getChildren().addAll(t,desc);
-        vboxt.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(modele,tache));
+        vboxTache.getChildren().addAll(titreTache,descTache);
+        vboxTache.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(modele,tache));
 
         // Style de la HBox
-        vboxt.setPadding(new Insets(20));
-        vboxt.setPrefSize(200, 100);
+        vboxTache.setPadding(new Insets(20));
+        vboxTache.setPrefSize(200, 100);
         //vboxt.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
-        vboxt.getStyleClass().add("tache");
+        vboxTache.getStyleClass().add("tache");
 
-        return vboxt;
+        return vboxTache;
     }
 }

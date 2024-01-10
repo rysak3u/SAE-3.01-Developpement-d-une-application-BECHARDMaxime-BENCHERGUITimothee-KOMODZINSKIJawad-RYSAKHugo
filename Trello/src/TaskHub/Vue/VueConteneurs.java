@@ -21,6 +21,11 @@ public class VueConteneurs extends VBox implements Observateur {
         super();
     }
 
+    /**
+     * Création de la vue d'une tâche
+     * @param tache tâche à afficher
+     * @return VBox contenant la tâche
+     */
     public VBox createVisuTache(TacheMere tache,ModeleTache modele){
         VBox vboxt = new VBox();
 
@@ -35,6 +40,11 @@ public class VueConteneurs extends VBox implements Observateur {
 
         return vboxt;
     }
+
+    /**
+     * Méthode pour actualiser la vue
+     * @param o le sujet
+     */
     @Override
     public void actualiser(Sujet o) {
         ModeleTache modele = (ModeleTache) o;
@@ -73,6 +83,7 @@ public class VueConteneurs extends VBox implements Observateur {
                             // ajout de la tâche dans la liste
                             vbox.getChildren().add(vboxt);
                         }
+                        // Ajout du bouton d'ajout de tâche
                         vbox.setAlignment(Pos.TOP_CENTER);
                         Button button = new Button("Ajouter une tâche");
                         button.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerAfficherFormulaire(modele,modele.getTableau().getColonnes().indexOf(colonne)));

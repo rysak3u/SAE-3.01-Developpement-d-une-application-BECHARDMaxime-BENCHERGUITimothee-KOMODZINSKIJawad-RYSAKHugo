@@ -34,64 +34,87 @@ public class VisuelListe extends StrategieVisuel {
 
     @Override
     public void affichage(ModeleTache modele) {
+        // Creation de la VBox principale et definition de la taille
         VBox vliste = new VBox(10);
         double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+
+        // Creation du titre du tableau
         Label titreTab = new Label(modele.getTableau().getTitre());
         titreTab.getStyleClass().add("titreTableau");
 
+        // Creation des colonnes
         for (Conteneur c:modele.getTableau().getColonnes()){
-            VBox vboxColonne = new VBox(10); // Ajout de l'espace entre les boîtes de tâches
+            // Creation de la VBox de la colonne
+            VBox vboxColonne = new VBox(10);
             vboxColonne.getStyleClass().add("colonne");
+
+            // Creation de l'image de la fleche pour dérouler les colonnes
             ImageView img=new ImageView("fleche-vers-le-bas.png");
             img.fitWidthProperty().set(30);
             img.fitHeightProperty().set(30);
+
             // Ajout du titre de la colonne
             Label titreColonne = new Label(c.getTitre());
             titreColonne.setGraphic(img);
             titreColonne.setPrefWidth(screenWidth-(screenWidth/8));
             titreColonne.setPrefHeight(40);
             titreColonne.getStyleClass().add("titreListe");
-            VBox tache=new VBox(5);
-            tache.getChildren().add(titreColonne);
+            VBox vboxTache=new VBox(5);
+            vboxTache.getChildren().add(titreColonne);
             //titreColonne.getStyleClass().add("colonneTitre");
 
+
+            // Mise en place du menu déroulant sur chaque colonne pour les tache
             titreColonne.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent actionEvent) {
-                    System.out.println("yoooo");
-                    if (tache.getChildren().size()==1){
+                    // Si la colonne est déroulée
+                    if (vboxTache.getChildren().size()==1){
+                        // Ajout des taches de la colonne à la VBox
                         for (TacheMere t:c.getTaches()) {
-                            Label lTache = new Label(t.getTitre()+ ": " + t.getDescription());
-                            lTache.setPrefWidth(screenWidth - (screenWidth / 8));
-                            lTache.setPrefHeight(40);
-                            lTache.getStyleClass().add("tacheListe");
-                            lTache.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerDetailsTache(modele, t));
-                            tache.getChildren().add(lTache);
+                            // Création des texts
+                            Label labelTache = new Label(t.getTitre()+ ": " + t.getDescription());
+                            labelTache.setPrefWidth(screenWidth - (screenWidth / 8));
+                            labelTache.setPrefHeight(40);
+                            labelTache.getStyleClass().add("tacheListe");
+
+                            // Ajout d'un controleur pour afficher les détails de la tache
+                            labelTache.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerDetailsTache(modele, t));
+
+                            // Ajout des texts de la HBox
+                            vboxTache.getChildren().add(labelTache);
 
                         }
+                        // Ajout du bouton pour enrouler le menu
                         ImageView img2=new ImageView("fleche-vers-le-haut.png");
                         img2.fitWidthProperty().set(30);
                         img2.fitHeightProperty().set(30);
                         titreColonne.setGraphic(img2);
-                       ImageView plus = new ImageView("plus.png");
-                       plus.fitWidthProperty().set(30);
-                       plus.fitHeightProperty().set(30);
-                       Button button = new Button();
+
+                        // Ajout du bouton pour ajouter une tache
+                        ImageView plus = new ImageView("plus.png");
+                        plus.fitWidthProperty().set(30);
+                        plus.fitHeightProperty().set(30);
+                        Button button = new Button();
                         button.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaire(modele, modele.getTableau().getColonnes().indexOf(c)));
                         button.setPadding(new Insets(5));
                         button.setPrefSize(screenWidth - (screenWidth / 8), 30);
                         button.setGraphic(plus);
                         //button.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
                         //button.getStyleClass().add("buttonListe"); // Ajout de la classe de style pour le bouton
-                        tache.getChildren().add(button);
+                        vboxTache.getChildren().add(button);
+
+                        // Si la colonne est enroulée
                     }else{
-                            tache.getChildren().setAll(titreColonne);
-                            titreColonne.setGraphic(img);
+                        // Suppression des taches de la colonne à la VBox
+                        vboxTache.getChildren().setAll(titreColonne);
+                        titreColonne.setGraphic(img);
                         }
                     }
 
             });
-            vboxColonne.getChildren().add(tache);
+            // Ajout de la VBox de la colonne à la VBox principale
+            vboxColonne.getChildren().add(vboxTache);
             vliste.getChildren().add(vboxColonne);
         }
         Button newColonne = new Button("Nouvelle Colonne");
