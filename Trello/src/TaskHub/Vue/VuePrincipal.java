@@ -5,10 +5,7 @@ import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
 
-import TaskHub.Strategie.StrategieDiagramme;
-import TaskHub.Strategie.StrategieDiagrammeGantt;
-import TaskHub.Strategie.StrategieVisuel;
-import TaskHub.Strategie.StrategieVisuelBureau;
+import TaskHub.Strategie.*;
 
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
@@ -105,7 +102,7 @@ public class VuePrincipal extends Stage implements Observateur{
             e.printStackTrace();
         }
 
-        // Creation des bouttons en bas
+        // Creation des boutons en bas
         HBox hboxBas = new HBox(50);
         hboxBas.setAlignment(Pos.BOTTOM_RIGHT);
 
@@ -156,19 +153,22 @@ public class VuePrincipal extends Stage implements Observateur{
             this.diagramme.affichage();
             Scene sc= new Scene(this.diagramme);
             sc.getStylesheets().add("styleVisuel.css");
-
             this.setScene(sc);
             this.setFullScreen(true);
-        } else if(((ModeleTache)s).getTacheSelectionner()==null){
+        }else if(((ModeleTache)s).isArchive()){
+            this.affichage = new StrategieVisuelArchive();
+            this.affichage.affichage(this.modeleTache);
+            Scene sc= new Scene(this.affichage);
+            sc.getStylesheets().add("styleVisuel.css");
+            this.setScene(sc);
+        }else if(((ModeleTache)s).getTacheSelectionner()==null){
             this.setScene(this.scenePrincipale);
             this.affichage.affichage(this.modeleTache);
             this.setFullScreen(true);
-        }
-        else{
+        }else{
             // Sinon on affiche les détails de la tâche sélectionnée
             this.detailTache();
         }
-
     }
 
     /**

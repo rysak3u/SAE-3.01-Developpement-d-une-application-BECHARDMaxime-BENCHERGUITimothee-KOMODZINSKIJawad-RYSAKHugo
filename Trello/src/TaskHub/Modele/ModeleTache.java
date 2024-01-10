@@ -41,7 +41,6 @@ public class ModeleTache implements Sujet{
     /**Attribut représentant si on est en train de créer un gantt*/
     private boolean gantt=false;
     private boolean archive=false;
-
     private Archive archivage = new Archive();
     private boolean formulaire;
     /**Attribut représentant le formulaire*/
@@ -53,6 +52,15 @@ public class ModeleTache implements Sujet{
 
     public Archive getArchivage() {
         return archivage;
+    }
+
+    public void setArchive(boolean archive) {
+    	this.archive=archive;
+        this.notifierObservateur();
+    }
+
+    public boolean getArchive() {
+        return this.archive;
     }
 
     /**Methode pour changer la tache drag
@@ -427,7 +435,7 @@ public class ModeleTache implements Sujet{
     }
 
 
-    public void archiverTache(Tableau tableau, Tache tache, int idConteneur) {
+    public void archiverTache(Tableau tableau, TacheMere tache, int idConteneur) {
         this.archivage.archiverTache(tableau, tache, idConteneur);
         this.getConteneurSelectionner().getTaches().remove(tache);
         notifierObservateur();
@@ -442,7 +450,7 @@ public class ModeleTache implements Sujet{
         return archive;
     }
 
-    public void desarchiverTache(Tableau tableau, Tache tache) {
+    public void desarchiverTache(Tableau tableau, TacheMere tache) {
         int id=this.archivage.desarchiverTache(tableau, tache);
         this.getTableau().getColonnes().get(id).ajouterTache((TacheMere) tache);
         notifierObservateur();

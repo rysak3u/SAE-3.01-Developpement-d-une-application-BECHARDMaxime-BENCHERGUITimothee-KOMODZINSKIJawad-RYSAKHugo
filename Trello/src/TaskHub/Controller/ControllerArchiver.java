@@ -2,6 +2,7 @@ package TaskHub.Controller;
 
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Tache.Composite.Tache;
+import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
 import TaskHub.Tache.Tableau;
 import javafx.event.ActionEvent;
@@ -11,12 +12,12 @@ import javafx.scene.control.Button;
 public class ControllerArchiver implements EventHandler<ActionEvent> {
 
     private ModeleTache modeleTache;
-    private Tache tache;
+    private TacheMere tache;
     private Conteneur conteneur;
     private Tableau tableau;
 
 
-    public ControllerArchiver(ModeleTache modeleTache, Tache tache, Conteneur conteneur, Tableau tableau) {
+    public ControllerArchiver(ModeleTache modeleTache, TacheMere tache, Conteneur conteneur, Tableau tableau) {
         this.modeleTache = modeleTache;
         this.tache = tache;
         this.conteneur = conteneur;
