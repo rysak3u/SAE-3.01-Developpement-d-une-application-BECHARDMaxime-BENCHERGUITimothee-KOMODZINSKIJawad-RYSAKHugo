@@ -307,23 +307,6 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
-    public void ajoutDependance(TacheMere tache1, String tache2){
-        try{
-            for(Tache tm:getTaches()){
-                if (tm.getTitre().equals(tache2)){
-                    this.dependance.ajouterDependance(tache1, tm);
-                    this.dependance.calculerNiveau(tache1);
-                    this.dependance.update();
-                    //System.out.println(this.dependance);
-                    this.notifierObservateur();
-                    return;
-                }
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
     /**
      * methode pour avoir le formulaire
      * @return
@@ -363,6 +346,22 @@ public class ModeleTache implements Sujet{
             taches.addAll(c.getTaches());
         }
         return taches;
+    }
+
+    public void ajoutDependance(TacheMere tache1, String tache2){
+        try{
+            for(Tache tm:getTaches()){
+                if (tm.getTitre().equals(tache2)){
+                    this.dependance.ajouterDependance(tache1, tm);
+                    this.dependance.calculerNiveau(tache1);
+                    this.dependance.update();
+                    this.notifierObservateur();
+                    return;
+                }
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public Dependance getDependance() {

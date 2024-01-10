@@ -9,13 +9,14 @@ public class Dependance {
     public Dependance() {
         this.dependance = new HashMap<Tache, List<Tache>>();
     }
+
     public void ajouterDependance(Tache tache, List<Tache> dependance) {
         this.dependance.put(tache, dependance);
     }
+
     public void ajouterDependance(Tache predecesseur, Tache dependance) {
         if (existeDependanceInverse(predecesseur, dependance) || predecesseur.equals(dependance) || this.dependance.getOrDefault(predecesseur, new ArrayList<>()).contains(dependance)) {
-            System.out.println("Dépendance inverse détectée. Double dépendance non autorisée.");
-            return;
+            throw new IllegalArgumentException("Dépendance inverse détectée. Double dépendance non autorisée.");
         }
         if(detecteCycle(predecesseur, dependance)){
             throw new IllegalArgumentException("Cycle détecter. Impossible d'ajouter la dépendance.");
