@@ -54,7 +54,11 @@ public class ModeleTache implements Sujet{
    private TacheMere tacheSelectionner;
 
 
-   public void setTacheDrag(TacheMere tacheDrag) {
+    public Archive getArchivage() {
+        return archivage;
+    }
+
+    public void setTacheDrag(TacheMere tacheDrag) {
        this.tacheDrag = tacheDrag;
    }
 
