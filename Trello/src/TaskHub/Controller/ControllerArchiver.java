@@ -32,7 +32,7 @@ public class ControllerArchiver implements EventHandler<ActionEvent> {
             this.modeleTache.setTacheSelectionner(null);
         } else {
             modeleTache.desarchiverTache(tableau, tache);
-            button.setText("Archiver");
+            this.modeleTache.setTacheSelectionner(null);
         }
     }
 }

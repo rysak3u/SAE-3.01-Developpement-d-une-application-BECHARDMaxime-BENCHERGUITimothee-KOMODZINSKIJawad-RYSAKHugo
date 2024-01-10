@@ -246,7 +246,7 @@ public class VuePrincipal extends Stage implements Observateur{
         sousTaches.getStyleClass().add("textfield-formulaire");  // Appliquer le style CSS
         sousTaches.setSpacing(10);
         sousTaches.setAlignment(Pos.CENTER);
-        grid.add(sousTaches, 0, 3);
+        grid.add(sousTaches, 0, 4);
 
         // Création des boutons
         // Création du bouton pour créer une sous tâche
@@ -277,7 +277,7 @@ public class VuePrincipal extends Stage implements Observateur{
         hbBtn.getChildren().addAll(btnAnnuler, btnGantt, btnArchiver, btnModifier, btnCreer);
         hbBtn.setSpacing(10);
         hbBtn.setAlignment(Pos.CENTER);
-        grid.add(hbBtn, 1, 4);
+        grid.add(hbBtn, 1, 5);
 
         // Création de la scène
         Scene sc = new Scene(grid);

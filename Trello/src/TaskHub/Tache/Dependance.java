@@ -16,24 +16,29 @@ public class Dependance {
         this.dependance = new HashMap<Tache, List<Tache>>();
     }
 
+<<<<<<< HEAD
+=======
     /**
      * Méthode pour ajouter une dépendance
      * @param tache
      * @param dependance
      */
+>>>>>>> bcb2daedb3c3bd82c01effd7241a6a4e2b3c85fb
     public void ajouterDependance(Tache tache, List<Tache> dependance) {
         this.dependance.put(tache, dependance);
     }
 
+<<<<<<< HEAD
+=======
     /**
      * Méthode pour ajouter une dépendance
      * @param predecesseur
      * @param dependance
      */
+>>>>>>> bcb2daedb3c3bd82c01effd7241a6a4e2b3c85fb
     public void ajouterDependance(Tache predecesseur, Tache dependance) {
         if (existeDependanceInverse(predecesseur, dependance) || predecesseur.equals(dependance) || this.dependance.getOrDefault(predecesseur, new ArrayList<>()).contains(dependance)) {
-            System.out.println("Dépendance inverse détectée. Double dépendance non autorisée.");
-            return;
+            throw new IllegalArgumentException("Dépendance inverse détectée. Double dépendance non autorisée.");
         }
         if(detecteCycle(predecesseur, dependance)){
             throw new IllegalArgumentException("Cycle détecter. Impossible d'ajouter la dépendance.");
