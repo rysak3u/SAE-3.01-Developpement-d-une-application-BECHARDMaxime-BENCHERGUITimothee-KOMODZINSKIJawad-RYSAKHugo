@@ -9,33 +9,52 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-/**
+
 public class Archive {
     private Map<Tableau, Map<Tache, Integer>> archiveTache;
-    private Map<Tableau, List<Conteneur>> archiveConteneur;
 
     public Archive() {
         this.archiveTache = new HashMap<>();
-        this.archiveConteneur = new HashMap<>();
     }
 
-    public void archiverTache(Tableau tableau, Tache tache, Conteneur conteneur) {
-        archiveTache.computeIfAbsent(tableau, k -> new HashMap<>()).put(tache, conteneur.getIdConteneur());
+    public void archiverTache(Tableau tableau, Tache tache, int idConteneur) {
+        archiveTache.computeIfAbsent(tableau, k -> new HashMap<>()).put(tache, idConteneur);
     }
 
+/**
     public void archiverConteneur(Tableau tableau, Conteneur conteneur) {
-        archiveConteneur.computeIfAbsent(tableau, k -> new ArrayList<>()).add(conteneur);;
+        archiveConteneur.computeIfAbsent(tableau, k -> new ArrayList<>()).add(conteneur);
+        verifierDependance();
     }
 
-    public void desarchiverTache(Tableau tableau, Tache tache) {
+    public void verifierDependance(){
+        for(Tableau tableau: archiveTache.keySet()) {
+            for (Map.Entry<Tache, Integer> entry : archiveTache.get(tableau).entrySet()) {
+                if (archiveConteneur.get(tableau)!=null) {
+                    for(Conteneur conteneur: archiveConteneur.get(tableau)) {
+                        if (entry.getValue().equals(conteneur.getIdConteneur())) {
+                            conteneur.ajouterTache((TacheMere) entry.getKey());
+                            archiveTache.get(tableau).remove(entry.getKey());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+ public Conteneur desarchiverConteneur(Tableau tableau, Conteneur conteneur) {
+ archiveConteneur.get(tableau).remove(conteneur);
+ return conteneur;
+ }
+ */
+
+/**
+    public Tache desarchiverTache(Tableau tableau, Tache tache) {
         Map<Tache, Integer> tachesArchives = archiveTache.get(tableau);
         if (tachesArchives != null) {
             tachesArchives.remove(tache);
         }
-    }
-
-    public void desarchiverConteneur(Tableau tableau) {
-        archiveConteneur.remove(tableau);
+        return tache;
     }
 
     public void reintegrerTachesArchives(Tableau tableau, Conteneur conteneur) {
@@ -46,13 +65,13 @@ public class Archive {
             // Parcourir les tâches archivées et les réintégrer au conteneur
             for (Map.Entry<Tache, Integer> entry : tachesArchives.entrySet()) {
                 if (entry.getValue().equals(conteneur.getIdConteneur())) {
-                    conteneur.ajouterTache(entry.getKey());
+                    conteneur.ajouterTache((TacheMere) entry.getKey());
                 }
             }
             // Supprimer les tâches réintégrées de l'archive
             tachesArchives.entrySet().removeIf(entry -> entry.getValue().equals(conteneur.getIdConteneur()));
         }
     }
+ */
 
 }
-*/

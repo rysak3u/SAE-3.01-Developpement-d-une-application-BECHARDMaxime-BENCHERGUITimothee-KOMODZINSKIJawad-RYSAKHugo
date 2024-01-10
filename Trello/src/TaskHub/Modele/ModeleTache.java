@@ -2,6 +2,7 @@ package TaskHub.Modele;
 
 import TaskHub.Exception.TacheNomVideException;
 //import TaskHub.Tache.Archive;
+import TaskHub.Tache.Archive;
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
 import TaskHub.Tache.Conteneur;
@@ -41,7 +42,9 @@ public class ModeleTache implements Sujet{
 
     private boolean gantt=false;
 
-    //private Archive archivage = new Archive();
+    private boolean archive=false;
+
+    private Archive archivage = new Archive();
 
     private boolean formulaire;
 
@@ -275,6 +278,9 @@ public class ModeleTache implements Sujet{
     public int getColonneSelectionner() {
         return this.colonneSelectionner;
     }
+    public Conteneur getConteneurSelectionner(){
+        return this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner);
+    }
 
     public void switchFormulaire(int form){
         this.form=form;
@@ -367,17 +373,23 @@ public class ModeleTache implements Sujet{
     public boolean isGantt() {
         return gantt;
     }
+
+
+    public void archiverTache(Tableau tableau, Tache tache, int idConteneur) {
+        this.archivage.archiverTache(tableau, tache, idConteneur);
+        this.getConteneurSelectionner().getTaches().remove(tache);
+        notifierObservateur();
+    }
+
+    public void actualiserArchive() {
+    	this.archive=!this.archive;
+        this.notifierObservateur();
+    }
+
+    public boolean isArchive() {
+        return archive;
+    }
 /**
-    public void archiverTache(Tableau tableau, Tache tache) {
-        this.archivage.archiverTache(tableau, tache);
-        notifierObservateur();
-    }
-
-    public void archiverConteneur(Tableau tableau, Conteneur conteneur) {
-        this.archivage.archiverConteneur(tableau, conteneur);
-        notifierObservateur();
-    }
-
     public void desarchiverTache(Tableau tableau, Tache tache) {
         this.archivage.desarchiverTache(tableau, tache);
         notifierObservateur();
@@ -387,5 +399,11 @@ public class ModeleTache implements Sujet{
         this.archivage.desarchiverConteneur(tableau, conteneur);
         notifierObservateur();
     }
- */
+
+     public void archiverConteneur(Tableau tableau, Conteneur conteneur) {
+         this.archivage.archiverConteneur(tableau, conteneur);
+         this.tableaux.get(idTableauCourant).getColonnes().remove(conteneur);
+         notifierObservateur();
+     }
+*/
 }

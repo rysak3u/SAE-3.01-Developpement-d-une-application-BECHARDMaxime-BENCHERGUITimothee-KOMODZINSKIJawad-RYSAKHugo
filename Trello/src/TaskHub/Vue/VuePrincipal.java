@@ -109,6 +109,11 @@ public class VuePrincipal extends Stage implements Observateur{
         HBox hboxBas = new HBox(50);
         hboxBas.setAlignment(Pos.BOTTOM_RIGHT);
 
+        Button archive=new Button("Voir Archive");
+        archive.setOnAction(new ControllerAccesArchive(this.modeleTache));
+        archive.getStyleClass().add("buttonTableau");
+        hboxBas.getChildren().add(archive);
+
         Button gantt=new Button("Générer Diagramme de Gantt");
         gantt.addEventHandler(ActionEvent.ACTION, new ControllerGantt(this.modeleTache));
         gantt.getStyleClass().add("buttonTableau");
@@ -244,6 +249,7 @@ public class VuePrincipal extends Stage implements Observateur{
 
         Button btnArchiver = new Button("Archiver");
         btnArchiver.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
+        btnArchiver.setOnAction(new ControllerArchiver(this.modeleTache, this.modeleTache.getTacheSelectionner(), this.modeleTache.getConteneurSelectionner(), this.modeleTache.getTableau()));
 
         Button btnGantt = new Button("Ajouter Dépendance");
         btnGantt.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaireDependance(this.modeleTache));
