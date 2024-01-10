@@ -61,7 +61,7 @@ class ModeleTest {
 
     @Test
     void archiverTache() {
-        Tache t=this.m.getTableau().getColonne(0).getTaches().get(0);
+        TacheMere t=this.m.getTableau().getColonne(0).getTaches().get(0);
         assertEquals(3,this.m.getTableau().getColonne(0).getTaches().size());
         this.m.archiverTache(this.m.getTableau(), t, this.m.getTableau().getColonne(0).getIdConteneur());
         assertEquals(2,this.m.getTableau().getColonne(0).getTaches().size());
@@ -70,7 +70,7 @@ class ModeleTest {
 
     @Test
     void desarchiverTache() {
-        Tache t=this.m.getTableau().getColonne(0).getTaches().get(0);
+        TacheMere t=this.m.getTableau().getColonne(0).getTaches().get(0);
         this.m.archiverTache(this.m.getTableau(), t, this.m.getTableau().getColonne(0).getIdConteneur());
         assertEquals(2,this.m.getTableau().getColonne(0).getTaches().size());
         this.m.desarchiverTache(this.m.getTableau(),t);

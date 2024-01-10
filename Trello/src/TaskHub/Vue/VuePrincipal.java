@@ -5,10 +5,7 @@ import TaskHub.Exception.TacheNomVideException;
 import TaskHub.Modele.ModeleTache;
 import TaskHub.Modele.Sujet;
 
-import TaskHub.Strategie.StrategieDiagramme;
-import TaskHub.Strategie.StrategieDiagrammeGantt;
-import TaskHub.Strategie.StrategieVisuel;
-import TaskHub.Strategie.StrategieVisuelBureau;
+import TaskHub.Strategie.*;
 
 import TaskHub.Tache.Composite.Tache;
 import TaskHub.Tache.Composite.TacheMere;
@@ -40,7 +37,7 @@ import java.util.ArrayList;
 public class VuePrincipal extends Stage implements Observateur{
     // Attributs
     private ModeleTache modeleTache;
-    private Scene scenePrincipale;
+    private Scene scenePrincipale,sceneArchive;
     private StrategieVisuel affichage;
     private StrategieDiagramme diagramme;
 
@@ -105,7 +102,7 @@ public class VuePrincipal extends Stage implements Observateur{
             e.printStackTrace();
         }
 
-        // Creation des bouttons en bas
+        // Creation des boutons en bas
         HBox hboxBas = new HBox(50);
         hboxBas.setAlignment(Pos.BOTTOM_RIGHT);
 
@@ -156,19 +153,26 @@ public class VuePrincipal extends Stage implements Observateur{
             this.diagramme.affichage();
             Scene sc= new Scene(this.diagramme);
             sc.getStylesheets().add("styleVisuel.css");
-
             this.setScene(sc);
             this.setFullScreen(true);
-        } else if(((ModeleTache)s).getTacheSelectionner()==null){
+        }else if(((ModeleTache)s).isArchive()){
+            if(((ModeleTache)s).getTacheSelectionner()==null) {
+                this.setSceneArchive();
+            }else{
+                this.detailTache();
+            }
+            //this.affichage.affichage(this.modeleTache);
+            //Scene sc= new Scene(this.affichage);
+            //sc.getStylesheets().add("styleVisuel.css");
+            //this.setScene(sc);
+        }else if(((ModeleTache)s).getTacheSelectionner()==null){
             this.setScene(this.scenePrincipale);
             this.affichage.affichage(this.modeleTache);
             this.setFullScreen(true);
-        }
-        else{
+        }else{
             // Sinon on affiche les détails de la tâche sélectionnée
             this.detailTache();
         }
-
     }
 
     /**
@@ -263,6 +267,10 @@ public class VuePrincipal extends Stage implements Observateur{
         btnModifier.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaire(this.modeleTache, this.modeleTache.getColonneSelectionner()));
         // Création du bouton pour archiver la tâche
         Button btnArchiver = new Button("Archiver");
+        if(this.modeleTache.isArchive()){
+            btnArchiver.setText("Désarchiver");
+        }
+
         btnArchiver.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
         // Création du bouton pour ajouter une dépendance
         btnArchiver.setOnAction(new ControllerArchiver(this.modeleTache, this.modeleTache.getTacheSelectionner(), this.modeleTache.getConteneurSelectionner(), this.modeleTache.getTableau()));
@@ -286,6 +294,86 @@ public class VuePrincipal extends Stage implements Observateur{
         this.setScene(sc);
 
         this.show();
+    }
+
+    public void setSceneArchive(){
+        // Création du titre du tableau
+        Label titreTab = new Label("Archive");
+        titreTab.getStyleClass().add("titreTableau");
+
+        // Création de la structure de la fenêtre principale
+        HBox hboxColonnes = new HBox(50);
+        hboxColonnes.getChildren().setAll();
+
+        // Création de la colonne
+        // HBox contenant les tâches
+        VBox vboxColonne = new VBox(10);
+        // Ajout des tâches de la colonne à la VBox
+        for (Tableau tab : this.modeleTache.getArchivage().getArchiveTache().keySet()) {
+            for(TacheMere tache : modeleTache.getArchivage().getArchiveTache().get(tab).keySet()){
+
+                VBox vboxTache = new VBox();
+                // Création des texts
+                Text titreTache=new Text(tache.getTitre());
+                Text descTache=new Text(tache.getDescription());
+                titreTache.getStyleClass().add("tacheText");
+                descTache.getStyleClass().add("tacheText");
+
+                // Ajout des texts de la HBox
+                vboxTache.getChildren().addAll(titreTache,descTache);
+                vboxTache.addEventHandler(MouseEvent.MOUSE_CLICKED,new ControllerDetailsTache(modeleTache,tache));
+
+                // Style de la HBox
+                vboxTache.setPadding(new Insets(20));
+                vboxTache.setPrefSize(200, 100);
+                //vboxt.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
+                vboxTache.getStyleClass().add("tache");
+                // Création de la VBox contenant la tâche
+
+
+
+                // Style de la VBox
+                vboxTache.setPrefHeight(20);
+                vboxTache.setPrefWidth(250);
+
+                // Ajout de la tâche dans la liste
+                vboxColonne.getChildren().add(vboxTache);
+                //vbox.fillWidthProperty().set(false);
+
+            }
+        }
+        // Creation des bouttons en bas
+        HBox hboxBas = new HBox(50);
+        hboxBas.setAlignment(Pos.BOTTOM_RIGHT);
+
+        Button archive=new Button("Retour");
+        archive.setOnAction(new ControllerAccesArchive(modeleTache));
+        archive.getStyleClass().add("buttonTableau");
+        hboxBas.getChildren().add(archive);
+
+        // Style de la VBox de la colonne
+        vboxColonne.setAlignment(Pos.TOP_CENTER);
+        vboxColonne.getStyleClass().add("colonne");
+
+        // Création de la structure de la fenêtre principale
+        VBox vbox = new VBox(50);
+        vbox.setPadding(new Insets(20));
+
+        VBox titreOutil=new VBox(5);
+        // Création du titre principal centré
+        HBox titrePrin = new HBox();
+        Text titrePrincipale = new Text("TaskHub".toUpperCase());
+        titrePrincipale.setFont(Font.font("Arial Black", FontWeight.BLACK, 45));
+        titrePrin.setAlignment(Pos.TOP_CENTER);
+        titrePrin.getChildren().add(titrePrincipale);
+        titreOutil.getChildren().add(titrePrin);
+
+        vbox.getChildren().addAll(titreOutil,titreTab, vboxColonne, hboxBas);
+
+        this.sceneArchive= new Scene(vbox, 300, 250);
+        this.sceneArchive.getStylesheets().add("styleVisuel.css");
+        this.setScene(sceneArchive);
+        this.setFullScreen(true);
     }
 
     /**

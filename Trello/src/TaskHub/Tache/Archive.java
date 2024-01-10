@@ -11,18 +11,18 @@ import java.util.List;
 import java.util.Map;
 
 public class Archive {
-    private Map<Tableau, Map<Tache, Integer>> archiveTache;
+    private Map<Tableau, Map<TacheMere, Integer>> archiveTache;
 
     public Archive() {
         this.archiveTache = new HashMap<>();
     }
 
-    public void archiverTache(Tableau tableau, Tache tache, int idConteneur) {
+    public void archiverTache(Tableau tableau, TacheMere tache, int idConteneur) {
         archiveTache.computeIfAbsent(tableau, k -> new HashMap<>()).put(tache, idConteneur);
     }
 
-    public int desarchiverTache(Tableau tableau, Tache tache) {
-        Map<Tache, Integer> tachesArchives = archiveTache.get(tableau);
+    public int desarchiverTache(Tableau tableau, TacheMere tache) {
+        Map<TacheMere, Integer> tachesArchives = archiveTache.get(tableau);
         if (tachesArchives != null) {
             int idConteneur = tachesArchives.get(tache);
             tachesArchives.remove(tache);
@@ -31,7 +31,7 @@ public class Archive {
         return -1;
     }
 
-    public Map<Tableau, Map<Tache, Integer>> getArchiveTache() {
+    public Map<Tableau, Map<TacheMere, Integer>> getArchiveTache() {
         return archiveTache;
     }
 
