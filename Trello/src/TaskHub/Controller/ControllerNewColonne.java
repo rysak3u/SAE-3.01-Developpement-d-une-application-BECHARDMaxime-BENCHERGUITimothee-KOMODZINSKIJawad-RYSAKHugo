@@ -31,6 +31,5 @@ public class ControllerNewColonne implements EventHandler<MouseEvent>{
     @Override
     public void handle(MouseEvent event) {
         this.m.switchFormulaire(2);
-        System.out.println("2");
     }
 }

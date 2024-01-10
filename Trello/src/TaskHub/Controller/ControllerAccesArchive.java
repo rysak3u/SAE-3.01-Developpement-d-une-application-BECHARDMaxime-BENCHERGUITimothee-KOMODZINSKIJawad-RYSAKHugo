@@ -14,6 +14,6 @@ public class ControllerAccesArchive implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-
+        this.modeleTache.actualiserArchive();
     }
 }
