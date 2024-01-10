@@ -109,15 +109,12 @@ public class VuePrincipal extends Stage implements Observateur{
         HBox hboxBas = new HBox(50);
         hboxBas.setAlignment(Pos.BOTTOM_RIGHT);
 
-<<<<<<< HEAD
-        // Création du bouton pour générer un diagramme de Gantt
-=======
         Button archive=new Button("Voir Archive");
         archive.setOnAction(new ControllerAccesArchive(this.modeleTache));
         archive.getStyleClass().add("buttonTableau");
         hboxBas.getChildren().add(archive);
+        // Création du bouton pour générer un diagramme de Gantt
 
->>>>>>> 94fb16b842a0a1e74b43634a632afe91881d8721
         Button gantt=new Button("Générer Diagramme de Gantt");
         gantt.addEventHandler(ActionEvent.ACTION, new ControllerGantt(this.modeleTache));
         gantt.getStyleClass().add("buttonTableau");
@@ -267,12 +264,9 @@ public class VuePrincipal extends Stage implements Observateur{
         // Création du bouton pour archiver la tâche
         Button btnArchiver = new Button("Archiver");
         btnArchiver.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
-<<<<<<< HEAD
         // Création du bouton pour ajouter une dépendance
-=======
         btnArchiver.setOnAction(new ControllerArchiver(this.modeleTache, this.modeleTache.getTacheSelectionner(), this.modeleTache.getConteneurSelectionner(), this.modeleTache.getTableau()));
 
->>>>>>> 94fb16b842a0a1e74b43634a632afe91881d8721
         Button btnGantt = new Button("Ajouter Dépendance");
         btnGantt.addEventHandler(MouseEvent.MOUSE_CLICKED, new ControllerAfficherFormulaireDependance(this.modeleTache));
         btnGantt.getStyleClass().add("button-formulaire");  // Appliquer le style CSS
