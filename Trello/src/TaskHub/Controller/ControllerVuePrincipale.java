@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
  */
 public class ControllerVuePrincipale implements EventHandler<ActionEvent> {
 
-    // Attribut de la classe
+    // Attribut
     private VuePrincipal vuePrincipal;
 
     /**

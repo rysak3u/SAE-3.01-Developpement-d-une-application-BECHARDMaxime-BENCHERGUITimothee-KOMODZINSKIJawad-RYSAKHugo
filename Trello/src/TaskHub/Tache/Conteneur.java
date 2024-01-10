@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 // Conteneur est une classe qui contient des taches
 public class Conteneur {
-    // titre et tache du conteneur
+    // attributs
     private String titre;
     private ArrayList<TacheMere> taches;
     private ModeleTache modele;

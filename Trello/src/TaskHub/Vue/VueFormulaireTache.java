@@ -19,7 +19,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class VueFormulaireTache extends Stage implements Observateur {
+    /**
+     * Constructeur de VueFormulaireTache
+     * @param modeleTache modèle pour lequelle la vue va se baser
+     */
     public VueFormulaireTache(ModeleTache modeleTache) {
+        // Création de la structure de la fenêtre principale
         super();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -28,28 +33,29 @@ public class VueFormulaireTache extends Stage implements Observateur {
         grid.setPadding(new Insets(25, 25, 25, 25));
         grid.getStyleClass().add("formulaire"); // Appliquer le style CSS
 
+        // Création du titre
         Text scenetitle = new Text("Création de Tâche");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         scenetitle.getStyleClass().add("titre-formulaire"); // Appliquer le style CSS
         grid.add(scenetitle, 0, 0, 2, 1);
 
-        // Création des labels et des textfields
+        // Création deu champ pour le nom
         Label name = new Label("Nom de La Tache:");
         name.getStyleClass().add("label-formulaire");
         grid.add(name, 0, 1);
-
         TextField nameTextField = new TextField("New Tâche");
         nameTextField.getStyleClass().add("textfield-formulaire");
         grid.add(nameTextField, 1, 1);
 
+        // Création du champ pour la description
         Label ds = new Label("Description:");
         ds.getStyleClass().add("label-formulaire");
         grid.add(ds, 0, 2);
-
         TextField tfDesc = new TextField();
         tfDesc.getStyleClass().add("textfield-formulaire");
         grid.add(tfDesc, 1, 2);
 
+        // Création et style des boutons
         ControllerManip controllerCreerTache = new ControllerManip(modeleTache, nameTextField, tfDesc);
         Button btnCreer = new Button("Créer Tâche");
         btnCreer.getStyleClass().add("button-formulaire");
@@ -58,22 +64,27 @@ public class VueFormulaireTache extends Stage implements Observateur {
         btnCreer.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCreerTache);
         btnAnnuler.addEventHandler(MouseEvent.MOUSE_CLICKED, controllerCreerTache);
 
+        // Ajout des boutons dans une HBox
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().addAll(btnCreer, btnAnnuler);
         hbBtn.getStyleClass().add("hbBtn-formulaire");
         grid.add(hbBtn, 1, 4);
 
+        // Ajout du grid dans la scene
         Scene sc = new Scene(grid, 400, 500);
         sc.setFill(Color.web("#9c8ae2"));
         sc.getStylesheets().add("styleFormulaire.css"); // Ajouter le fichier CSS
         this.setScene(sc);
-
         this.setFullScreen(false);
         this.setWidth(400);
         this.setHeight(500);
     }
 
+    /**
+     * Méthode pour actualiser la vue
+     * @param s le sujet
+     */
     @Override
     public void actualiser(Sujet s) {
         if (((ModeleTache) s).getFormulaire() && ((ModeleTache) s).getForm()==1) {
