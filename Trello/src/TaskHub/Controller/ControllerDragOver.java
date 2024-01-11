@@ -13,7 +13,7 @@ public class ControllerDragOver implements EventHandler<DragEvent> {
     }
 
     /**
-     * Méthode qui va permettre de gérer le drag and drop
+     * Méthode qui va permettre de gérer le drag and drop&
      * @param dragEvent
      */
     @Override

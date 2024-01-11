@@ -34,7 +34,7 @@ public class StrategieVisuelArchive extends StrategieVisuel{
 
                 // Création de la VBox contenant la tâche
                 VBox vboxTache = createVisuTache(tache, modele);
-                
+
 
                 // Style de la VBox
                 vboxTache.setPrefHeight(20);
