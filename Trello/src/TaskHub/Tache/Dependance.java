@@ -101,7 +101,7 @@ public class Dependance {
                 max=t.getNiv();
             }
         }
-        if(max>=initial){
+        if(max>=initial || max<initial-1){
             tache.setNiv(max+1);
         }
     }
@@ -129,6 +129,10 @@ public class Dependance {
      */
     public void supprimerDependance(Tache tache) {
         this.dependance.remove(tache);
+        List<Tache> t = this.getSuccessors(tache);
+        for(Tache suc : t){
+            this.supprimerDependance(suc, tache);
+        }
     }
 
     /**

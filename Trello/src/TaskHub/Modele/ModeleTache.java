@@ -348,7 +348,6 @@ public class ModeleTache implements Sujet{
                     this.dependance.ajouterDependance(tache1, tm);
                     this.dependance.calculerNiveau(tache1);
                     this.dependance.update();
-                    //System.out.println(this.dependance);
                     this.notifierObservateur();
                     return;
                 }
@@ -357,7 +356,14 @@ public class ModeleTache implements Sujet{
             System.out.println(e.getMessage());
         }
     }
-    
+
+    public void supprimerDependancce(TacheMere tache){
+        this.dependance.supprimerDependance(tache);
+        this.dependance.calculerNiveau(tache);
+        this.dependance.update();
+        this.notifierObservateur();
+    }
+
     /**
      * methode pour avoir le formulaire
      * @return
