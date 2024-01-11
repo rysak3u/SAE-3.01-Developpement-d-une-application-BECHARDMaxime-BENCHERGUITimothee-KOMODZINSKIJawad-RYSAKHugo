@@ -29,6 +29,7 @@ public class ControllerArchiver implements EventHandler<ActionEvent> {
         Button button = (Button) event.getSource();
         if (button.getText().equals("Archiver")) {
             modeleTache.archiverTache(tableau, tache, conteneur.getIdConteneur());
+            this.modeleTache.supprimerDependancce(tache);
             this.modeleTache.setTacheSelectionner(null);
         } else {
             modeleTache.desarchiverTache(tableau, tache);

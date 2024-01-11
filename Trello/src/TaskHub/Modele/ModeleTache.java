@@ -335,8 +335,7 @@ public class ModeleTache implements Sujet{
         this.notifierObservateur();
     }
 
-<<<<<<< HEAD
-=======
+
     /**
      * Methode pour ajouter une dépendance
      * @param tache1
@@ -349,7 +348,6 @@ public class ModeleTache implements Sujet{
                     this.dependance.ajouterDependance(tache1, tm);
                     this.dependance.calculerNiveau(tache1);
                     this.dependance.update();
-                    //System.out.println(this.dependance);
                     this.notifierObservateur();
                     return;
                 }
@@ -359,7 +357,13 @@ public class ModeleTache implements Sujet{
         }
     }
 
->>>>>>> bcb2daedb3c3bd82c01effd7241a6a4e2b3c85fb
+    public void supprimerDependancce(TacheMere tache){
+        this.dependance.supprimerDependance(tache);
+        this.dependance.calculerNiveau(tache);
+        this.dependance.update();
+        this.notifierObservateur();
+    }
+
     /**
      * methode pour avoir le formulaire
      * @return
@@ -413,29 +417,10 @@ public class ModeleTache implements Sujet{
         return taches;
     }
 
-<<<<<<< HEAD
-    public void ajoutDependance(TacheMere tache1, String tache2){
-        try{
-            for(Tache tm:getTaches()){
-                if (tm.getTitre().equals(tache2)){
-                    this.dependance.ajouterDependance(tache1, tm);
-                    this.dependance.calculerNiveau(tache1);
-                    this.dependance.update();
-                    this.notifierObservateur();
-                    return;
-                }
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-=======
     /**
      * methode pour avoir les dependances
      * @return
      */
->>>>>>> bcb2daedb3c3bd82c01effd7241a6a4e2b3c85fb
     public Dependance getDependance() {
         return dependance;
     }

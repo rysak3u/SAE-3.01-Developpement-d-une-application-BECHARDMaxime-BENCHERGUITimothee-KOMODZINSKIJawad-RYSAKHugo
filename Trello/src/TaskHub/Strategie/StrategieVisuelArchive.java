@@ -79,8 +79,4 @@ public class StrategieVisuelArchive extends StrategieVisuel{
 
     }
 
-    /**
-     * Méthode qui va permettre de définir le visuel de l'archive
-     */
-
 }
