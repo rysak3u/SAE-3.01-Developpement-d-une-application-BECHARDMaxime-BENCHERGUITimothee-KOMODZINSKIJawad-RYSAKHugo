@@ -31,7 +31,7 @@ public class ControllerDragDone implements EventHandler<DragEvent>{
      */
     public void handle(DragEvent event) {
         if (event.getTransferMode() == TransferMode.MOVE) {
-            colonne.getTaches().remove(tache);
+            colonne.supprimerTache(tache);
         }
         modele.notifierObservateur();
         event.consume();

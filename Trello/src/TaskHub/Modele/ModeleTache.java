@@ -183,7 +183,7 @@ public class ModeleTache implements Sujet{
     public void creerTache(String titre, String description) throws TacheNomVideException {
         TacheMere tache = new TacheMere(titre, description);
         this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner).ajouterTache(tache);
-        this.changement = new Changement(this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajout");
+        this.changement = new Changement(this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajoutTache");
         this.notifierObservateur();
     }
 
@@ -370,6 +370,8 @@ public class ModeleTache implements Sujet{
      */
     public void creerColonne(String titre){
         this.tableaux.get(idTableauCourant).ajouterColonne(new Conteneur(titre,this));
+        System.out.println("test");
+        this.changement = new Changement(0,this.tableaux.get(idTableauCourant).getColonnes().size()-1,"ajoutColonne");
         this.notifierObservateur();
     }
 
@@ -445,6 +447,7 @@ public class ModeleTache implements Sujet{
     public void archiverTache(Tableau tableau, TacheMere tache, int idConteneur) {
         this.archivage.archiverTache(tableau, tache, idConteneur);
         this.getConteneurSelectionner().getTaches().remove(tache);
+        this.changement = new Changement(this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner).getTaches().size(),this.colonneSelectionner,"suppression");
         notifierObservateur();
     }
 
@@ -460,6 +463,11 @@ public class ModeleTache implements Sujet{
     public void desarchiverTache(Tableau tableau, TacheMere tache) {
         int id=this.archivage.desarchiverTache(tableau, tache);
         this.getTableau().getColonnes().get(id).ajouterTache((TacheMere) tache);
+        this.changement = new Changement(this.tableaux.get(idTableauCourant).getColonnes().get(this.colonneSelectionner).getTaches().size()-1,this.colonneSelectionner,"ajoutTache");
         notifierObservateur();
+    }
+
+    public void setChangement(String action, int idConteneur, int idTache) {
+        this.changement = new Changement(idTache,idConteneur,action);
     }
 }
